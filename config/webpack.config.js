@@ -1,3 +1,7 @@
+/*
+  原本的配置文件
+*/
+
 // 由于 webpack 是基于Node进行构建的，所有，webpack的配置文件中，任何合法的Node代码都是支持的
 const webpack = require("webpack");
 const path = require('path');
@@ -8,14 +12,12 @@ function resolve(dir) {
 }
 
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const { title } = require('process');
-const { url } = require('inspector');
 
 // 当以命令行形式运行 webpack 或 webpack-dev-server 的时候，工具会发现，我们并没有提供 要打包 的文件的 入口 和 出口文件，此时，他会检查项目根目录中的配置文件，并读取这个文件，就拿到了导出的这个 配置对象，然后根据这个对象，进行打包构建
 module.exports = {
-  entry: path.join(__dirname, './src/main.js'), // 入口文件
+  entry: resolve('./src/main.js'), // 入口文件
   output: { // 指定输出选项
-    path: path.join(__dirname, './dist'), // 输出路径
+    path: resolve('./dist'), // 输出路径
     filename: '[name].[hash].bundle.js', // 指定输出文件的名称
     chunkFilename: '[name].[hash].chunk.js'  //指定非entry chunk的文件名，比如import()引入的模块不打包进entry中，而会作为单独的chunk打包，其文件名就由该属性决定
   },

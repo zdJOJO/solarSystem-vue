@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --port 3000 --hot --host 127.0.0.1"
+    "start": "webpack-dev-server --progress --inline --config config/webpack.dev.js",
+    "build-windows": "set NODE_ENV=production&&webpack --color --progress --config config/webpack.prod.js",
+    "dll-windows": "set NODE_ENV=production&&webpack --progress --config  config/webpack.dll.js",
+    "build": "NODE_ENV=production webpack --color --progress --config config/webpack.prod.js",
+    "dll": "NODE_ENV=production webpack --progress --config  config/webpack.dll.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
