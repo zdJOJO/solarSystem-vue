@@ -7,13 +7,6 @@ import moment from "moment"
 import VueRouter from "vue-router"
 import VueResource from 'vue-resource'
 import VuePreview from 'vue-preview' /*图片预览插件*/
-// 按需导入 Mint-UI 中的组件
-/*import {Header, Swipe, SwipeItem, Button, Lazyload } from 'mint-ui'
-Vue.component(Header.name, Header)//显示顶部区域
-Vue.component(Swipe.name, Swipe);//展示首页轮播图组件
-Vue.component(SwipeItem.name, SwipeItem);//展示首页轮播图组件
-Vue.component(Button.name, Button);//展示按钮
-Vue.use(Lazyload);// 图片区域的懒加载 */
 import MuitUI from "mint-ui"
 import { Switch } from 'mint-ui';
 import 'mint-ui/lib/style.css'
@@ -22,15 +15,12 @@ import './lib/mui/css/mui.min.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
 
-import App from "./App"
 import router from "./router" /* 路由模块 */
+import App from "./App"
 
 
 
-
-//安装路由
-Vue.use(VueRouter)
-
+/* 异步请求全局设置 */
 // 安装 vue-resource
 Vue.use(VueResource)
 // 设置请求的根路径
@@ -38,10 +28,12 @@ Vue.http.options.root = 'http://www.liulongbin.top:3005/';
 // 全局设置 post 时候表单数据格式组织形式(省得每次手写了)   application/x-www-form-urlencoded
 Vue.http.options.emulateJSON = true;
 
+
+
 // 安装图片预览插件
 Vue.use(VuePreview)
 
-// 安装ui
+// ui
 Vue.use(MuitUI)
 Vue.component(Switch.name, Switch);
 
@@ -157,15 +149,18 @@ const store = new Vuex.Store({
     }
 })
 
+//路由
+Vue.use(VueRouter)
+
 // 定义Vue全局过滤器 (时间转换过滤器)
 Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
     return moment(dataStr).format(pattern)
 })
 
 const vm = new Vue({
-    render: h => h(App),  /* 渲染根组件 */
     router,
-    store
+    store,
+    render: h => h(App)  /* 渲染根组件 */
 }).$mount('#app')
 
 // 开发环境 浏览器启用 devtools

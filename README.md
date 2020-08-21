@@ -41,25 +41,41 @@
 ```
 具体描述：
 
-1. 将异步组件定义为返回一个 Promise 的工厂函数 (该函数返回的 Promise 应该 resolve 组件本身.
+情况一：
 
-const Foo = () => Promise.resolve({ /* 组件定义对象 */ })
+          1. 将异步组件定义为返回一个 Promise 的工厂函数 (该函数返回的 Promise 应该 resolve 组件本身.
 
-2. 在 Webpack 2 以上 中，我们可以使用动态 import语法来定义代码分块点.
+          const Foo = () => Promise.resolve({ /* 组件定义对象 */ })
 
-const Foo = () => import('./Foo.vue')
-const router = new VueRouter({
-  routes: [
-    { path: '/foo', component: Foo }
-  ]
-})
+          2. 在 Webpack 2 以上 中，我们可以使用动态 import语法来定义代码分块点.
 
-注意:
-如果使用的是 Babel，你将需要添加 syntax-dynamic-import 插件，才能使 Babel 可以正确地解析语法。
-并且在 .babelrc 文件的 "plugins" 中加入 babel-plugin-syntax-dynamic-import ， 
-如果wenpack版本大于3，则写成 @babel/plugin-syntax-dynamic-import
+          const Foo = () => import('./Foo.vue')
+          const router = new VueRouter({
+            routes: [
+              { path: '/foo', component: Foo }
+            ]
+          })
 
-3. 但是在实际应用中， 并不需要将vue中的component封装成Promise对象也可以实现路由的按需加载
+          注意:
+          如果使用的是 Babel，你将需要添加 syntax-dynamic-import 插件，才能使 Babel 可以正确地解析语法。
+          并且在 .babelrc 文件的 "plugins" 中加入 babel-plugin-syntax-dynamic-import ， 
+          如果wenpack版本大于3，则写成 @babel/plugin-syntax-dynamic-import
+
+          3. 但是在实际应用中， 并不需要将vue中的component封装成Promise对象也可以实现路由的按需加载。
+
+情况二：
+          1. 为了使得chunkFilename的命名成为变量， 通过函数实现动态import()导入。
+
+          const getAsynComponent = (componentName, secondDirectory) => import(/* webpackChunkName: "[request]" */`./components/${secondDirectory}/${componentName}`);
+          
+          使用[request]来告诉webpack，这里的值是根据后面传入的字符串来决定，本例中就是变量pathName的值.。
+
+          报错：[Vue warn]: Failed to mount component: template or render function not defined.
+
+          解决方法：
+          const getAsynComponent = (componentName, secondDirectory) => {
+            return component = () => import(/* webpackChunkName: "[request]" */`./components/${secondDirectory}/${componentName}`)
+          };
 ```
 
 

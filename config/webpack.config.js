@@ -1,5 +1,5 @@
 /*
-  原本的配置文件
+  @description 原本的配置文件  暂时没有用到
 */
 
 // 由于 webpack 是基于Node进行构建的，所有，webpack的配置文件中，任何合法的Node代码都是支持的

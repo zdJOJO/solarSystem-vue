@@ -1,46 +1,31 @@
 import VueRouter from 'vue-router'
 
-const tarPulicPath = `./components/tabbar/`;
-const newsPulicPath = `./components/news/`;
-const photosPulicPath = `./components/photos/`;
-const goodsPulicPath = `./components/goods/`;
-
-/* 结合 Vue 的异步组件 和 Webpack 的代码分割功能，实现路由组件的懒加载 */
-const HomeContainer = () => import(/* webpackChunkName: "HomeContainer" */ tarPulicPath + 'HomeContainer');
-const MemberContainer = () => import(/* webpackChunkName: "MemberContainer" */ tarPulicPath + 'MemberContainer');
-const ShopcarContainer = () => import(/* webpackChunkName: "ShopcarContainer" */ tarPulicPath + 'ShopcarContainer');
-const SearchContainer = () => import(/* webpackChunkName: "SearchContainer" */ tarPulicPath + 'SearchContainer');
-
-const NewsList = () => import(/* webpackChunkName: "NewsList" */ newsPulicPath + 'NewsList');
-const NewsInfo = () => import(/* webpackChunkName: "NewsInfo" */ newsPulicPath + 'NewsInfo');
-
-const PhotoList = () => import(/* webpackChunkName: "PhotoList" */ photosPulicPath + 'PhotoList');
-const PhotoInfo = () => import(/* webpackChunkName: "PhotoInfo" */ photosPulicPath + 'PhotoInfo');
-
-const GoodsList = () => import(/* webpackChunkName: "GoodsList" */ goodsPulicPath + 'GoodsList');
-const GoodsInfo = () => import(/* webpackChunkName: "GoodsInfo" */ goodsPulicPath + 'GoodsInfo');
-const GoodsDesc = () => import(/* webpackChunkName: "GoodsDesc" */ goodsPulicPath + 'GoodsDesc');
-const GoodsComment = () => import(/* webpackChunkName: "GoodsComment" */ goodsPulicPath + 'GoodsComment');
-
-let routes = [
-  { path: "/home", component: HomeContainer },
-  { path: "/member", component: MemberContainer },
-  { path: "/search", component: SearchContainer },
-  { path: "/shopcar", component: ShopcarContainer },
-  { path: "/home/newslist", component: NewsList },
-  { path: "/home/newsinfo/:id", component: NewsInfo },
-  { path: "/home/photoslist", component: PhotoList },
-  { path: "/home/photoinfo/:id", component: PhotoInfo },
-  { path: "/home/goodslist/", component: GoodsList },
-  { path: "/home/goodsinfo/:id", name: "goodsinfo", component: GoodsInfo },
-  { path: '/home/goodsdesc/:id', component: GoodsDesc, name: 'goodsdesc' },
-  { path: '/home/goodscomment/:id', component: GoodsComment, name: 'goodscomment' }
-]
-
-routes = [
+const getAsynComponent = (componentName, secondDirectory) => {
+  // 写成 siwtch 函数 而不是直接用 secondDirectory 来代替， 是为了 webpackChunkName 只有一级而更加雅观
+  let component = undefined;
+  switch (secondDirectory) {
+    case "tabbar": return component = () => import(/* webpackChunkName: "[request]" */`./components/tabbar/${componentName}`);
+    case "news": return component = () => import(/* webpackChunkName: "[request]" */`./components/news/${componentName}`)
+    case "photoes": return component = () => import(/* webpackChunkName: "[request]" */`./components/photoes/${componentName}`)
+    case "goods": return component = () => import(/* webpackChunkName: "[request]" */`./components/goods/${componentName}`)
+    default: return component;
+  }
+};
+const routes = [
   { path: "/", redirect: "/home" },
-  ...routes
-];
+  { path: "/home", component: getAsynComponent('HomeContainer', 'tabbar') },
+  { path: "/member", component: getAsynComponent('MemberContainer', 'tabbar') },
+  { path: "/search", component: getAsynComponent('SearchContainer', 'tabbar') },
+  { path: "/shopcar", component: getAsynComponent('ShopcarContainer', 'tabbar') },
+  { path: "/home/newslist", component: getAsynComponent('NewsList', 'news') },
+  { path: "/home/newsinfo/:id", component: getAsynComponent('NewsInfo', 'news') },
+  { path: "/home/photoeslist", component: getAsynComponent('PhotoList', 'photoes') },
+  { path: "/home/photoinfo/:id", component: getAsynComponent('PhotoInfo', 'photoes') },
+  { path: "/home/goodslist/", component: getAsynComponent('GoodsList', 'goods') },
+  { path: "/home/goodsinfo/:id", name: "goodsinfo", component: getAsynComponent('GoodsInfo', 'goods') },
+  { path: '/home/goodsdesc/:id', name: 'goodsdesc', component: getAsynComponent('GoodsDesc', 'goods') },
+  { path: '/home/goodscomment/:id', name: 'goodscomment', component: getAsynComponent('GoodsComment', 'goods') }
+]
 
 // 3. 创建路由对象
 const router = new VueRouter({
