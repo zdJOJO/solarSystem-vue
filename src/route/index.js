@@ -1,14 +1,17 @@
+import Vue from "vue"
 import VueRouter from 'vue-router'
+
+//挂载路由
+Vue.use(VueRouter)
 
 const getAsynComponent = (componentName, secondDirectory) => {
   // 写成 siwtch 函数 而不是直接用 secondDirectory 来代替， 是为了 webpackChunkName 只有一级而更加雅观
-  let component = undefined;
   switch (secondDirectory) {
-    case "tabbar": return component = () => import(/* webpackChunkName: "[request]" */`./components/tabbar/${componentName}`);
-    case "news": return component = () => import(/* webpackChunkName: "[request]" */`./components/news/${componentName}`)
-    case "photoes": return component = () => import(/* webpackChunkName: "[request]" */`./components/photoes/${componentName}`)
-    case "goods": return component = () => import(/* webpackChunkName: "[request]" */`./components/goods/${componentName}`)
-    default: return component;
+    case "tabbar": return () => import(/* webpackChunkName: "[request]" */`../components/tabbar/${componentName}`);
+    case "news": return () => import(/* webpackChunkName: "[request]" */`../components/news/${componentName}`)
+    case "photoes": return () => import(/* webpackChunkName: "[request]" */`../components/photoes/${componentName}`)
+    case "goods": return () => import(/* webpackChunkName: "[request]" */`../components/goods/${componentName}`)
+    default: return undefined;
   }
 };
 const routes = [

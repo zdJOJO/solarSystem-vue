@@ -24,7 +24,7 @@
       </router-link>
       <router-link class="mui-tab-item-zpj" to="/shopcar">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" id="badge">{{ $store.getters.getAllCount }}</span>
+          <span class="mui-badge" id="badge">{{ cartTotalNum }}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   methods: {
     prevWeb() {
@@ -44,6 +45,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters("cart", {
+      cartTotalNum: "cartTotalNum",
+    }),
     // 顶部的浏览器是否返回
     isBack() {
       // 如果路由地址不是 /home 就出现返回按钮
@@ -54,15 +58,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 /* 重定义 主题颜色 */
 .mint-header {
   background-color: #101010;
 }
-.mui-bar-tab .mui-tab-item-zpj.mui-active{
-  
+.mui-bar-tab .mui-tab-item-zpj.mui-active {
 }
-
 
 .app-container {
   /*

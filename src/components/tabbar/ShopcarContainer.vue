@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import numbox from "../subcomponents/shopcar_numbox.vue";
+    import numbox from "../subcomponents/shopcar_numbox";
     import { Toast } from 'mint-ui';
 
     export default {

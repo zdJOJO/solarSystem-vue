@@ -73,9 +73,7 @@
           报错：[Vue warn]: Failed to mount component: template or render function not defined.
 
           解决方法：
-          const getAsynComponent = (componentName, secondDirectory) => {
-            return component = () => import(/* webpackChunkName: "[request]" */`./components/${secondDirectory}/${componentName}`)
-          };
+          const getAsynComponent = (componentName, secondDirectory) => () => import(/* webpackChunkName: "[request]" */`./components/${secondDirectory}/${componentName}`)
 ```
 
 
