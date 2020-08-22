@@ -51,7 +51,7 @@ const actions = {
       .then((result) => {
         if (result.body.status === 0) {
           if (result.body.message.length > 0 && result.body.message instanceof Array) {
-            commit('SET_PAGE', state.currentPage);
+            commit('NEXT_PAGE');
           }
           return result.body.message
         } else {
@@ -95,8 +95,8 @@ const mutations = {
     state.msg = msg
   },
 
-  SET_PAGE(state, page) {
-    state.currentPage = page + 1
+  NEXT_PAGE(state) {
+    state.currentPage++
   }
 }
 

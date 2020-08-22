@@ -1,9 +1,7 @@
-// 每次刚进入网站，肯定会 调用 main.js 在刚调用的时候，先从本地存储中把购物车的数据读出来，放到 store 中
-let items = JSON.parse(localStorage.getItem('car') || '[]');
 
 // initial state
 const state = () => ({
-  items
+  items: JSON.parse(localStorage.getItem('car') || '[]')
 })
 
 // getters
@@ -11,11 +9,20 @@ const getters = {
 
   //当点击加入购物车后，购物车数量随之发生变化
   getGoodsCount(state) {
-    var c = {};
+    const c = {};
     state.items.forEach(item => {
       c[item.id] = parseInt(item.count)
     })
     return c;
+  },
+
+  //获取购物车中商品是否被选中的状态
+  getGoodsSelected(state) {
+    const s = {}
+    state.items.forEach(item => {
+      s[item.id] = item.selected
+    })
+    return s;
   },
 
   //计算购物车中的所有商品 总数量和总价
@@ -34,18 +41,9 @@ const getters = {
     return o;
   },
 
-  //获取购物车中商品是否被选中的状态
-  getGoodsSelected(state) {
-    var s = {}
-    state.items.forEach(item => {
-      s[item.id] = item.selected
-    })
-    return s;
-  },
-
   //获取购物车中的所有商品数量
   cartTotalNum(state) {
-    var c = 0;
+    let c = 0;
     state.items.forEach(item => {
       c += item.count
     });
@@ -55,26 +53,6 @@ const getters = {
 
 // actions
 const actions = {
-
-  //商品详情中加入购物车
-  addProductToCart({ state, commit }, goodsInfo) {
-    let flag = false;
-
-    //1. 加购物车前，先看购物车有没有这个商品，有的话更新数量
-    state.items.forEach(item => {
-      if (item.id == goodsInfo.id) {
-        item.count += parseInt(goodsInfo.count); //mutations
-        flag = true;
-      }
-    });
-    //2. 没有的话，加入购物车
-    if (flag == false) {
-      state.items.push(goodsInfo);  //mutations
-    }
-
-    //3. 当购物车更新完毕后，把购物车存储到本地的localStorage中
-    localStorage.setItem('car', JSON.stringify(state.items));
-  },
 
   //当购物车中的数量发生变化的时候，store中的数量也得改
   updateGoodsInfo(state, goodsInfo) {
@@ -105,26 +83,110 @@ const actions = {
       }
     });
     localStorage.setItem('car', JSON.stringify(state.items));
+  },
+
+
+  // 获取 购物车列表
+  actionGetGoodsList({ state }, { $http }) {
+    let idArr = [];
+    state.items.forEach((item) => idArr.push(item.id));
+    return $http.get(`api/goods/getshopcarlist/${idArr.join(",")}`)
+      .then((result) => {
+        if (result.body.status === 0) {
+          return result.body.message;
+        }
+      });
+  },
+
+  async getGoodsList({ dispatch, commit, state }, { $http }) {
+    if (state.items.length > 0) {
+      commit('SET_CART_LIST', await dispatch('actionGetGoodsList', { $http }))
+    }
   }
+
 }
 
 //mutations
 const mutations = {
 
-  // 商品加入到购物车
-  pushProductToCart(state, { id }) {
-    // state.items.push({
-    //   id,
-    //   quantity: 1
-    // })
+  // 初始化购物车数据
+  INIT_CART(state) {
+    state.items = JSON.parse(localStorage.getItem('car') || '[]')
   },
 
-  // 增加商品数量
-  incrementItemQuantity(state, { id }) {
-    // const cartItem = state.items.find(item => item.id === id)
-    // cartItem.quantity++
+  // 新商品加入到购物车
+  PUSH_TO_CART_LIST(state, product) {
+    if (state.items.length === 0) {
+      state.items.push(product);
+    } else {
+      let isExits = false;
+      // 相同的商品合并，count相加
+      state.items.some(item => {
+        if (item.id === parseInt(product.id)) {
+          item.count += product.count;
+          isExits = true;
+          return isExits
+        }
+      })
+      // 不相同的商品直接push
+      if (!isExits) {
+        state.items.push(product)
+      }
+    }
+    localStorage.setItem('car', JSON.stringify(state.items));
   },
 
+  // 获取购物车列表
+  SET_CART_LIST(state, list) {
+    const temp = [];
+    state.items.forEach((item) => {
+      list.forEach((i) => {
+        if (i.id === item.id) {
+          temp.push({
+            ...item,
+            thumb_path: i["thumb_path"],
+            sell_price: i["sell_price"],
+            title: i["title"]
+          })
+        }
+      })
+    });
+    state.items = temp;
+    localStorage.setItem('car', JSON.stringify(state.items));
+  },
+
+  // 在购物车页面修改商品数目
+  CHANGE_COUNT(state, good) {
+    state.items.some((item, index) => {
+      if (good.id === item.id) {
+        state.items[index].count = parseInt(good.count);
+        return true;
+      }
+    })
+    localStorage.setItem('car', JSON.stringify(state.items));
+  },
+
+  // 删除购物车中的商品
+  REMOVE_GOOD_FROM_CART(state, { id }) {
+    state.items.some((item, index) => {
+      if (id === item.id) {
+        state.items.splice(index, 1);
+        return true;
+      }
+    });
+    localStorage.setItem('car', JSON.stringify(state.items));
+  },
+
+  //修改选中
+  UPDATE_SELECT_STATUS(state, { id, status }) {
+    state.items.some((item, index) => {
+      if (id === item.id) {
+        state.items[index].selected = status
+        return true;
+      }
+    });
+    localStorage.setItem('car', JSON.stringify(state.items));
+  }
 }
 
 

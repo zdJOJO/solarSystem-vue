@@ -5,6 +5,7 @@ import createLogger from 'vuex/dist/logger'
 import cart from './shoppingCart'
 import news from './news';
 import comment from './comment';
+import goods from './goods';
 
 // 挂载 Vuex
 Vue.use(Vuex);
@@ -16,7 +17,8 @@ export default new Vuex.Store({
   modules: {
     cart,
     news,
-    comment
+    comment,
+    goods
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

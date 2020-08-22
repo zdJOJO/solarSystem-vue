@@ -1,25 +1,12 @@
 <template>
   <div>
-    <!-- 轮播图区域 -->
-    <!--
-            多个地方用到了轮播图，把轮播图单独抽取为一个组件
-            :lunbotuList : 每个要遍历的轮播图数组
-            :isfull      : 要遍历的轮播图宽度是否为100%(商品列表详情的轮播图宽为100%就不好看了)
-    -->
-    <lunbotu :lunbotuList="lunbotuList" :isfull="true"></lunbotu>
-
+    <mySwiper :swiperImgs="lunbotuList" :isfull="true" />
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/newslist">
           <img src="../../images/menu1.png" alt />
           <div class="mui-media-body">新闻资讯</div>
-        </router-link>
-      </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/photoslist">
-          <img src="../../images/menu2.png" alt />
-          <div class="mui-media-body">图片分享</div>
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -30,14 +17,20 @@
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="#">
-          <img src="../../images/menu4.png" alt />
-          <div class="mui-media-body">留言反馈</div>
+          <img src="../../images/menu5.png" alt />
+          <div class="mui-media-body">视频专区</div>
+        </router-link>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/home/photoslist">
+          <img src="../../images/menu2.png" alt />
+          <div class="mui-media-body">图片分享</div>
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="#">
-          <img src="../../images/menu5.png" alt />
-          <div class="mui-media-body">视频专区</div>
+          <img src="../../images/menu4.png" alt />
+          <div class="mui-media-body">留言反馈</div>
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -52,7 +45,7 @@
 
 <script>
 import { Toast } from "mint-ui";
-import lunbotu from "../subcomponents/swiper";
+import mySwiper from "../subcomponents/swiper";
 
 export default {
   data() {
@@ -79,7 +72,7 @@ export default {
     },
   },
   components: {
-    lunbotu,
+    mySwiper,
   },
 };
 </script>

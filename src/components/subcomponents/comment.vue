@@ -16,7 +16,7 @@
         >{{ item.content === 'undefined' ? "用户: " + item.user_name + " 没有评价" : item.content }}</div>
       </div>
 
-      <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
+      <mt-button type="danger" size="large" plain @click="getMoreComments">加载更多</mt-button>
     </div>
   </div>
 </template>
@@ -25,10 +25,11 @@
 import { mapState } from "vuex";
 export default {
   created() {
-    this.getMore();
+    this.getMoreComments();
   },
   props: ["id"], //把父组件传过来的值取值
   computed: {
+    // msg: (state) => state.comment.msg, // 无法实现表单的双向绑定
     msg: {
       get() {
         return this.$store.state.comment.msg;
@@ -39,11 +40,10 @@ export default {
     },
     ...mapState({
       comments: (state) => state.comment.comments,
-      // msg: (state) => state.comment.msg, // 表单 这样无法实现双向绑定
     }),
   },
   methods: {
-    getMore() {
+    getMoreComments() {
       this.$store.dispatch("comment/loadMoreComments", {
         $http: this.$http,
         id: this.id,

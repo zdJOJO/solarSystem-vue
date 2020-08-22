@@ -19,7 +19,7 @@
             //当数量发生变化的时候
             countChanged() {
                 //把最新的数量发给父组件
-                this.$emit('getcount',parseInt(this.$refs.numbox.value))
+                this.$emit('get-count',parseInt(this.$refs.numbox.value))
             }
         },
         props: ["max"],
