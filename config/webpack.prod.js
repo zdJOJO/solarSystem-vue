@@ -27,9 +27,9 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx", '.vue', '.css', '.scss', '.sass'],  // import ** from 时，导入可以省略文件的拓展名
+    extensions: [".js", ".jsx", '.vue', '.css', '.scss', '.sass','.svg'],  // import ** from 时，导入可以省略文件的拓展名
     alias: {
-      '@': resolve('/src')
+      '@': resolve('../src')
     }
   },
 

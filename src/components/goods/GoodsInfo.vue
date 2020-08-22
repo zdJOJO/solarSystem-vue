@@ -125,9 +125,8 @@ export default {
 
       const xDist = badgePosition.left - ballPosition.left;
       const yDist = badgePosition.top - ballPosition.top;
-
       el.style.transform = `translate(${xDist}px, ${yDist}px)`; //最终要移到的坐标位置
-      el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)"; //要实现的动画效果
+      el.style.transition = "all 0.6s cubic-bezier(.4,-0.3,1,.8)"; //要实现的动画效果
       done();
     },
     afterEnter(el) {

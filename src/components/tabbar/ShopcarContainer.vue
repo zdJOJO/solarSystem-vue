@@ -1,24 +1,25 @@
 <template>
   <div class="shopcar-container">
     <!-- 商品列表区域 -->
-    <div class="mui-card" v-for="(goodsinfo, i) in goodslist" :key="goodsinfo.id">
+    <div class="mui-card" v-for="(goodsinfo) in goodslist" :key="goodsinfo.id">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
           <mt-switch
+            class="mySwitch"
             v-model="getGoodsSelected[goodsinfo.id]"
             @change="selectedChange(goodsinfo.id,getGoodsSelected[goodsinfo.id])"
-          ></mt-switch>&nbsp;&nbsp;
-          <img :src="goodsinfo.thumb_path" alt />&nbsp;&nbsp;&nbsp;&nbsp;
+          ></mt-switch>
+          <img :src="goodsinfo.thumb_path" alt />
           <div class="info">
             <h1>{{goodsinfo.title}}</h1>
             <p>
-              <span class="price">￥{{ goodsinfo.sell_price }}</span>&nbsp;&nbsp;
+              <span class="price">￥{{ goodsinfo.sell_price }}</span>
               <numbox
                 :initCount="getGoodsCount[goodsinfo.id]"
                 :goodsid="goodsinfo.id"
                 @chang-count="changeCount"
-              />&nbsp;&nbsp;
-              <a href="#" @click="remove(goodsinfo.id)">删除</a>
+              />
+              <mt-button class="delete" type="danger" size="small" @click="remove(goodsinfo.id)">删除</mt-button>
             </p>
           </div>
         </div>
@@ -31,12 +32,10 @@
         <div class="mui-card-content-inner jiesuan">
           <p>
             <span class="zongji">总计</span>
-            <br />以勾选商品&nbsp;
-            <span class="red">{{getGoodsCountAndAmount.count}}</span>&nbsp;件&nbsp;
-            总价&nbsp;
-            <span
-              class="red"
-            >¥&nbsp;{{getGoodsCountAndAmount.amount}}</span>&nbsp;
+            <br />以勾选商品
+            <span class="red">{{getGoodsCountAndAmount.count}}</span>件
+            总价
+            <span class="red">¥{{getGoodsCountAndAmount.amount}}</span>;
           </p>
           <mt-button type="danger" @click="pay">去结算</mt-button>
         </div>
@@ -129,6 +128,12 @@ export default {
       font-size: 16px;
       font-weight: bold;
     }
+  }
+}
+.mySwitch {
+  .mint-switch-input:checked + .mint-switch-core {
+    border-color: #ffd000 !important;
+    background-color: #ffd000 !important;
   }
 }
 </style>

@@ -37,7 +37,6 @@ const getters = {
         o.amount += item.count * item.price;
       }
     })
-    console.log(o)
     return o;
   },
 

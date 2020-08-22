@@ -14,34 +14,90 @@
     </transition>
     <!-- 底部区域 -->
     <nav class="mui-bar mui-bar-tab">
-      <router-link class="mui-tab-item-zpj" to="/home">
-        <span class="mui-icon mui-icon-home" />
-        <span class="mui-tab-label">首页</span>
-      </router-link>
-      <router-link class="mui-tab-item-zpj" to="/member">
-        <span class="mui-icon mui-icon-contact"></span>
-        <span class="mui-tab-label">会员</span>
-      </router-link>
-      <router-link class="mui-tab-item-zpj" to="/shopcar">
-        <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
+      <div
+        :class="currentPath===nav.routePath?'mui-tab-item-nav active':'mui-tab-item-nav' "
+        v-for="nav in navs"
+        :key="nav.name"
+        @click="routerPush(nav.routePath)"
+      >
+        <span class="mui-icon" v-if="nav.ball">
           <span class="mui-badge" id="badge" v-show="cartTotalNum > 0">{{ cartTotalNum }}</span>
+          <img
+            v-show="currentPath!==nav.routePath"
+            class="navIcon"
+            :src="'/public/images/'+ nav.imgName+'.svg'"
+          />
+          <img
+            v-show="currentPath===nav.routePath"
+            class="navIcon"
+            :src="'/public/images/'+ nav.imgName+'-active.svg'"
+          />
         </span>
-        <span class="mui-tab-label">购物车</span>
-      </router-link>
-      <router-link class="mui-tab-item-zpj" to="/search">
-        <span class="mui-icon mui-icon-search"></span>
-        <span class="mui-tab-label">搜索</span>
-      </router-link>
+        <span class="mui-icon" v-if="!nav.ball">
+          <img
+            v-show="currentPath!==nav.routePath"
+            class="navIcon"
+            :src="'/public/images/'+ nav.imgName+'.svg'"
+          />
+          <img
+            v-show="currentPath===nav.routePath"
+            class="navIcon"
+            :src="'/public/images/'+ nav.imgName+'-active.svg'"
+          />
+        </span>
+        <span class="mui-tab-label">{{nav.name}}</span>
+      </div>
     </nav>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
+  data() {
+    return {
+      navs: [
+        {
+          name: "首页",
+          imgName: "home",
+          routePath: "/home",
+        },
+        {
+          name: "会员",
+          imgName: "member",
+          routePath: "/member",
+        },
+        {
+          name: "购物车",
+          imgName: "cart",
+          routePath: "/cart",
+          ball: true,
+        },
+        {
+          name: "设置",
+          imgName: "setting",
+          routePath: "/setting",
+        },
+      ],
+      currentPath: this.$router.path,
+    };
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to);
+      if (to.path.indexOf(this.currentPath) >= 0) {
+      }
+      this.currentPath = `/${to.path.split("/")[1]}`;
+    },
+  },
   methods: {
     prevWeb() {
       this.$router.go(-1);
+    },
+    routerPush(path) {
+      this.currentPath = path;
+      this.$router.push(path);
     },
   },
   computed: {
@@ -58,11 +114,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* 重定义 主题颜色 */
-.mint-header {
-  background-color: #101010;
+/* 全局设置 */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.28em;
+  line-height: 1;
+  color: #333;
 }
-.mui-bar-tab .mui-tab-item-zpj.mui-active {
+
+/* 重定义 ui主题 */
+.mint-header {
+  background-color: #ffd000;
+  color: #222;
+}
+
+.mui-tab-item-zpj {
+  color: #222;
+}
+.mui-bar-tab {
+  .mui-icon {
+    top: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .navIcon {
+    width: 24px;
+    position: absolute;
+    top: -22px;
+    left: -50%;
+    margin-left: -12px;
+  }
+  .navIcon.active {
+    display: block;
+  }
+  .navIcon.unactive {
+    display: none;
+  }
+  .mui-badge {
+    top: -23px;
+    left: 13px;
+    z-index: 1;
+  }
 }
 
 .app-container {
@@ -96,12 +188,13 @@ export default {
   transition: all 0.5s ease;
 }
 
-//该类名解决显示图片列表分类的坑： 底部 tabbar无法切换的问题 把所有.mui-tab-item 改为 .mui-tab-item-随便写
-.mui-bar-tab .mui-tab-item-zpj.mui-active {
-  color: #007aff;
+.mui-bar-tab {
+  .mui-tab-item-nav.active {
+    color: #ffd000;
+  }
 }
 
-.mui-bar-tab .mui-tab-item-zpj {
+.mui-bar-tab .mui-tab-item-nav {
   display: table-cell;
   overflow: hidden;
   width: 1%;
@@ -110,18 +203,10 @@ export default {
   vertical-align: middle;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #929292;
+  color: #222;
 }
 
-.mui-bar-tab .mui-tab-item-zpj .mui-icon {
-  top: 3px;
-  width: 24px;
-  height: 24px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.mui-bar-tab .mui-tab-item-zpj .mui-icon ~ .mui-tab-label {
+.mui-bar-tab .mui-tab-item-nav .mui-icon ~ .mui-tab-label {
   font-size: 11px;
   display: block;
   overflow: hidden;

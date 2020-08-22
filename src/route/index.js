@@ -15,11 +15,12 @@ const getAsynComponent = (componentName, secondDirectory) => {
   }
 };
 const routes = [
+  { path: "*", redirect: "/" },
   { path: "/", redirect: "/home" },
   { path: "/home", component: getAsynComponent('HomeContainer', 'tabbar') },
   { path: "/member", component: getAsynComponent('MemberContainer', 'tabbar') },
-  { path: "/search", component: getAsynComponent('SearchContainer', 'tabbar') },
-  { path: "/shopcar", component: getAsynComponent('ShopcarContainer', 'tabbar') },
+  { path: "/setting", component: getAsynComponent('SettingContainer', 'tabbar') },
+  { path: "/cart", component: getAsynComponent('ShopcarContainer', 'tabbar') },
   { path: "/home/newslist", component: getAsynComponent('NewsList', 'news') },
   { path: "/home/newsinfo/:id", component: getAsynComponent('NewsInfo', 'news') },
   { path: "/home/photoeslist", component: getAsynComponent('PhotoList', 'photoes') },

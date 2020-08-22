@@ -18,6 +18,8 @@
 3. UI库
 
     ["mint-ui"](http://mint-ui.github.io/) : "^2.2.9"
+    
+    [miu](https://dev.dcloud.net.cn/mui/ui/#badges)
 
 
 # Usage

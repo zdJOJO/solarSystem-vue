@@ -3,40 +3,14 @@
     <mySwiper :swiperImgs="lunbotuList" :isfull="true" />
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/newslist">
-          <img src="../../images/menu1.png" alt />
-          <div class="mui-media-body">新闻资讯</div>
-        </router-link>
-      </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/goodslist">
-          <img src="../../images/menu3.png" alt />
-          <div class="mui-media-body">商品购买</div>
-        </router-link>
-      </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="#">
-          <img src="../../images/menu5.png" alt />
-          <div class="mui-media-body">视频专区</div>
-        </router-link>
-      </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/photoslist">
-          <img src="../../images/menu2.png" alt />
-          <div class="mui-media-body">图片分享</div>
-        </router-link>
-      </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="#">
-          <img src="../../images/menu4.png" alt />
-          <div class="mui-media-body">留言反馈</div>
-        </router-link>
-      </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="#">
-          <img src="../../images/menu6.png" alt />
-          <div class="mui-media-body">联系我们</div>
+      <li
+        class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"
+        v-for="menu in menus"
+        :key="menu.name"
+      >
+        <router-link :to="menu.routePath">
+          <img :src="'/public/images/' + menu.imgName" alt />
+          <div class="mui-media-body">{{menu.name}}</div>
         </router-link>
       </li>
     </ul>
@@ -50,6 +24,38 @@ import mySwiper from "../subcomponents/swiper";
 export default {
   data() {
     return {
+      menus: [
+        {
+          name: "新闻资讯",
+          routePath: "/home/newslist",
+          imgName: "menu1.png",
+        },
+        {
+          name: "商品购买",
+          routePath: "/home/goodslist",
+          imgName: "menu1.png",
+        },
+        {
+          name: "视频专区",
+          routePath: "#",
+          imgName: "menu2.png",
+        },
+        {
+          name: "图片分享",
+          routePath: "#",
+          imgName: "menu3.png",
+        },
+        {
+          name: "留言反馈",
+          routePath: "#",
+          imgName: "menu4.png",
+        },
+        {
+          name: "联系我们",
+          routePath: "#",
+          imgName: "menu5.png",
+        },
+      ],
       lunbotuList: [],
     };
   },
