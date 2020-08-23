@@ -12,19 +12,65 @@ import './lib/mui/css/mui.min.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
 
+/*
+    按需引入element-ui  
+*/
+import {
+    Container,
+    Header,
+    Main,
+    Footer,
+    Menu,
+    MenuItem,
+    Carousel,
+    CarouselItem,
+    Button,
+    Checkbox,
+    Input,
+    InputNumber,
+    Backtop,
+    Image
+} from 'element-ui';
+import '../theme/index.css'  // 自定义主题
+
+
+
 import store from './store';
 import router from './route';
 import App from "./App";
 import { setVueHttpOption } from "./http"
 
-setVueHttpOption();
-
-// 安装图片预览插件
-Vue.use(VuePreview)
 
 // ui
 Vue.use(MuitUI)
 Vue.component(Switch.name, Switch);
+
+
+// element-ui 全局配置
+Vue.prototype.$ELEMENT = { size: 'mini' };
+Vue.use(Container);
+Vue.use(Header);
+Vue.use(Main);
+Vue.use(Footer);
+Vue.use(Menu);
+Vue.use(MenuItem);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
+Vue.use(Button);
+Vue.use(Checkbox);
+Vue.use(Input);
+Vue.use(InputNumber);
+Vue.use(Backtop);
+Vue.use(Image);
+
+// 安装图片预览插件
+Vue.use(VuePreview)
+
+// http异步请求  全局设置
+setVueHttpOption();
+
+
+
 
 // 定义Vue全局过滤器 (时间转换过滤器)
 Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {

@@ -1,15 +1,21 @@
 {
   "presets": [
     "env",
-    "stage-0"
+    "stage-0",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ]
   ],
   "plugins": [
     "transform-runtime",
     [
       "component",
       {
-        "libraryName": "mint-ui",
-        "style": true
+        "libraryName": "element-ui",
+        "styleLibraryName": "~theme"
       }
     ],
     "transform-remove-strict-mode",
