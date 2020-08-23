@@ -2,19 +2,19 @@
 
 import Vue from "vue"
 import moment from "moment"
-// import VueResource from 'vue-resource'
 import VuePreview from 'vue-preview' /*图片预览插件*/
-import MuitUI from "mint-ui"
-import { Switch } from 'mint-ui';
-import 'mint-ui/lib/style.css'
+
+import infiniteScroll from "vue-infinite-scroll";  // 无限滚动
+
+
 // 导入 MUI 的样式
 import './lib/mui/css/mui.min.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
 
-/*
-    按需引入element-ui  
-*/
+
+
+/* 按需引入element-ui */
 import {
     Container,
     Header,
@@ -29,9 +29,18 @@ import {
     Input,
     InputNumber,
     Backtop,
-    Image
+    Image,
+    Card,
+    Row,
+    Col,
+    Badge
 } from 'element-ui';
 import '../theme/index.css'  // 自定义主题
+
+
+/* 按需引入 mint-ui */
+import { Switch } from 'mint-ui';
+import 'mint-ui/lib/style.css'
 
 
 
@@ -41,13 +50,13 @@ import App from "./App";
 import { setVueHttpOption } from "./http"
 
 
-// ui
-Vue.use(MuitUI)
-Vue.component(Switch.name, Switch);
+// 挂载 mint-ui 组件
+Vue.component(Switch.name, Switch)
 
 
 // element-ui 全局配置
 Vue.prototype.$ELEMENT = { size: 'mini' };
+//  挂载 element-ui 组件
 Vue.use(Container);
 Vue.use(Header);
 Vue.use(Main);
@@ -62,6 +71,12 @@ Vue.use(Input);
 Vue.use(InputNumber);
 Vue.use(Backtop);
 Vue.use(Image);
+Vue.use(Card);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Badge);
+Vue.use(infiniteScroll); // 无限滚动
+
 
 // 安装图片预览插件
 Vue.use(VuePreview)

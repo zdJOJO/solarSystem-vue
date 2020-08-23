@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mySwiper :swiperImgs="lunbotuList" :isfull="true" />
+    <my-swiper :swiperImgs="lunbotuList" :isfull="true" />
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li
@@ -19,7 +19,7 @@
 
 <script>
 import { Toast } from "mint-ui";
-import mySwiper from "../subcomponents/swiper";
+import MySwiper from "../publicComponents/Swiper";
 
 export default {
   data() {
@@ -78,7 +78,7 @@ export default {
     },
   },
   components: {
-    mySwiper,
+    "my-swiper": MySwiper,
   },
 };
 </script>

@@ -1,4 +1,5 @@
 import { Toast } from "mint-ui";
+import { defauCommentCount } from '../global';
 
 // initial state
 const state = () => ({
@@ -46,14 +47,18 @@ const actions = {
   },
 
   // 获取新闻评论 
-  actionGetNewsComments({ commit, state }, { $http, id }) {
+  actionGetNewsComments({ commit, state }, { $http, id, isAll }) {
     return $http.get(`api/getcomments/${id}?pageindex=${state.currentPage}`)
       .then((result) => {
         if (result.body.status === 0) {
           if (result.body.message.length > 0 && result.body.message instanceof Array) {
             commit('NEXT_PAGE');
           }
-          return result.body.message
+          if (isAll) {
+            return result.body.message;
+          } else {
+            return result.body.message.slice(0, defauCommentCount);
+          }
         } else {
           Toast("获取评论失败");
         }
@@ -61,12 +66,12 @@ const actions = {
   },
 
   // 加载更多评论
-  loadMoreComments({ commit, state, dispatch }, { $http, id }) {
-    dispatch('getNewsComments', { $http, id })
+  loadMoreComments({ dispatch }, { $http, id, isAll }) {
+    dispatch('getNewsComments', { $http, id, isAll })
   },
 
-  async getNewsComments({ commit, dispatch }, { $http, id }) {
-    commit('SET_COMMENTS', await dispatch('actionGetNewsComments', { $http, id }))
+  async getNewsComments({ commit, dispatch }, obj) {
+    commit('SET_COMMENTS', await dispatch('actionGetNewsComments', obj))
   },
 
   async postNewsComments({ commit, dispatch }, { $http, id }) {

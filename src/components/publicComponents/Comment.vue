@@ -1,33 +1,40 @@
 <template>
   <div class="cmt-container">
-    <h3>发表评论</h3>
+    <h3 :style="{color,'font-size':size}">发表评论</h3>
     <hr />
-    <textarea placeholder="请输入要评论的内容" maxlength="120" v-model="msg"></textarea>
-    <mt-button type="primary" size="large" @click="postComment">提交评论</mt-button>
+    <textarea placeholder="请输入要评论的内容" v-model="msg" />
+    <el-button type="primary" size="small" icon="el-icon-chat-dot-round" @click="postComment">提交评论</el-button>
 
     <!-- 评论列表 -->
     <div class="cmt-list">
-      <div class="cmt-item" v-for="(item,i) in comments" :key="i">
-        <div
-          class="cmt-title"
-        >第{{ comments.length - i }}楼&nbsp;&nbsp;用户：{{ item.user_name }}&nbsp;&nbsp;发表时间：{{ item.add_time | dateFormat }}</div>
-        <div
-          class="cmt-body"
-        >{{ item.content === 'undefined' ? "用户: " + item.user_name + " 没有评价" : item.content }}</div>
-      </div>
-
-      <mt-button type="danger" size="large" plain @click="getMoreComments">加载更多</mt-button>
+      <comment-item
+        v-for="(comment,i) in comments"
+        :key="i"
+        :userName="comment.user_name"
+        :time="comment.add_time"
+        :content="comment.content"
+      />
+      <loading isLoading="true" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import loading from "./Loading";
+import commentItem from "./CommentItem";
+import { fontColor, fontSize } from "../../global";
 export default {
   created() {
     this.getMoreComments();
   },
-  props: ["id"], //把父组件传过来的值取值
+  data: function name(params) {
+    return {
+      color: fontColor,
+      size: fontSize,
+    };
+  },
+  props: ["id", "isAll"], //把父组件传过来的值取值
   computed: {
     // msg: (state) => state.comment.msg, // 无法实现表单的双向绑定
     msg: {
@@ -47,6 +54,7 @@ export default {
       this.$store.dispatch("comment/loadMoreComments", {
         $http: this.$http,
         id: this.id,
+        isAll: !!this.isAll,
       });
     },
 
@@ -57,13 +65,19 @@ export default {
       });
     },
   },
+  components: {
+    loading,
+    "comment-item": commentItem,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .cmt-container {
+  padding: 0 5px;
   h3 {
     font-size: 16px;
+    margin-top: 20px;
   }
   textarea {
     font-size: 14px;
@@ -71,18 +85,7 @@ export default {
     margin: 0;
   }
   .cmt-list {
-    margin: 5px 0;
-    .cmt-item {
-      font-size: 13px;
-      .cmt-title {
-        line-height: 28px;
-        background-color: #ccc;
-      }
-      .cmt-body {
-        line-height: 35px;
-        text-indent: 2em;
-      }
-    }
+    margin: 30px 0 10px 0;
   }
 }
 </style>

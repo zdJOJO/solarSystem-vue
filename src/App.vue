@@ -12,7 +12,7 @@
       <!-- 中间的 路由 router-view 区域 -->
       <el-main>
         <transition>
-          <router-view></router-view>
+          <router-view />
         </transition>
       </el-main>
 
@@ -26,8 +26,25 @@
             :key="nav.name"
             @click="routerPush(nav.routePath)"
           >
+            <!-- <span
+              class="mui-badge"
+              id="badge"
+              v-show="cartTotalNum > 0 && nav.routePath==='/cart'"
+            >{{ cartTotalNum }}</span>-->
+
             <div class="navName">
+              <el-badge
+                v-if="nav.routePath ==='/cart'"
+                :hidden="cartTotalNum === 0"
+                :value="cartTotalNum"
+              >
+                <i
+                  id="badge"
+                  :class="[currentPath===nav.routePath ?'el-icon-' + nav.activeIcon : 'el-icon-'+nav.icon]"
+                />
+              </el-badge>
               <i
+                v-if="nav.routePath !=='/cart'"
                 :class="[currentPath===nav.routePath ?'el-icon-' + nav.activeIcon : 'el-icon-'+nav.icon]"
               />
             </div>
@@ -51,7 +68,6 @@ export default {
       navs: [
         {
           name: "首页",
-          imgName: "home",
           routePath: "/home",
           icon: "eleme",
           activeIcon: "platform-eleme",
@@ -65,7 +81,6 @@ export default {
         },
         {
           name: "购物车",
-          imgName: "cart",
           routePath: "/cart",
           icon: "goods",
           activeIcon: "s-goods",
@@ -73,7 +88,6 @@ export default {
         },
         {
           name: "设置",
-          imgName: "setting",
           routePath: "/setting",
           icon: "setting",
           activeIcon: "s-tools",
@@ -148,6 +162,7 @@ body {
       right: 0;
       left: 0;
       position: fixed;
+      z-index: 99;
 
       .el-button {
         background: $themeColor;

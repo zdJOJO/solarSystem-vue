@@ -2,18 +2,18 @@
   <div class="goos-info">
     <!-- 来个小球，实现动画 -->
     <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag" ref="ball" />
+      <div id="ball" v-show="ballFlag" ref="ball" />
     </transition>
 
     <!--轮播图区域-->
-    <mySwiper :swiperImgs="swiperIsmgs" :isfull="false"></mySwiper>
+    <my-swiper :swiperImgs="swiperIsmgs" :isfull="false"></my-swiper>
 
     <!-- 商品购买区域 -->
-    <div class="mui-card">
-      <div class="mui-card-header">{{ goodsinfo.title }}</div>
-      <div class="mui-card-content">
-        <div class="mui-card-content-inner">
-          <p class="price">
+    <div class="my-card">
+      <div class="my-card-header">{{ goodsinfo.title }}</div>
+      <div class="my-card-content">
+        <div class="my-card-content-inner">
+          <p>
             市场价：
             <del>￥{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;销售价：
             <span class="now_price">￥{{ goodsinfo.sell_price }}</span>
@@ -24,34 +24,29 @@
           -->
           <p>
             <span>购买数量：</span>
-            <numbox :max="goodsinfo.stock_quantity" @get-count="getChoosedCount" />
+            <my-input-number :max="goodsinfo.stock_quantity" @get-count="getChoosedCount" />
           </p>
           <p>
-            <mt-button type="primary" size="small" @click="buy">立即购买</mt-button>
-            <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
-            <!-- 分析： 如何实现加入购物车时候，拿到 选择的数量 -->
-            <!-- 1. 经过分析发现： 按钮属于 goodsinfo 页面， 数字 属于 numberbox 组件 -->
-            <!-- 2. 由于涉及到了父子组件的嵌套了，所以，无法直接在 goodsinfo 页面zhong 中获取到 选中的商品数量值-->
-            <!-- 3. 怎么解决这个问题：涉及到了 子组件向父组件传值了（事件调用机制） -->
-            <!-- 4. 事件调用的本质： 父向子传递方法，子调用这个方法， 同时把 数据当作参数 传递给这个方法 -->
+            <el-button type="primary" @click="buy">立即购买</el-button>
+            <el-button type="danger" @click="addToShopCar">加入购物车</el-button>
           </p>
         </div>
       </div>
     </div>
 
     <!-- 商品参数区域 -->
-    <div class="mui-card">
-      <div class="mui-card-header">商品参数</div>
-      <div class="mui-card-content">
-        <div class="mui-card-content-inner">
+    <div class="my-card">
+      <div class="my-card-header">商品参数</div>
+      <div class="my-card-content">
+        <div class="my-card-content-inner">
           <p>商品货号：{{ goodsinfo.goods_no }}</p>
           <p>库存情况：{{ goodsinfo.stock_quantity }}件</p>
           <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
         </div>
       </div>
-      <div class="mui-card-footer">
-        <mt-button type="primary" size="large" plain @click="goDesc(id)">图文介绍</mt-button>
-        <mt-button type="danger" size="large" plain @click="goComment(id)">商品评论</mt-button>
+      <div class="my-card-footer">
+        <el-button type="primary" size="small" plain @click="goDesc(id)">图文介绍</el-button>
+        <el-button type="danger" size="small" plain @click="goComment(id)">商品评论</el-button>
       </div>
     </div>
   </div>
@@ -59,8 +54,8 @@
 
 <script>
 import { Toast } from "mint-ui";
-import mySwiper from "../subcomponents/swiper";
-import numbox from "../subcomponents/goodsinfo_numbox";
+import MySwiper from "../publicComponents/Swiper";
+import MyInputNumber from "../publicComponents/InputNumber";
 import { mapState } from "vuex";
 
 export default {
@@ -153,36 +148,68 @@ export default {
     },
   },
   components: {
-    mySwiper,
-    numbox,
+    "my-swiper": MySwiper,
+    "my-input-number": MyInputNumber,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.goos-info {
-  //background-color: #eee;
+.my-card {
+  font-size: 14px;
+  position: relative;
   overflow: hidden;
+  margin: 10px;
+  border-radius: 2px;
+  background-color: #fff;
+  background-clip: padding-box;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  .my-card-footer,
+  .my-card-header {
+    position: relative;
+    display: flex;
+    min-height: 44px;
+    padding: 10px 15px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 17px;
+    border-radius: 2px 2px 0 0;
+  }
+  .my-card-content {
+    font-size: 14px;
+    position: relative;
+  }
+  .my-card-content-inner {
+    position: relative;
+    padding: 15px;
+  }
+  .my-card-header {
+    height: 44px;
+  }
+  .my-card-footer {
+    color: #6d6d72;
+    border-radius: 0 0 2px 2px;
+  }
+}
 
+.goos-info {
+  overflow: hidden;
   .now_price {
     color: red;
     font-size: 16px;
     font-weight: bold;
   }
-
-  .ball {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: red;
-    position: absolute; //绝对定位
-    z-index: 99; //小球显示在上层
-    top: 351px;
-    left: 151px;
-  }
-
-  .mui-card-header {
-    height: 44px;
-  }
+}
+#ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #f56c6c;
+  position: absolute; //绝对定位
+  z-index: 99; //小球显示在上层
+  top: 351px;
+  left: 151px;
 }
 </style>

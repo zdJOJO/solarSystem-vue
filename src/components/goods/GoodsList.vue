@@ -1,27 +1,35 @@
 <template>
-  <div class="goodslist-container">
-    <!-- 编程式导航 , 加个点击事件去商品详情 -->
-    <div class="goods-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
-      <img :src="item.img_url" alt />
-      <h1 class="title">{{ item.title }}</h1>
-      <div class="info">
-        <p class="price">
-          <span class="now">￥{{ item.sell_price }}</span>
-          <span class="old">￥{{ item.market_price }}</span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩{{ item.stock_quantity }}件</span>
-        </p>
+  <div>
+    <div class="goodslist-container">
+      <div class="goods-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
+        <el-card :body-style="{ padding: '0px' }">
+          <img class="image" :src="item.img_url" />
+          <div style="padding: 5px">
+            <span class="title">{{item.title}}</span>
+          </div>
+          <div class="info">
+            <p class="price">
+              <span class="now">￥{{ item.sell_price }}</span>
+              <span class="old">￥{{ item.market_price }}</span>
+            </p>
+            <p class="sell">
+              <span>热卖中</span>
+              <span>剩{{ item.stock_quantity }}件</span>
+            </p>
+          </div>
+        </el-card>
       </div>
     </div>
-    <!-- 加载更多按钮 -->
-    <mt-button type="danger" size="large" @click="getMore">加载更多</mt-button>
+    <loadmore @start-load="getMore" />
+    <!-- <div class="loadMore">
+      <el-button type="primary" size="small" icon="el-icon-arrow-down" @click="getMore">往下加载更多</el-button>
+    </div>-->
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import loadmore from "../publicComponents/LoadMore";
 export default {
   created() {
     this.getMore();
@@ -39,6 +47,9 @@ export default {
       this.$router.push({ name: "goodsinfo", params: { id: id } });
     },
   },
+  components: {
+    loadmore,
+  },
 };
 </script>
 
@@ -51,23 +62,25 @@ export default {
 
   .goods-item {
     width: 49%;
-    border: 1px solid #ccc;
     box-shadow: 0 0 8px #ccc;
     margin: 4px 0;
-    padding: 2px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 293px;
+    min-height: 300px;
+
     img {
       width: 100%;
+    }
+
+    .el-card {
+      height: 100%;
     }
     .title {
       font-size: 14px;
     }
 
     .info {
-      background-color: #eee;
       p {
         margin: 0;
         padding: 5px;
@@ -90,6 +103,9 @@ export default {
         font-size: 13px;
       }
     }
+  }
+  .goods-item:last-child {
+    clear: both;
   }
 }
 </style>

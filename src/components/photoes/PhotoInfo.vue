@@ -33,7 +33,7 @@
 
 <script>
 //1.1 导入现有的评论子组件
-import comment from "../subcomponents/comment.vue";
+import MyComment from "../publicComponents/Comment";
 
 export default {
   data() {
@@ -84,7 +84,7 @@ export default {
   },
   components: {
     //1.2 注册评论子组件
-    "photoinfo-pl": comment,
+    "photoinfo-pl": MyComment,
   },
 };
 </script>

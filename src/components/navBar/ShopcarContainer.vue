@@ -1,51 +1,22 @@
 <template>
   <div class="shopcar-container">
-    <!-- 商品列表区域 -->
-    <div class="mui-card" v-for="(goodsinfo) in goodslist" :key="goodsinfo.id">
-      <div class="mui-card-content">
-        <div class="mui-card-content-inner">
-          <mt-switch
-            class="mySwitch"
-            v-model="getGoodsSelected[goodsinfo.id]"
-            @change="selectedChange(goodsinfo.id,getGoodsSelected[goodsinfo.id])"
-          ></mt-switch>
-          <img :src="goodsinfo.thumb_path" alt />
-          <div class="info">
-            <h1>{{goodsinfo.title}}</h1>
-            <p>
-              <span class="price">￥{{ goodsinfo.sell_price }}</span>
-              <numbox
-                :initCount="getGoodsCount[goodsinfo.id]"
-                :goodsid="goodsinfo.id"
-                @chang-count="changeCount"
-              />
-              <mt-button class="delete" type="danger" size="small" @click="remove(goodsinfo.id)">删除</mt-button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <cart-item
+      v-for="goodsinfo in goodslist"
+      :key="goodsinfo.id"
+      :cart="goodsinfo"
+      @change-cartItem-count="(obj)=>{changeCount(obj)}"
+      @change-cartItem-check="(obj)=>{changeSelected(obj)}"
+      @remove-count="(id)=>{remove(id)}"
+    />
 
     <!-- 结算区域 -->
-    <div class="mui-card">
-      <div class="mui-card-content">
-        <div class="mui-card-content-inner jiesuan">
-          <p>
-            <span class="zongji">总计</span>
-            <br />以勾选商品
-            <span class="red">{{getGoodsCountAndAmount.count}}</span>件
-            总价
-            <span class="red">¥{{getGoodsCountAndAmount.amount}}</span>;
-          </p>
-          <mt-button type="danger" @click="pay">去结算</mt-button>
-        </div>
-      </div>
-    </div>
+    <settlement :getGoodsCountAndAmount="getGoodsCountAndAmount" @go-pay="pay" />
   </div>
 </template>
 
 <script>
-import numbox from "../subcomponents/shopcar_numbox";
+import CartItem from "../cart/CartItem";
+import Settlement from "../cart/Settlement";
 import { mapState, mapGetters } from "vuex";
 import { Toast } from "mint-ui";
 
@@ -62,15 +33,12 @@ export default {
     }),
   }),
   methods: {
-    selectedChange(goodsid, status) {
+    //改变状态
+    changeSelected({ id, value }) {
       this.$store.commit("cart/UPDATE_SELECT_STATUS", {
-        id: goodsid,
-        status,
+        id,
+        status: value,
       });
-    },
-
-    remove(id) {
-      this.$store.commit("cart/REMOVE_GOOD_FROM_CART", { id });
     },
 
     //改变了数量
@@ -78,12 +46,17 @@ export default {
       this.$store.commit("cart/CHANGE_COUNT", { id, count });
     },
 
+    remove(id) {
+      this.$store.commit("cart/REMOVE_GOOD_FROM_CART", { id });
+    },
+
     pay() {
       Toast({ message: "该功能暂未开发", duration: 1500 });
     },
   },
   components: {
-    numbox,
+    "cart-item": CartItem,
+    settlement: Settlement,
   },
 };
 </script>
