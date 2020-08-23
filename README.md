@@ -17,9 +17,9 @@
 
 3. UI库
 
+    [element-ui](https://element.eleme.cn/#/zh-CN/component/upload): "^2.13.2"
+
     ["mint-ui"](http://mint-ui.github.io/) : "^2.2.9"
-    
-    [miu](https://dev.dcloud.net.cn/mui/ui/#badges)
 
 
 # Usage

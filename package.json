@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
-    "bootstrap": "^3.3.7",
     "element-ui": "^2.13.2",
     "mint-ui": "^2.2.9",
     "moment": "^2.24.0",
