@@ -110,11 +110,15 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       inject: true,
-      filename: 'index.html', // 设置生成的内存页面的名称
-      title: `My APPPP`,
-      favicon: `public/favicon.ico`,
-      template: resolve('../public/index.html'), // 指定模板文件路径
-      // chunks: ["vendor", "app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+      minify: { // 压缩HTML文件
+        removeComments: true, // 移除HTML中的注释
+        collapseWhitespace: true, // 删除空白符与换行符
+        minifyCSS: true// 压缩内联css
+      },
+      title: `生产环境APP`,
+      favicon: resolve("../public/favicon.ico"),
+      template: resolve('../public/templete.html'), // 指定模板文件路径
+      chunks: ["app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
     }),
 
     new webpack.optimize.UglifyJsPlugin({
