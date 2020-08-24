@@ -11,15 +11,19 @@
 
     ["vuex"](https://vuex.vuejs.org/zh/guide/) :  "^3.1.1"
 
-2. 打包工具
+2. http 异步请求框架
 
-    ["webpack"](https://www.webpackjs.com/concepts/) :  "^3.8.1"
+    ["axios"](http://www.axios-js.com/zh-cn/docs/index.html#axios-url-config) :  "^0.20.0"
 
 3. UI库
 
     [element-ui](https://element.eleme.cn/#/zh-CN/component/upload): "^2.13.2"
 
     ["mint-ui"](http://mint-ui.github.io/) : "^2.2.9"
+
+4. 打包工具
+
+    ["webpack"](https://www.webpackjs.com/concepts/) :  "^3.8.1"
 
 
 # Usage
