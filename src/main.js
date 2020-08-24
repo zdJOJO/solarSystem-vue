@@ -3,15 +3,7 @@
 import Vue from "vue"
 import moment from "moment"
 import VuePreview from 'vue-preview' /*图片预览插件*/
-
 import infiniteScroll from "vue-infinite-scroll";  // 无限滚动
-
-
-// 导入 MUI 的样式
-import './lib/mui/css/mui.min.css'
-// 导入扩展图标样式
-import './lib/mui/css/icons-extra.css'
-
 
 
 /* 按需引入element-ui */

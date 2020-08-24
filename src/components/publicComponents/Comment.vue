@@ -83,6 +83,7 @@ export default {
     font-size: 14px;
     height: 85px;
     margin: 0;
+    width: 99%;
   }
   .cmt-list {
     margin: 30px 0 10px 0;

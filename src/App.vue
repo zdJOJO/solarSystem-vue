@@ -26,12 +26,6 @@
             :key="nav.name"
             @click="routerPush(nav.routePath)"
           >
-            <!-- <span
-              class="mui-badge"
-              id="badge"
-              v-show="cartTotalNum > 0 && nav.routePath==='/cart'"
-            >{{ cartTotalNum }}</span>-->
-
             <div class="navName">
               <el-badge
                 v-if="nav.routePath ==='/cart'"
@@ -229,10 +223,17 @@ body {
           .navName {
             height: 22px;
             line-height: 22px;
-
+            transition-property: color;
+            transition-duration: 0.1s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
             i {
               font-size: 23px;
               margin: 0;
+              transition-property: all;
+              transition-duration: 0.05s;
+              transition-timing-function: ease;
+              transition-delay: 0.05s;
             }
           }
         }

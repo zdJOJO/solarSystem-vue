@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="always">
+  <el-card shadow="always" :body-style="{ padding: '10px' }">
     <el-row :gutter="24">
       <el-col :span="4">
         <el-checkbox
@@ -14,7 +14,7 @@
       <el-col :span="14">
         <p>{{cart.title}}</p>
         <div>
-          <span>￥ {{cart.price}}</span>
+          <span class="price">￥ {{cart.price}}</span>
           <input-number :initCount="cart.count" @get-count="(value)=>{changeValue(cart.id,value)}" />
         </div>
         <div>
@@ -54,8 +54,20 @@ export default {
 <style lang="scss" scoped>
 .el-card {
   margin: 10px;
-}
-img {
-  width: 100%;
+  p {
+    margin: 5px 0;
+  }
+  .price {
+    color: #f56c6c;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  button {
+    margin-top: 10px;
+  }
+  img {
+    width: 100%;
+  }
 }
 </style>

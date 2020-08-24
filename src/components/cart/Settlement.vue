@@ -34,7 +34,7 @@ export default {
     margin: 5px 0;
     color: #f56c6c;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 20px;
   }
   .btn {
     margin: 7px 0;
