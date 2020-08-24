@@ -52,6 +52,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { navs } from "./global";
 
 export default {
   data() {
@@ -59,34 +60,7 @@ export default {
       defaultcolor: "#606266",
       themeColor: "#ffd000",
       currentPath: this.$router.path,
-      navs: [
-        {
-          name: "首页",
-          routePath: "/home",
-          icon: "eleme",
-          activeIcon: "platform-eleme",
-        },
-        {
-          name: "会员",
-          imgName: "member",
-          routePath: "/member",
-          icon: "user",
-          activeIcon: "user-solid",
-        },
-        {
-          name: "购物车",
-          routePath: "/cart",
-          icon: "goods",
-          activeIcon: "s-goods",
-          ball: true,
-        },
-        {
-          name: "设置",
-          routePath: "/setting",
-          icon: "setting",
-          activeIcon: "s-tools",
-        },
-      ],
+      navs,
     };
   },
   watch: {

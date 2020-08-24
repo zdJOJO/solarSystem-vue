@@ -1,9 +1,17 @@
-// 入口文件
+/*
+ * @Description: 项目入口文件
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 15:34:43
+ */
 
 import Vue from "vue"
 import moment from "moment"
 import VuePreview from 'vue-preview' /*图片预览插件*/
 import infiniteScroll from "vue-infinite-scroll";  // 无限滚动
+
 
 
 /* 按需引入element-ui */
@@ -39,7 +47,7 @@ import 'mint-ui/lib/style.css'
 import store from './store';
 import router from './route';
 import App from "./App";
-import { setVueHttpOption } from "./http"
+import axios from "./httpConfig/http"
 
 
 // 挂载 mint-ui 组件
@@ -73,16 +81,17 @@ Vue.use(infiniteScroll); // 无限滚动
 // 安装图片预览插件
 Vue.use(VuePreview)
 
-// http异步请求  全局设置
-setVueHttpOption();
+// 自定义 http 挂载
+Vue.prototype.$http = axios;
 
-
-
-
-// 定义Vue全局过滤器 (时间转换过滤器)
+/*
+ @desctiption: 定义Vue全局过滤器 (时间转换过滤器)
+ @user:  {{ a.time |  dateFormat }}
+*/
 Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
     return moment(dataStr).format(pattern)
 })
+
 
 const vm = new Vue({
     router,

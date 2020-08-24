@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 16:48:01
+-->
 <template>
   <div>
     <my-swiper :swiperImgs="lunbotuList" :isfull="true" />
@@ -17,44 +25,13 @@
 <script>
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
-import { fontColor } from "../../global";
+import { fontColor, menus } from "../../global";
 
 export default {
   data() {
     return {
       color: fontColor,
-      menus: [
-        {
-          name: "新闻资讯",
-          routePath: "/home/newslist",
-          imgName: "menu1.png",
-        },
-        {
-          name: "商品购买",
-          routePath: "/home/goodslist",
-          imgName: "menu1.png",
-        },
-        {
-          name: "视频专区",
-          routePath: "#",
-          imgName: "menu2.png",
-        },
-        {
-          name: "图片分享",
-          routePath: "#",
-          imgName: "menu3.png",
-        },
-        {
-          name: "留言反馈",
-          routePath: "#",
-          imgName: "menu4.png",
-        },
-        {
-          name: "联系我们",
-          routePath: "#",
-          imgName: "menu5.png",
-        },
-      ],
+      menus,
       lunbotuList: [],
     };
   },
@@ -62,18 +39,12 @@ export default {
     this.getLunbotu();
   },
   methods: {
-    getLunbotu() {
+    async getLunbotu() {
       //获取轮播图的方法
-      this.$http.get("api/getlunbo").then((result) => {
-        console.log(result.body);
-        if (result.body.status === 0) {
-          // 成功了
-          this.lunbotuList = result.body.message;
-        } else {
-          // 失败的
-          Toast("加载轮播图失败。。。");
-        }
+      const result = await this.$store.dispatch("ROOT_ASYNC_REQUEST_ACTION", {
+        url: "api/getlunbo",
       });
+      this.lunbotuList = result;
     },
   },
   components: {

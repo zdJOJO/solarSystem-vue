@@ -40,7 +40,7 @@ export default {
   methods: {
     //列表 加载更多
     getMore() {
-      this.$store.dispatch("goods/getGoodsList", { $http: this.$http });
+      this.$store.dispatch("goods/getGoodsList");
     },
     //去商品详情
     goDetail(id) {

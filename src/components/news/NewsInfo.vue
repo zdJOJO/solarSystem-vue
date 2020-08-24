@@ -31,7 +31,6 @@ export default {
     this.setNewsId(this.$route.params.id);
     this.$store.commit("comment/INIT_COMMENT_DATA");
     this.$store.dispatch("news/getNewsInfo", {
-      $http: this.$http,
       id: this.$route.params.id,
     });
   },
@@ -42,11 +41,9 @@ export default {
       this.setNewsId(to.params.id);
       this.$store.commit("comment/INIT_COMMENT_DATA");
       this.$store.dispatch("news/getNewsInfo", {
-        $http: this.$http,
         id: to.params.id,
       });
       this.$store.dispatch("comment/loadMoreComments", {
-        $http: this.$http,
         id: to.params.id,
       });
     },

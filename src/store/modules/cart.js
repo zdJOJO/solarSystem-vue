@@ -1,4 +1,4 @@
-
+import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
 // initial state
 const state = () => ({
   items: JSON.parse(localStorage.getItem('car') || '[]')
@@ -84,22 +84,12 @@ const actions = {
     localStorage.setItem('car', JSON.stringify(state.items));
   },
 
-
   // 获取 购物车列表
-  actionGetGoodsList({ state }, { $http }) {
-    let idArr = [];
-    state.items.forEach((item) => idArr.push(item.id));
-    return $http.get(`api/goods/getshopcarlist/${idArr.join(",")}`)
-      .then((result) => {
-        if (result.body.status === 0) {
-          return result.body.message;
-        }
-      });
-  },
-
-  async getGoodsList({ dispatch, commit, state }, { $http }) {
+  async getGoodsList({ dispatch, commit, state }) {
     if (state.items.length > 0) {
-      commit('SET_CART_LIST', await dispatch('actionGetGoodsList', { $http }))
+      let idArr = [];
+      state.items.forEach((item) => idArr.push(item.id));
+      commit('SET_CART_LIST', await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/goods/getshopcarlist/${idArr.join(",")}` }, { root: true }))
     }
   }
 

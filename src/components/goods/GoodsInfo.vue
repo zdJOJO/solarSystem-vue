@@ -56,6 +56,7 @@
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
 import MyInputNumber from "../publicComponents/InputNumber";
+import { cartBallTrasformTime } from "../../global";
 import { mapState } from "vuex";
 
 export default {
@@ -63,6 +64,7 @@ export default {
     return {
       id: this.$route.params.id,
       ballFlag: false, //小球是否显示
+      cartBallTrasformTime,
     };
   },
   created() {
@@ -121,7 +123,7 @@ export default {
       const xDist = badgePosition.left - ballPosition.left;
       const yDist = badgePosition.top - ballPosition.top;
       el.style.transform = `translate(${xDist}px, ${yDist}px)`; //最终要移到的坐标位置
-      el.style.transition = "all 0.6s cubic-bezier(.4,-0.3,1,.8)"; //要实现的动画效果
+      el.style.transition = `all ${this.cartBallTrasformTime/1000}s cubic-bezier(.4,-0.3,1,.8)`; //要实现的动画效果
       done();
     },
     afterEnter(el) {
@@ -136,15 +138,17 @@ export default {
     //加入购物车
     addToShopCar() {
       this.ballFlag = !this.ballFlag;
-      this.$store.commit("cart/PUSH_TO_CART_LIST", {
-        id: this.id,
-        count:
-          this.choosedCount <= this.goodsinfo.stock_quantity
-            ? this.choosedCount
-            : this.goodsinfo.stock_quantity,
-        price: this.goodsinfo.sell_price,
-        selected: true,
-      });
+      setTimeout(() => {
+        this.$store.commit("cart/PUSH_TO_CART_LIST", {
+          id: this.id,
+          count:
+            this.choosedCount <= this.goodsinfo.stock_quantity
+              ? this.choosedCount
+              : this.goodsinfo.stock_quantity,
+          price: this.goodsinfo.sell_price,
+          selected: true,
+        });
+      }, this.cartBallTrasformTime);
     },
   },
   components: {

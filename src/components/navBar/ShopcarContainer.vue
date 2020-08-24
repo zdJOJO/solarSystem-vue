@@ -22,7 +22,7 @@ import { Toast } from "mint-ui";
 
 export default {
   created() {
-    this.$store.dispatch("cart/getGoodsList", { $http: this.$http });
+    this.$store.dispatch("cart/getGoodsList");
   },
   computed: mapState({
     goodslist: (state) => state.cart.items,

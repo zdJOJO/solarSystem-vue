@@ -1,10 +1,16 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-23 21:51:54
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 17:22:19
+-->
 <template>
   <el-card shadow="always" :style="userNameStyle">
     <el-row :gutter="24">
-      <el-col :span="6" :style="userNameStyle">
-        {{userName}}
-      </el-col>
-      <el-col :span="18" :style="timeFont">{{time | dateFormat}}</el-col>
+      <el-col :span="10" :style="userNameStyle">{{userName}}</el-col>
+      <el-col :span="14" :style="timeFont">{{time | dateFormat}}</el-col>
     </el-row>
     <el-row :gutter="24" :style="contentStyle">
       <el-col>
