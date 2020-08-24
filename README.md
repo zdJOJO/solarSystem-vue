@@ -99,4 +99,33 @@ Vue.config.devtools = true;
 
 
 # 文件目录结构
-
+```
+.
+|-- README.md
+|-- config      webpack配置文件夹
+|-- package.json
+|-- public      静态文件夹
+|-- src
+|   |-- App.vue
+|   |-- components
+|   |   |-- cart     页面组件
+|   |   |-- goods    页面组件
+|   |   |-- navBar   页面组件
+|   |   |-- news     页面组件
+|   |   |-- photoes  页面组件
+|   |   `-- publicComponents     公共组件
+|   |-- global.js      全局变量
+|   |-- httpConfig     http异步请求
+|   |   |-- api.js
+|   |   `-- http.js
+|   |-- main.js    入口文件
+|   |-- route     
+|   |   `-- index.js   路由定义
+|   `-- store        vuex store 定义
+|       |-- actions
+|       |   `-- index.js
+|       |-- index.js
+|       |-- modules
+|       `-- template.js
+`-- theme      element-ui自定义主题文件夹
+```
