@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-21 00:19:26
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 23:44:56
+ */
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -9,7 +17,7 @@ function resolve(dir) {
 
 module.exports = {
 
-  devtool: "eval",  // source-map
+  devtool: "cheap-module-eval-source-map",  // source-map
 
   entry: [
     `webpack-dev-server/client?http://localhost:${port}`,
@@ -47,6 +55,14 @@ module.exports = {
           "style-loader",
           "css-loader",
           "sass-loader"
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "less-loader"
         ]
       },
       {

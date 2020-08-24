@@ -1,6 +1,14 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 20:32:52
+-->
 <template>
   <div class="infinite-list-wrapper" style="overflow:auto">
-    <div class="list" v-infinite-scroll="getNewsList" infinite-scroll-disabled="disabled">
+    <div class="list">
       <div class="list-item" v-for="news in newsList" :key="news.id">
         <router-link :to="'/home/newsinfo/'+news.id">
           <el-card class="box-card">
@@ -23,7 +31,7 @@
 
 <script>
 import { mapState } from "vuex";
-import loading from "../publicComponents/Loading";
+import loading from "@/components/publicComponents/Loading";
 
 export default {
   created() {
@@ -34,7 +42,7 @@ export default {
   }),
   methods: {
     getNewsList() {
-      this.$store.dispatch("news/getNewsList", { $http: this.$http });
+      this.$store.dispatch("news/getNewsList");
     },
   },
   components: {

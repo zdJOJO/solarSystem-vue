@@ -1,4 +1,3 @@
-import { Toast } from "mint-ui";
 import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
 
 // initial state
@@ -27,49 +26,6 @@ const getters = {
 
 // actions
 const actions = {
-
-  //获取商品列表
-  // actionGetGoodsList({ commit, state }, $http) {
-  //   return $http.get(`api/getgoods?pageindex=${state.page}`)
-  //     .then((result) => {
-  //       if (result.body.status === 0) {
-  //         if (result.body.message.length > 0 && result.body.message instanceof Array) {
-  //           commit('NEXT_PAGE');
-  //         }
-  //         return result.body.message
-  //       }
-  //     });
-  // },
-
-  //获取商品详情信息
-  // actionGetGoodsInfo({ }, { $http, id }) {
-  //   return $http.get(`api/goods/getinfo/${id}`)
-  //     .then((result) => {
-  //       if (result.body.status === 0 && result.body.message[0].id) {
-  //         return result.body.message[0]
-  //       }
-  //     });
-  // },
-
-  // // 获取轮播图片
-  // actionGetSwiperImgs({ }, { $http, id }) {
-  //   return $http.get(`api/getthumimages/${id}`)
-  //     .then((result) => {
-  //       if (result.body.status === 0) {
-  //         //但是轮播图组件 需要 img属性
-  //         const array = []
-  //         result.body.message.map((item, index) => {
-  //           array[index] = {
-  //             img: item.src
-  //           }
-  //         });
-  //         return array;
-  //       } else {
-  //         Toast("加载轮播图失败...");
-  //       }
-  //     });
-  // },
-
 
   //获取商品列表
   async getGoodsList({ commit, dispatch, state }) {

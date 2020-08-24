@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-23 21:18:25
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 20:33:58
+-->
 <template>
   <div class="myLoading" v-if="isLoading" :style="{color, 'font-size':size}">
     <i class="el-icon-loading"></i>
@@ -5,7 +13,7 @@
   </div>
 </template>
 <script>
-import { themeColor, fontSize } from "../../global";
+import { themeColor, fontSize } from "@/global";
 export default {
   data: function () {
     return {

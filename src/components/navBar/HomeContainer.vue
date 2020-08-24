@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 16:48:01
+ * @LastEditTime: 2020-08-24 21:29:58
 -->
 <template>
   <div>
@@ -25,7 +25,7 @@
 <script>
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
-import { fontColor, menus } from "../../global";
+import { fontColor, menus } from "@/global";
 
 export default {
   data() {
@@ -49,7 +49,7 @@ export default {
   },
   components: {
     "my-swiper": MySwiper,
-  },
+  }
 };
 </script>
 

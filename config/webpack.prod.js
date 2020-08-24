@@ -27,7 +27,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx", '.vue', '.css', '.scss', '.sass','.svg'],  // import ** from 时，导入可以省略文件的拓展名
+    extensions: [".js", ".jsx", '.vue', '.css', '.scss', '.sass', '.svg'],  // import ** from 时，导入可以省略文件的拓展名
     alias: {
       '@': resolve('../src')
     }
@@ -48,6 +48,18 @@ module.exports = {
                 minimize: true
               }
             }
+          ]
+        })
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader"
+            },
+            "less-loader"
           ]
         })
       },
@@ -83,6 +95,7 @@ module.exports = {
       }
     }),
 
+    // 和DllReferencePlugin配套使用 在webpack.dll.config.js中打包生成的dll文件引用到需要的预编译的依赖上来
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require("./manifest.json")
@@ -115,14 +128,18 @@ module.exports = {
       },
       except: ["$super", "$", "exports", "require"]    //排除关键字
     }),
+
+    //调整模块的打包顺序，用到次数更多的会出现在文件的前面
     new webpack.optimize.OccurrenceOrderPlugin(),
 
+    // 将所有的入口 chunk(entry chunks)中引用的 *.css，移动到独立分离的 CSS 文件
     new ExtractTextPlugin({
       filename: "[name].[contenthash].css",
       disable: false,
       allChunks: true
     }),
 
+    // 用于优化或者压缩CSS资源 和 ExtractTextPlugin 一起使用
     new OptimizeCssAssetsPlugin({
       cssProcessorOptions: { discardComments: { removeAll: true } }
     }),

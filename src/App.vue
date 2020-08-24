@@ -52,13 +52,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { navs } from "./global";
+import { navs, themeColor } from "@/global";
 
 export default {
   data() {
     return {
-      defaultcolor: "#606266",
-      themeColor: "#ffd000",
+      themeColor,
       currentPath: this.$router.path,
       navs,
     };
@@ -86,9 +85,9 @@ export default {
     // 顶部的浏览器是否返回
     isBack() {
       // 如果路由地址不是 /home 就出现返回按钮
-      return this.$route.path != "/home";
+      return this.$store.state.route.path !== "/home";
     },
-  },
+  }
 };
 </script>
 
@@ -197,17 +196,9 @@ body {
           .navName {
             height: 22px;
             line-height: 22px;
-            transition-property: color;
-            transition-duration: 0.1s;
-            transition-timing-function: ease;
-            transition-delay: 0s;
             i {
               font-size: 23px;
               margin: 0;
-              transition-property: all;
-              transition-duration: 0.05s;
-              transition-timing-function: ease;
-              transition-delay: 0.05s;
             }
           }
         }

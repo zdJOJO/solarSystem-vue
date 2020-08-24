@@ -24,14 +24,16 @@ export default {
   created() {
     this.$store.dispatch("cart/getGoodsList");
   },
-  computed: mapState({
-    goodslist: (state) => state.cart.items,
+  computed: {
+    ...mapState({
+      goodslist: (state) => state.cart.items,
+    }),
     ...mapGetters({
       getGoodsSelected: "cart/getGoodsSelected",
       getGoodsCount: "cart/getGoodsCount",
       getGoodsCountAndAmount: "cart/getGoodsCountAndAmount",
     }),
-  }),
+  },
   methods: {
     //改变状态
     changeSelected({ id, value }) {

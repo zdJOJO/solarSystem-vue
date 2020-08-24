@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 20:26:21
+-->
 <template>
   <div class="cmt-container">
     <h3 :style="{color,'font-size':size}">发表评论</h3>
@@ -23,9 +31,10 @@
 import { mapState } from "vuex";
 import loading from "./Loading";
 import commentItem from "./CommentItem";
-import { fontColor, fontSize } from "../../global";
+import { fontColor, fontSize } from "@/global";
 export default {
   created() {
+    this.$store.commit("comment/INIT_COMMENT_DATA");
     this.getMoreComments();
   },
   data: function name(params) {
@@ -36,7 +45,6 @@ export default {
   },
   props: ["id", "isAll"], //把父组件传过来的值取值
   computed: {
-    // msg: (state) => state.comment.msg, // 无法实现表单的双向绑定
     msg: {
       get() {
         return this.$store.state.comment.msg;

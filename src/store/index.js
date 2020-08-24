@@ -1,10 +1,10 @@
 /*
  * @Description: 全局store定义
  * @Version: 2.0
- * @Autor: zhangding
+ * @Autor: zdJOJO
  * @Date: 2020-08-21 15:37:14
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 17:29:33
+ * @LastEditTime: 2020-08-24 23:27:17
  */
 import Vue from "vue"
 import Vuex from 'vuex'
@@ -22,7 +22,7 @@ Vue.use(Vuex);
 // 开发环境
 const debug = process.env.NODE_ENV !== 'production';
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   actions,
   modules: {
     cart,
@@ -33,3 +33,5 @@ export default new Vuex.Store({
   strict: debug,
   plugins: debug ? [createLogger()] : []
 })
+
+export default store;

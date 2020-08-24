@@ -4,13 +4,13 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 15:34:43
+ * @LastEditTime: 2020-08-24 23:29:32
  */
 
 import Vue from "vue"
+import { sync } from 'vuex-router-sync'
 import moment from "moment"
 import VuePreview from 'vue-preview' /*图片预览插件*/
-import infiniteScroll from "vue-infinite-scroll";  // 无限滚动
 
 
 
@@ -37,21 +37,14 @@ import {
 } from 'element-ui';
 import '../theme/index.css'  // 自定义主题
 
-
 /* 按需引入 mint-ui */
-import { Switch } from 'mint-ui';
 import 'mint-ui/lib/style.css'
-
-
 
 import store from './store';
 import router from './route';
 import App from "./App";
 import axios from "./httpConfig/http"
-
-
-// 挂载 mint-ui 组件
-Vue.component(Switch.name, Switch)
+import { lazyLoadVuexModule } from './global';
 
 
 // element-ui 全局配置
@@ -75,23 +68,25 @@ Vue.use(Card);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Badge);
-Vue.use(infiniteScroll); // 无限滚动
 
 
 // 安装图片预览插件
 Vue.use(VuePreview)
 
-// 自定义 http 挂载
+// 自定义http 添加 Vue 的实例中
 Vue.prototype.$http = axios;
+
+// 按需加载 Vuex 模块 插件
+// Vue.use(lazyLoadVuexModule)
 
 /*
  @desctiption: 定义Vue全局过滤器 (时间转换过滤器)
  @user:  {{ a.time |  dateFormat }}
 */
-Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
-    return moment(dataStr).format(pattern)
-})
+Vue.filter('dateFormat', (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") => moment(dataStr).format(pattern));
 
+// 将router的状态绑定到 vuex 中
+sync(store, router)
 
 const vm = new Vue({
     router,

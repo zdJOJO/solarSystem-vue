@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 17:54:50
+ * @LastEditTime: 2020-08-24 20:34:46
 -->
 <template>
   <div class="goodsdesc-container">
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { ROOT_ASYNC_REQUEST_ACTION } from "../../store/actions";
+import { ROOT_ASYNC_REQUEST_ACTION } from "@/store/actions";
 export default {
   data() {
     return {

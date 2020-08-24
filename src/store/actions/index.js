@@ -4,11 +4,11 @@
  * @Autor: zhangding
  * @Date: 2020-08-24 16:13:01
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 17:29:21
+ * @LastEditTime: 2020-08-24 20:36:09
  */
 
 
-import $http from "../../httpConfig/http"
+import $http from "@/httpConfig/http"
 
 export const ROOT_ASYNC_REQUEST_ACTION = "ROOT_ASYNC_REQUEST_ACTION";
 

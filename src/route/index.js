@@ -1,9 +1,24 @@
+/*
+ * @Description: 路由定义文件
+ * @Version: 2.0
+ * @Autor: zhangding
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-24 21:07:56
+ */
 import Vue from "vue"
 import VueRouter from 'vue-router'
 
 //挂载路由
 Vue.use(VueRouter)
 
+
+/**
+ * @description: 按需加载组件
+ * @param {componentName: String 组件名, secondDirectory: String 二级目录} 
+ * @return {type: Promise型的Component} 
+ * @author: zhangding
+ */
 const getAsynComponent = (componentName, secondDirectory) => {
   // 写成 siwtch 函数 而不是直接用 secondDirectory 来代替， 是为了 webpackChunkName 只有一级而更加雅观
   switch (secondDirectory) {

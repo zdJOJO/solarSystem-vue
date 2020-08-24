@@ -56,7 +56,7 @@
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
 import MyInputNumber from "../publicComponents/InputNumber";
-import { cartBallTrasformTime } from "../../global";
+import { cartBallTrasformTime } from "@/global";
 import { mapState } from "vuex";
 
 export default {

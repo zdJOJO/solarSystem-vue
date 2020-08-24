@@ -29,7 +29,6 @@ export default {
   },
   created() {
     this.setNewsId(this.$route.params.id);
-    this.$store.commit("comment/INIT_COMMENT_DATA");
     this.$store.dispatch("news/getNewsInfo", {
       id: this.$route.params.id,
     });

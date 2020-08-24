@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:51:54
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 17:22:19
+ * @LastEditTime: 2020-08-24 20:33:45
 -->
 <template>
   <el-card shadow="always" :style="userNameStyle">
@@ -20,7 +20,7 @@
   </el-card>
 </template>
 <script>
-import { fontStyle } from "../../global";
+import { fontStyle } from "@/global";
 export default {
   data: function () {
     return {
