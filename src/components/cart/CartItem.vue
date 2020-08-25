@@ -1,3 +1,11 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-24 00:48:12
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-25 14:45:32
+ * @FilePath: \vue-demo\src\components\cart\CartItem.vue
+-->
 <template>
   <el-card shadow="always" :body-style="{ padding: '10px' }">
     <el-row :gutter="24">
@@ -53,9 +61,9 @@ export default {
 
 <style lang="scss" scoped>
 .el-card {
-  margin: 10px;
   p {
     margin: 5px 0;
+    font-size: 14px;
   }
   .price {
     color: #f56c6c;

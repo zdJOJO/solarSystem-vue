@@ -4,11 +4,12 @@
  * @Autor: zhangding
  * @Date: 2020-08-24 16:13:01
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 20:36:09
+ * @LastEditTime: 2020-08-25 23:20:37
  */
 
 
 import $http from "@/httpConfig/http"
+import { resMsg } from '@/global';
 
 export const ROOT_ASYNC_REQUEST_ACTION = "ROOT_ASYNC_REQUEST_ACTION";
 
@@ -20,11 +21,12 @@ export const actions = {
    * @return {Promise} 
    * @author: zhangding
    */
-  ROOT_ASYNC_REQUEST_ACTION({ }, {
+  ROOT_ASYNC_REQUEST_ACTION({ context }, {
     method = "get",
     url,
     param,
-    isForm = false
+    isForm = false,
+    isMsg = false
   }) {
 
     if (method !== "get") {
@@ -38,20 +40,31 @@ export const actions = {
           if (response.data.status === 0) {
             return { successful: response.data.status === 0, msg: response.data.message }
           } else {
+            resMsg(`${response.data.message} 😢`);
             return
           }
         }).catch(err => {
+          resMsg(`请求失败${err} 😢`);
           return new Promise.reject(err)
         })
     } else {
       return $http.get(url)
         .then(response => {
           if (response.data.status === 0) {
+            if (response.data.message.length > 0) {
+              if (isMsg) {
+                resMsg(`为您跟新${response.data.message.length} 条信息 😀`, 'success')
+              }
+            } else {
+              resMsg(`已无更多信息 🙂`, 'warning')
+            }
             return response.data.message
           } else {
+            resMsg(`${response.data.message} 😢`);
             return
           }
         }).catch(err => {
+          resMsg(`请求失败${err} 😢`);
           return new Promise.reject(err)
         })
     }

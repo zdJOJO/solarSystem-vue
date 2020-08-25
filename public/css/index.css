@@ -1,0 +1,14 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #303133;
+  scrollbar-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.myMsg {
+  min-width: 250px !important;
+  padding: 10px !important;
+  transition: opacity 1s, transform 1s, top 1s, -webkit-transform 1s !important;
+}

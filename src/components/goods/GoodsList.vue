@@ -42,7 +42,6 @@ export default {
     },
     //去商品详情
     goDetail(id) {
-      console.log(this.$store);
       this.$router.push({
         name: ROUTE_PATH.HOME_GODDS_INOF_ID.name,
         params: { id: id },
@@ -59,13 +58,13 @@ export default {
 .goodslist-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 7px;
+  padding-top: 10px;
   justify-content: space-between;
 
   .goods-item {
     width: 49%;
-    box-shadow: 0 0 8px #ccc;
-    margin: 4px 0;
+    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -76,6 +75,7 @@ export default {
     }
 
     .el-card {
+      box-shadow: none;
       height: 100%;
     }
     .title {

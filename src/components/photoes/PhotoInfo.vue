@@ -1,39 +1,29 @@
 <template>
   <div class="photoinfo-container">
     <!-- 头标题 -->
-    <h3 class="title">{{ photoinfo.title }}</h3>
+    <h3 class="title">{{ photoInfo.title }}</h3>
     <!-- 子标题 -->
     <p class="subtitle">
-      <span>发表时间：{{ photoinfo.add_time | dateFormat }}</span>
-      <span>点击：{{ photoinfo.click }}次</span>
+      <span>发表时间：{{ photoInfo.add_time | dateFormat }}</span>
+      <span>点击：{{ photoInfo.click }}次</span>
     </p>
-
     <hr />
-
-    <!--
-            缩略图区域
-            预览缩略图续安装插件: npm i vue-preview -s
-            $preview.open
-    -->
-    <div class="suoluetu">
-      <!-- 最新缩略图版插件和之前不一样，看这里
-             https://blog.csdn.net/qq_36742720/article/details/83270636
-      -->
-      <vue-preview :slides="list"></vue-preview>
+    <div class="thumbnail">
+      <vue-preview :slides="thumbnails" />
     </div>
 
     <!-- 图片内容区域 -->
-    <div class="photoinfo-content" v-html="photoinfo.content"></div>
+    <div class="photoinfo-content" v-html="photoInfo.content"></div>
 
     <!-- 评论子组件区域 -->
     <!-- 1.3 向评论子组件传值 -->
-    <photoinfo-pl :id="id"></photoinfo-pl>
+    <my-comment :id="id"></my-comment>
   </div>
 </template>
 
 <script>
-//1.1 导入现有的评论子组件
 import MyComment from "../publicComponents/Comment";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -43,48 +33,34 @@ export default {
       list: [], //图片缩略图数组
     };
   },
+  computed: {
+    ...mapState({
+      photoInfo: (state) => state.photoes.photoInfo,
+      thumbnails: (state) => state.photoes.thumbnails,
+    }),
+  },
   created() {
     this.getPhotoInfo();
-    this.getSuoLueTu();
+    this.getThumbnails();
   },
-  beforeRouteUpdate(to, from, next) {
-    this.id = to.params.id;
-    this.getPhotoInfo();
-    this.getSuoLueTu();
-  },
+
+  // beforeRouteUpdate(to, from, next) {
+  //   this.id = to.params.id;
+  //   this.getPhotoInfo();
+  //   this.getThumbnails();
+  // },
+
   methods: {
-    // 获取图片的详情
     getPhotoInfo() {
-      this.$http.get("api/getimageInfo/" + this.id).then((result) => {
-        if (result.body.status === 0) {
-          this.photoinfo = result.body.message[0];
-        }
-      });
+      this.$store.dispatch("photoes/getPhotoInfo", { id: this.id });
     },
-    // 获取图片缩略图
-    getSuoLueTu() {
-      this.$http.get("api/getthumimages/" + this.id).then((result) => {
-        if (result.body.status === 0) {
-          /*
-                        缩略图：
-                         注意： img标签上的class不能去掉
-                         注意： 每个 图片数据对象中，必须有 w 和 h 属性
-                        */
-          // 循环每个图片数据，补全图片的宽和高
-          result.body.message.forEach((item) => {
-            item.w = 600;
-            item.h = 400;
-            item.msrc = item.src; //msrc：小图像,到时候让后端传个小图像过来
-          });
-          // 把完整的数据保存到 list 中
-          this.list = result.body.message;
-        }
-      });
+
+    getThumbnails() {
+      this.$store.dispatch("photoes/getThumbnails", { id: this.id });
     },
   },
   components: {
-    //1.2 注册评论子组件
-    "photoinfo-pl": MyComment,
+    "my-comment": MyComment,
   },
 };
 </script>
@@ -92,15 +68,14 @@ export default {
 <style lang="scss" scoped>
 .photoinfo-container {
   padding: 0 4px;
+
   .title {
     font-size: 16px;
-    text-align: center;
-    margin: 15px 0;
-    color: red;
+    margin: 5px 0;
   }
   .subtitle {
     font-size: 13px;
-    color: #226aff;
+    color: #ffd000;
     display: flex;
     justify-content: space-between;
   }
@@ -108,7 +83,7 @@ export default {
     font-size: 13px;
     line-height: 20px;
   }
-  .suoluetu {
+  .thumbnail {
     img {
       width: 60px;
       height: 80px;
@@ -121,7 +96,7 @@ export default {
 
 <style lang="scss">
 .photoinfo-container {
-  .suoluetu {
+  .thumbnail {
     .my-gallery {
       display: flex;
       flex-wrap: wrap;

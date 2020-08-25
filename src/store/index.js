@@ -4,7 +4,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 15:37:14
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 23:27:17
+ * @LastEditTime: 2020-08-25 14:14:25
  */
 import Vue from "vue"
 import Vuex from 'vuex'
@@ -15,6 +15,7 @@ import cart from './modules/cart'
 import news from './modules/news';
 import comment from './modules/comment';
 import goods from './modules/goods';
+import photoes from './modules/photoes';
 
 // 挂载 Vuex
 Vue.use(Vuex);
@@ -28,7 +29,8 @@ const store = new Vuex.Store({
     cart,
     news,
     comment,
-    goods
+    goods,
+    photoes
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

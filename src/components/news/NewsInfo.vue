@@ -1,3 +1,11 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-25 15:20:02
+ * @FilePath: \vue-demo\src\components\news\NewsInfo.vue
+-->
 <template>
   <div class="news">
     <h4 class="title">{{ newsInfo.title }}</h4>
@@ -55,7 +63,7 @@ export default {
 
 <style lang="scss">
 .news {
-  padding: 5px 10px;
+  padding: 10px 0;
 
   h4 {
     line-height: 25px;

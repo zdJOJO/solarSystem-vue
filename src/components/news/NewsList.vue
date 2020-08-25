@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 13:06:43
+ * @LastEditTime: 2020-08-25 15:12:33
 -->
 <template>
   <div class="infinite-list-wrapper" style="overflow:auto">
@@ -68,7 +68,7 @@ export default {
     }
   }
   .list-item {
-    margin: 10px 7px;
+    margin: 13px 0;
   }
   .content {
     margin: 0;
@@ -80,9 +80,13 @@ export default {
   .title {
     height: 40px;
     color: #303133;
+    font-size: 15px;
   }
   .summary {
     height: 40px;
+    font-size: 12px;
+    color: #68696a;
+    margin-top: 5px;
   }
 }
 </style>

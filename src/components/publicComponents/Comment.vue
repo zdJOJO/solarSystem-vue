@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 20:26:21
+ * @LastEditTime: 2020-08-25 15:21:02
 -->
 <template>
   <div class="cmt-container">
@@ -82,7 +82,6 @@ export default {
 
 <style lang="scss" scoped>
 .cmt-container {
-  padding: 0 5px;
   h3 {
     font-size: 16px;
     margin-top: 20px;

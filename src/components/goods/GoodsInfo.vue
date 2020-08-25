@@ -171,7 +171,7 @@ export default {
   font-size: 14px;
   position: relative;
   overflow: hidden;
-  margin: 10px;
+  margin: 10px 0;
   border-radius: 2px;
   background-color: #fff;
   background-clip: padding-box;

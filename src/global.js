@@ -4,8 +4,10 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:28:25
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 13:13:24
+ * @LastEditTime: 2020-08-25 22:21:28
  */
+
+import { Message } from 'element-ui';
 
 export const themeColor = "#ffd000"; // 主题颜色
 export const fontSize = "14px";
@@ -24,6 +26,7 @@ export const ROUTE_PATH = {
   MEMBER: '/member',
   SETTING: '/setting',
   CART: '/cart',
+  LOCATION: '/location',
   HOME_NEWS: '/home/news',
   HOME_NEWS_ID: '/home/news/:id',
   HOME_PHOTOES: '/home/photoes',
@@ -48,55 +51,55 @@ export const navs = [
   {
     name: "首页",
     routePath: ROUTE_PATH.HOME,
-    icon: "eleme",
+    icon: "s-home",
     activeIcon: "platform-eleme",
   },
   {
-    name: "会员",
-    imgName: "member",
-    routePath: ROUTE_PATH.MEMBER,
-    icon: "user",
-    activeIcon: "user-solid",
+    name: "位置",
+    routePath: ROUTE_PATH.LOCATION,
+    icon: "location-outline",
+    activeIcon: "location",
   },
   {
-    name: "购物车",
+    name: "购物包",
     routePath: ROUTE_PATH.CART,
     icon: "goods",
     activeIcon: "s-goods",
     ball: true,
   },
   {
-    name: "设置",
-    routePath: ROUTE_PATH.SETTING,
-    icon: "setting",
-    activeIcon: "s-tools",
+    name: "我的",
+    imgName: "member",
+    routePath: ROUTE_PATH.MEMBER,
+    icon: "user",
+    activeIcon: "user-solid",
   },
 ];
 
 // 首页菜单
 export const menus = [
   {
-    name: "新闻资讯",
+    name: "今日要闻",
     routePath: ROUTE_PATH.HOME_NEWS,
     imgName: "menu1.svg",
   },
   {
-    name: "商品购买",
+    name: "美食/购物",
     routePath: ROUTE_PATH.HOME_GODDS,
     imgName: "menu2.svg",
   },
   {
-    name: "图片分享",
+    name: "旅游分享",
     routePath: ROUTE_PATH.HOME_PHOTOES,
     imgName: "menu3.svg",
   },
   {
-    name: "视频专区",
+    name: "电影/演出",
     routePath: "#",
     imgName: "menu4.svg",
   },
   {
-    name: "留言反馈",
+    name: "谈天说地",
     routePath: "#",
     imgName: "menu5.svg",
   },
@@ -104,6 +107,11 @@ export const menus = [
     name: "联系我们",
     routePath: "#",
     imgName: "menu6.svg",
+  },
+  {
+    name: "评论",
+    routePath: "#",
+    imgName: "menu5.svg",
   },
 ];
 
@@ -135,4 +143,18 @@ export const lazyLoadVuexModule = {
       },
     });
   },
+};
+
+
+// toast 定义
+export const resMsg = (message, type = 'error') => {
+  Message({
+    message,
+    type,
+    showClose: true,
+    center: true,
+    duration: 1500,
+    offset: 60,
+    customClass: "myMsg"
+  })
 };

@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 13:14:12
+ * @LastEditTime: 2020-08-25 14:05:12
  */
 import Vue from "vue"
 import VueRouter from 'vue-router'
@@ -33,10 +33,10 @@ const getAsynComponent = (componentName, secondDirectory) => {
 const routes = [
   { path: "*", redirect: ROUTE_PATH.HOME },
   { path: "/", redirect: ROUTE_PATH.HOME },
-  { path: ROUTE_PATH.HOME, component: getAsynComponent('HomeContainer', 'navBar') },
-  { path: ROUTE_PATH.MEMBER, component: getAsynComponent('MemberContainer', 'navBar') },
-  { path: ROUTE_PATH.SETTING, component: getAsynComponent('SettingContainer', 'navBar') },
-  { path: ROUTE_PATH.CART, component: getAsynComponent('ShopcarContainer', 'navBar') },
+  { path: ROUTE_PATH.HOME, component: getAsynComponent('Home', 'navBar') },
+  { path: ROUTE_PATH.MEMBER, component: getAsynComponent('Member', 'navBar') },
+  { path: ROUTE_PATH.LOCATION, component: getAsynComponent('Location', 'navBar') },
+  { path: ROUTE_PATH.CART, component: getAsynComponent('Cart', 'navBar') },
   { path: ROUTE_PATH.HOME_NEWS, component: getAsynComponent('NewsList', 'news') },
   { path: ROUTE_PATH.HOME_NEWS_ID, component: getAsynComponent('NewsInfo', 'news') },
   { path: ROUTE_PATH.HOME_PHOTOES, component: getAsynComponent('PhotoList', 'photoes') },

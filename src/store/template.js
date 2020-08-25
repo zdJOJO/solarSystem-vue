@@ -4,8 +4,10 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 19:39:02
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 14:36:15
+ * @LastEditTime: 2020-08-25 15:44:50
  */
+
+import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
 
 // initial state
 const state = () => ({

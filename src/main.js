@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 23:29:32
+ * @LastEditTime: 2020-08-25 22:09:35
  */
 
 import Vue from "vue"
@@ -33,18 +33,23 @@ import {
     Card,
     Row,
     Col,
-    Badge
+    Badge,
+    Tabs,
+    TabPane,
+    Tag
 } from 'element-ui';
 import '../theme/index.css'  // 自定义主题
 
 /* 按需引入 mint-ui */
 import 'mint-ui/lib/style.css'
 
+import '../public/css/index'; // css全局设置
+
 import store from './store';
 import router from './route';
 import App from "./App";
 import axios from "./httpConfig/http"
-import { lazyLoadVuexModule } from './global';
+
 
 
 // element-ui 全局配置
@@ -68,6 +73,9 @@ Vue.use(Card);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Badge);
+Vue.use(Tabs);
+Vue.use(TabPane);
+Vue.use(Tag);
 
 
 // 安装图片预览插件
