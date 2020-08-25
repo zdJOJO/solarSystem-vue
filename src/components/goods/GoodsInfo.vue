@@ -56,7 +56,7 @@
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
 import MyInputNumber from "../publicComponents/InputNumber";
-import { cartBallTrasformTime } from "@/global";
+import { cartBallTrasformTime, ROUTE_PATH } from "@/global";
 import { mapState } from "vuex";
 
 export default {
@@ -92,11 +92,17 @@ export default {
 
     goDesc(id) {
       // 点击使用编程式导航跳转到 图文介绍页面
-      this.$router.push({ name: "goodsdesc", params: { id } });
+      this.$router.push({
+        name: ROUTE_PATH.HOME_GODDS_DETAIL_ID.name,
+        params: { id },
+      });
     },
     goComment(id) {
       // 点击跳转到 评论页面
-      this.$router.push({ name: "goodscomment", params: { id } });
+      this.$router.push({
+        name: ROUTE_PATH.HOME_GODDS_COMMENT_ID.name,
+        params: { id },
+      });
     },
 
     /*
@@ -123,7 +129,9 @@ export default {
       const xDist = badgePosition.left - ballPosition.left;
       const yDist = badgePosition.top - ballPosition.top;
       el.style.transform = `translate(${xDist}px, ${yDist}px)`; //最终要移到的坐标位置
-      el.style.transition = `all ${this.cartBallTrasformTime/1000}s cubic-bezier(.4,-0.3,1,.8)`; //要实现的动画效果
+      el.style.transition = `all ${
+        this.cartBallTrasformTime / 1000
+      }s cubic-bezier(.4,-0.3,1,.8)`; //要实现的动画效果
       done();
     },
     afterEnter(el) {

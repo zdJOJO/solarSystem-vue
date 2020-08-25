@@ -4,13 +4,13 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 20:32:52
+ * @LastEditTime: 2020-08-25 13:06:43
 -->
 <template>
   <div class="infinite-list-wrapper" style="overflow:auto">
     <div class="list">
       <div class="list-item" v-for="news in newsList" :key="news.id">
-        <router-link :to="'/home/newsinfo/'+news.id">
+        <router-link :to="path + news.id">
           <el-card class="box-card">
             <el-row :gutter="10">
               <el-col :span="6">
@@ -32,10 +32,16 @@
 <script>
 import { mapState } from "vuex";
 import loading from "@/components/publicComponents/Loading";
+import { ROUTE_PATH } from "@/global";
 
 export default {
   created() {
     this.getNewsList();
+  },
+  data: function () {
+    return {
+      path: `${ROUTE_PATH.HOME_NEWS_ID.split(":")[0]}`,
+    };
   },
   computed: mapState({
     newsList: (state) => state.news.newsList,

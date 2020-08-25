@@ -21,15 +21,13 @@
       </div>
     </div>
     <loadmore @start-load="getMore" />
-    <!-- <div class="loadMore">
-      <el-button type="primary" size="small" icon="el-icon-arrow-down" @click="getMore">往下加载更多</el-button>
-    </div>-->
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import loadmore from "../publicComponents/LoadMore";
+import { ROUTE_PATH } from "@/global";
 export default {
   created() {
     this.getMore();
@@ -44,7 +42,11 @@ export default {
     },
     //去商品详情
     goDetail(id) {
-      this.$router.push({ name: "goodsinfo", params: { id: id } });
+      console.log(this.$store);
+      this.$router.push({
+        name: ROUTE_PATH.HOME_GODDS_INOF_ID.name,
+        params: { id: id },
+      });
     },
   },
   components: {

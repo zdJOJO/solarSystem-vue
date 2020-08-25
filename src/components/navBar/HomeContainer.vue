@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 21:29:58
+ * @LastEditTime: 2020-08-25 12:30:34
 -->
 <template>
   <div>
@@ -13,8 +13,10 @@
       <div class="grid">
         <div class="cell" v-for="menu in menus" :key="menu.name">
           <router-link :to="menu.routePath">
-            <img :src="'/public/images/' + menu.imgName" alt />
-            <div :style="{color}">{{menu.name}}</div>
+            <div class="sub-cell">
+              <img :src="'/public/images/' + menu.imgName" alt />
+              <div :style="{color}">{{menu.name}}</div>
+            </div>
           </router-link>
         </div>
       </div>
@@ -49,7 +51,7 @@ export default {
   },
   components: {
     "my-swiper": MySwiper,
-  }
+  },
 };
 </script>
 
@@ -88,11 +90,19 @@ $height: 110px;
       text-decoration: none;
       width: 100%;
       height: 100%;
+      position: relative;
     }
     img {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       object-fit: contain;
+    }
+    .sub-cell {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translateX(-50%) translateY(-50%);
     }
   }
 }

@@ -4,10 +4,11 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 21:07:56
+ * @LastEditTime: 2020-08-25 13:14:12
  */
 import Vue from "vue"
 import VueRouter from 'vue-router'
+import { ROUTE_PATH } from '../global';
 
 //挂载路由
 Vue.use(VueRouter)
@@ -30,20 +31,20 @@ const getAsynComponent = (componentName, secondDirectory) => {
   }
 };
 const routes = [
-  { path: "*", redirect: "/" },
-  { path: "/", redirect: "/home" },
-  { path: "/home", component: getAsynComponent('HomeContainer', 'navBar') },
-  { path: "/member", component: getAsynComponent('MemberContainer', 'navBar') },
-  { path: "/setting", component: getAsynComponent('SettingContainer', 'navBar') },
-  { path: "/cart", component: getAsynComponent('ShopcarContainer', 'navBar') },
-  { path: "/home/newslist", component: getAsynComponent('NewsList', 'news') },
-  { path: "/home/newsinfo/:id", component: getAsynComponent('NewsInfo', 'news') },
-  { path: "/home/photoeslist", component: getAsynComponent('PhotoList', 'photoes') },
-  { path: "/home/photoinfo/:id", component: getAsynComponent('PhotoInfo', 'photoes') },
-  { path: "/home/goodslist/", component: getAsynComponent('GoodsList', 'goods') },
-  { path: "/home/goodsinfo/:id", name: "goodsinfo", component: getAsynComponent('GoodsInfo', 'goods') },
-  { path: '/home/goodsdesc/:id', name: 'goodsdesc', component: getAsynComponent('GoodsDesc', 'goods') },
-  { path: '/home/goodscomment/:id', name: 'goodscomment', component: getAsynComponent('GoodsComment', 'goods') }
+  { path: "*", redirect: ROUTE_PATH.HOME },
+  { path: "/", redirect: ROUTE_PATH.HOME },
+  { path: ROUTE_PATH.HOME, component: getAsynComponent('HomeContainer', 'navBar') },
+  { path: ROUTE_PATH.MEMBER, component: getAsynComponent('MemberContainer', 'navBar') },
+  { path: ROUTE_PATH.SETTING, component: getAsynComponent('SettingContainer', 'navBar') },
+  { path: ROUTE_PATH.CART, component: getAsynComponent('ShopcarContainer', 'navBar') },
+  { path: ROUTE_PATH.HOME_NEWS, component: getAsynComponent('NewsList', 'news') },
+  { path: ROUTE_PATH.HOME_NEWS_ID, component: getAsynComponent('NewsInfo', 'news') },
+  { path: ROUTE_PATH.HOME_PHOTOES, component: getAsynComponent('PhotoList', 'photoes') },
+  { path: ROUTE_PATH.HOME_PHOTOE_INFO_ID, component: getAsynComponent('PhotoInfo', 'photoes') },
+  { path: ROUTE_PATH.HOME_GODDS, component: getAsynComponent('GoodsList', 'goods') },
+  { path: ROUTE_PATH.HOME_GODDS_INOF_ID.path, name: ROUTE_PATH.HOME_GODDS_INOF_ID.name, component: getAsynComponent('GoodsInfo', 'goods') },
+  { path: ROUTE_PATH.HOME_GODDS_DETAIL_ID.path, name: ROUTE_PATH.HOME_GODDS_DETAIL_ID.name, component: getAsynComponent('GoodsDesc', 'goods') },
+  { path: ROUTE_PATH.HOME_GODDS_COMMENT_ID.path, name: ROUTE_PATH.HOME_GODDS_COMMENT_ID.name, component: getAsynComponent('GoodsComment', 'goods') }
 ]
 
 // 3. 创建路由对象
