@@ -221,13 +221,27 @@ Vue.config.devtools = true;
 
     5.切换目录到 /usr/local/nginx/sbin 下面, 启动 nginx 服务:
 
-        启动： nginx
+        启动： /usr/local/nginx/sbin/nginx
 
-        重启： nginx -s reload
+        重启： /usr/local/nginx/sbin/nginx -s reload
 
-        完整有序停止： nginx -s quit
+        完整有序停止： /usr/local/nginx/sbin/nginx -s quit
         
-        快速停止： nginx -s stop
+        快速停止： /usr/local/nginx/sbin/nginx -s stop
+
+    6. nginx 进一步压缩
+
+        vim /usr/local/nginx/conf/nginx.conf
+
+        gzip on;
+        gzip_min_length 1k;
+        gzip_buffers 4 16k;
+        #gzip_http_version 1.0;
+        gzip_comp_level 2;
+        gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+        gzip_vary off;
+        gzip_disable "MSIE [1-6]\.";
+
 
 ```
 

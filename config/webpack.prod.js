@@ -116,6 +116,7 @@ module.exports = {
         minifyCSS: true// 压缩内联css
       },
       title: `生产环境APP`,
+      filename: resolve("../dist/index.html"),
       favicon: resolve("../public/favicon.ico"),
       template: resolve('../public/templete.html'), // 指定模板文件路径
       chunks: ["app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
