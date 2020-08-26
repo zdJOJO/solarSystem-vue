@@ -98,7 +98,7 @@ module.exports = {
     // 和DllReferencePlugin配套使用 在webpack.dll.config.js中打包生成的dll文件引用到需要的预编译的依赖上来
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require("./manifest.json")
+      manifest: require("../dist/manifest.json")
     }),
 
     // new HtmlWebpackPlugin({

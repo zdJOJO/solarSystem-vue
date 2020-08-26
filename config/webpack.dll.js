@@ -1,3 +1,11 @@
+/*
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-21 00:44:32
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-26 14:47:37
+ * @FilePath: \vue-demo\config\webpack.dll.js
+ */
 const path = require("path");
 const webpack = require("webpack");
 
@@ -18,8 +26,8 @@ module.exports = {
     vendor: vendors
   },
   output: {
-    path: path.resolve(__dirname, "../public/js"),  //文件的输出路径
-    filename: "[name]_[chunkhash].dll.js",
+    path: path.resolve(__dirname, "../dist/js"),  //文件的输出路径
+    filename: "[name]_[chunkhash]_dll.js",
     library: "[name]_[chunkhash]"
   },
   plugins: [
@@ -33,7 +41,10 @@ module.exports = {
 
     // 把第三方库代码分离开，并且每次文件更改的时候，它只会打包该项目自身的代码。所以打包速度会更快
     new webpack.DllPlugin({
-      path: path.join(__dirname, "manifest.json"), // path是manifest文件的输出路径
+
+      // path: path.join(__dirname, "manifest.json"), // path是manifest文件的输出路径
+      path: path.join(__dirname, "../dist/manifest.json"), // path是manifest文件的输出路径
+
       name: "[name]_[chunkhash].dll",  //name是dll暴露的对象名，要跟output.library保持一致
       context: __dirname  //context是解析包路径的上下文，这个要跟接下来配置的dll user一致
     }),
