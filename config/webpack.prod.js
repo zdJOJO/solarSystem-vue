@@ -14,7 +14,7 @@ function resolve(dir) {
 
 const PATH = resolve("../dist/js");
 // const PUBLIC_PATH = "./js/";
-const PUBLIC_PATH = '/js/';
+const PUBLIC_PATH = './js/';
 
 
 module.exports = {

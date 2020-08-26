@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 19:07:55
+ * @LastEditTime: 2020-08-26 19:16:07
  * @FilePath: \vue-demo\config\webpack.dll.js
  */
 const path = require("path");
@@ -26,7 +26,7 @@ module.exports = {
     vendor: vendors
   },
   output: {
-    path: path.resolve(__dirname, "../dist/js"),  //文件的输出路径
+    path: path.resolve(__dirname, "../public/js"),  //文件的输出路径
     filename: "[name]_dll.js",  // 输出的js文件名
     library: "[name]_dll"
   },
