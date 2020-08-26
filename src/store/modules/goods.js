@@ -1,4 +1,6 @@
 import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
+import { GOODS_MUTATION } from '../mutations'
+import { GOODS } from "@/httpConfig/api";
 
 // initial state
 const state = () => ({
@@ -29,36 +31,36 @@ const actions = {
 
   //获取商品列表
   async getGoodsList({ commit, dispatch, state }) {
-    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/getgoods?pageindex=${state.page}` }, { root: true });
+    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${GOODS.GET_GOODS}?pageindex=${state.page}` }, { root: true });
     if (list.length > 0 && list instanceof Array) {
-      commit('NEXT_PAGE');
+      commit(GOODS_MUTATION.NEXT_PAGE);
     }
-    commit('SET_GOODS_LIST', list)
+    commit(GOODS_MUTATION.SET_GOODS_LIST, list)
   },
 
   //获取商品详情信息
   async getGoodsInfo({ commit, dispatch }, { id }) {
-    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/goods/getinfo/${id}` }, { root: true });
-    commit('SET_GOODS_INFO', list[0])
+    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${GOODS.GOOD_INFO}${id}` }, { root: true });
+    commit(GOODS_MUTATION.SET_GOODS_INFO, list[0])
   },
 
   // 获取轮播图片
   async getSwiperImgs({ commit, dispatch }, { id }) {
-    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/getthumimages/${id}` }, { root: true });
+    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${GOODS.GOOD_SWIPER_IMGS}${id}` }, { root: true });
     const array = [];
     list.map((item, index) => {
       array[index] = {
         img: item.src
       }
     })
-    commit('SET_GOODS_SWIPER_IMGS', array);
+    commit(GOODS_MUTATION.SET_GOODS_SWIPER_IMGS, array);
   }
 }
 
 //mutations
 const mutations = {
 
-  INIT_GOODS_DATA(state, { paramStr }) {
+  [GOODS_MUTATION.INIT_GOODS_DATA](state, { paramStr }) {
     switch (paramStr) {
       case 'swiperIsmgs':
         state.swiperIsmgs = []
@@ -97,23 +99,23 @@ const mutations = {
 
   },
 
-  SET_GOODS_LIST(state, goods) {
+  [GOODS_MUTATION.SET_GOODS_LIST](state, goods) {
     state.goodsList = goods.length > 0 ? state.goodsList.concat(goods) : state.goodsList
   },
 
-  SET_GOODS_INFO(state, info) {
+  [GOODS_MUTATION.SET_GOODS_INFO](state, info) {
     state.goodsItemInfo = info
   },
 
-  SET_GOODS_SWIPER_IMGS(state, imgs) {
+  [GOODS_MUTATION.SET_GOODS_SWIPER_IMGS](state, imgs) {
     state.swiperIsmgs = imgs
   },
 
-  SET_CHOOSED_GOOD_COUNT(state, { num }) {
+  [GOODS_MUTATION.SET_CHOOSED_GOOD_COUNT](state, { num }) {
     state.choosedCount = num
   },
 
-  NEXT_PAGE(state) {
+  [GOODS_MUTATION.NEXT_PAGE](state) {
     state.page++
   }
 }

@@ -1,4 +1,6 @@
 import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
+import { CART_MUTATION } from '../mutations';
+import { GOODS } from "@/httpConfig/api";
 // initial state
 const state = () => ({
   items: JSON.parse(localStorage.getItem('car') || '[]')
@@ -89,7 +91,7 @@ const actions = {
     if (state.items.length > 0) {
       let idArr = [];
       state.items.forEach((item) => idArr.push(item.id));
-      commit('SET_CART_LIST', await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/goods/getshopcarlist/${idArr.join(",")}` }, { root: true }))
+      commit(CART_MUTATION.SET_CART_LIST, await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${GOODS.CART_LIST}${idArr.join(",")}` }, { root: true }))
     }
   }
 
@@ -99,12 +101,12 @@ const actions = {
 const mutations = {
 
   // 初始化购物车数据
-  INIT_CART(state) {
+  [CART_MUTATION.INIT_CART](state) {
     state.items = JSON.parse(localStorage.getItem('car') || '[]')
   },
 
   // 新商品加入到购物车
-  PUSH_TO_CART_LIST(state, product) {
+  [CART_MUTATION.PUSH_TO_CART_LIST](state, product) {
     if (state.items.length === 0) {
       state.items.push(product);
     } else {
@@ -126,7 +128,7 @@ const mutations = {
   },
 
   // 获取购物车列表
-  SET_CART_LIST(state, list) {
+  [CART_MUTATION.SET_CART_LIST](state, list) {
     const temp = [];
     state.items.forEach((item) => {
       list.forEach((i) => {
@@ -145,7 +147,7 @@ const mutations = {
   },
 
   // 在购物车页面修改商品数目
-  CHANGE_COUNT(state, good) {
+  [CART_MUTATION.CHANGE_COUNT](state, good) {
     state.items.some((item, index) => {
       if (good.id === item.id) {
         state.items[index].count = parseInt(good.count);
@@ -156,7 +158,7 @@ const mutations = {
   },
 
   // 删除购物车中的商品
-  REMOVE_GOOD_FROM_CART(state, { id }) {
+  [CART_MUTATION.REMOVE_GOOD_FROM_CART](state, { id }) {
     state.items.some((item, index) => {
       if (id === item.id) {
         state.items.splice(index, 1);
@@ -167,7 +169,7 @@ const mutations = {
   },
 
   //修改选中
-  UPDATE_SELECT_STATUS(state, { id, status }) {
+  [CART_MUTATION.UPDATE_SELECT_STATUS](state, { id, status }) {
     state.items.some((item, index) => {
       if (id === item.id) {
         state.items[index].selected = status

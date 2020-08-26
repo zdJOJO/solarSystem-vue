@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 20:34:46
+ * @LastEditTime: 2020-08-26 22:35:54
 -->
 <template>
   <div class="goodsdesc-container">
@@ -18,6 +18,7 @@
 
 <script>
 import { ROOT_ASYNC_REQUEST_ACTION } from "@/store/actions";
+import { GOODS } from "@/httpConfig/api";
 export default {
   data() {
     return {
@@ -31,7 +32,7 @@ export default {
   methods: {
     async getGoodsDesc() {
       const list = await this.$store.dispatch(ROOT_ASYNC_REQUEST_ACTION, {
-        url: `api/goods/getdesc/${this.id}`,
+        url: `${GOODS.DESC}${this.id}`,
       });
       this.info = list[0];
     },

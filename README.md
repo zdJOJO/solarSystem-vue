@@ -133,27 +133,39 @@ Vue.config.devtools = true;
 |-- public      静态文件夹
 |-- src
 |   |-- App.vue
+|   |
 |   |-- components
-|   |   |-- cart     页面组件
-|   |   |-- goods    页面组件
-|   |   |-- navBar   页面组件
-|   |   |-- news     页面组件
-|   |   |-- photoes  页面组件
+|   |   |-- pages   页面组件
 |   |   `-- publicComponents     公共组件
+|   |
 |   |-- global.js      全局变量
+|   |
 |   |-- httpConfig     http异步请求
 |   |   |-- api.js
 |   |   `-- http.js
+|   |
 |   |-- main.js    入口文件
+|   |
 |   |-- route     
 |   |   `-- index.js   路由定义
+|   |
 |   `-- store        vuex store 定义
-|       |-- actions
-|       |   `-- index.js
-|       |-- index.js
-|       |-- modules
-|       `-- template.js
+|   |
+|   |-- index.js
+|   |
+|   |-- actions
+|   |   `-- index.js
+|   |
+|   |-- modules
+|   |   `-- index.js
+|   |
+|   |-- mutations
+|   |   `-- index.js
+|   |
+|       `-- template.js   // 模板，可无视|
+|   
 `-- theme      element-ui自定义主题文件夹
+
 ```
 
 
@@ -257,5 +269,56 @@ Vue.config.devtools = true;
   worker_processes  1;
   ```
 
-  
+#### nginx 压缩文件：
 
+```
+    #  /usr/local/nginx/conf/nginx.conf 部分配置片段
+
+    gzip on;
+    gzip_min_length 1k;
+    gzip_buffers 4 16k;
+    #gzip_http_version 1.0; //默认是HTTP/1.1
+    gzip_comp_level 2;
+    gzip_types text/plain application/x-javascript application/javascript text/javascript text/css application/xml application/x-httpd-php image/jpeg image/gif image/png;
+    #gzip_vary off; // 跟Squid等缓存服务有关，on的话会在Header里增加"Vary: Accept-Encoding"，我不需要这玩意，自己对照情况看着办吧
+    gzip_disable "MSIE [1-6]\.";
+```
+
+  
+#### nginx 反向代理设置：
+
+``` 
+    #  /usr/local/nginx/conf/nginx.conf 部分配置片段
+    
+    server {
+        listen       80;
+        server_name  localhost;
+
+	    location  /api/{
+	    #proxy_set_header	Host		$host;
+            #proxy_set_header	x-forwarded-for	$remoted_addr;
+ 	    #proxy_set_header    x-Real-IP	$remoted_addr;
+ 	    proxy_pass  http://www.liulongbin.top:3005;
+        }
+        location / {
+            root   /home/front-web/vue-demo/dist;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;  # 配和前端的路由
+        }
+        location /public {
+            alias /home/front-web/vue-demo/public; #这里写绝对路径
+        }
+        location /js/js/fonts {
+                alias /home/front-web/vue-demo/dist/js/fonts; #这里写绝对路径
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+```

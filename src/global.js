@@ -22,7 +22,7 @@ export const cartBallTrasformTime = 600;  // 商品模块 加入购物车小球�
 
 // route path
 export const ROUTE_PATH = {
-  HOME: '/home',
+  HOME: '/',
   MEMBER: '/member',
   SETTING: '/setting',
   CART: '/cart',

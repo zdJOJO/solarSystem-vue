@@ -1,5 +1,15 @@
+/*
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-21 19:41:28
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-26 23:51:21
+ * @FilePath: \vue-demo\src\store\modules\news.js
+ */
 
 import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
+import { NEWS } from "@/httpConfig/api";
+import { NEWS_MUTATION } from '../mutations';
 
 // initial state
 const state = () => ({
@@ -24,14 +34,14 @@ const actions = {
 
   // 获取新闻列表
   async getNewsList({ commit, dispatch }) {
-    commit('SET_NEWS_LIST', await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: "api/getnewslist" }, { root: true }))
+    commit(NEWS_MUTATION.SET_NEWS_LIST, await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${NEWS.GET_NEWS}` }, { root: true }))
   },
 
 
   //获取新闻详情
   async getNewsInfo({ commit, dispatch }, { id }) {
-    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/getnew/${id}` }, { root: true });
-    commit('SET_NEWS_Info', list[0])
+    const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${NEWS.NEWS_INFO}${id}` }, { root: true });
+    commit(NEWS_MUTATION.SET_NEWS_Info, list[0])
   }
 }
 
@@ -39,15 +49,15 @@ const actions = {
 const mutations = {
 
   // 设置newsId
-  SET_NEWS_ID(state, { id }) {
+  [NEWS_MUTATION.SET_NEWS_ID](state, { id }) {
     state.newsId = id
   },
 
-  SET_NEWS_LIST(state, newsList) {
+  [NEWS_MUTATION.SET_NEWS_LIST](state, newsList) {
     state.newsList = newsList
   },
 
-  SET_NEWS_Info(state, newsInfo) {
+  [NEWS_MUTATION.SET_NEWS_Info](state, newsInfo) {
     state.newsItemInfo = newsInfo
   }
 }

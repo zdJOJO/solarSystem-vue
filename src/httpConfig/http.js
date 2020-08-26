@@ -4,15 +4,15 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:49:22
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 20:38:39
+ * @LastEditTime: 2020-08-26 22:28:01
  */
 
 import axios from 'axios';
-import API_URL from './api';
+import { BASE_URL } from './api';
 import { resMsg } from '../global';
 
 const instance = axios.create({
-  baseURL: API_URL,
+  baseURL: BASE_URL,
   timeout: 20000
 })
 

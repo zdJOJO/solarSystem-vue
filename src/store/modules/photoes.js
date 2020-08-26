@@ -3,11 +3,13 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-25 14:13:42
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 23:16:48
+ * @LastEditTime: 2020-08-26 23:50:50
  * @FilePath: \vue-demo\src\store\modules\photoes.js
  */
 
 import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
+import { PHOTOES_MUTATION } from '../mutations';
+import { PHOTOES } from "@/httpConfig/api"
 
 // initial state
 const state = () => ({
@@ -67,12 +69,12 @@ const actions = {
 
   // 获取图片分类
   async getImgCategory({ dispatch, commit }) {
-    commit('SET_IMG_CATEGORIES', await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: "api/getimgcategory" }, { root: true }))
+    commit(PHOTOES_MUTATION.SET_IMG_CATEGORIES, await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: PHOTOES.GET_PHOTO_CATEGORIES }, { root: true }))
   },
 
   // 获取图片列表
   async getImgs({ dispatch, commit, getters, state }, { id }) {
-    commit('SET_TAB_ID', id);
+    commit(PHOTOES_MUTATION.SET_TAB_ID, id);
     let imgs = [];
     let isNeedFetch = true;
     let temp = state.allImgs.filter((obj) => state.currentTabId === obj.id);
@@ -82,21 +84,21 @@ const actions = {
     if (!isNeedFetch) {
       imgs = temp[0].imgs;
     } else {
-      imgs = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/getimages/${id}`, isMsg: true }, { root: true })
+      imgs = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${PHOTOES.GET_PHOTOES}${id}`, isMsg: true }, { root: true })
     }
-    commit('SET_CURRENT_IMGS', { imgs });
-    commit('SET_ALL_IMGS', { imgs, existedImgCtgsIds: getters.existedImgCtgsIds });
+    commit(PHOTOES_MUTATION.SET_CURRENT_IMGS, { imgs });
+    commit(PHOTOES_MUTATION.SET_ALL_IMGS, { imgs, existedImgCtgsIds: getters.existedImgCtgsIds });
   },
 
   // 获取图片信息
   async getPhotoInfo({ dispatch, commit }, { id }) {
-    const info = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/getimageInfo/${id}` }, { root: true })
-    commit('SET_PHOTO_INFO', info[0])
+    const info = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${PHOTOES.PHOTO_IMG_INFO}${id}` }, { root: true })
+    commit(PHOTOES_MUTATION.SET_PHOTO_INFO, info[0])
   },
 
   // 获取图片缩略图
   async getThumbnails({ dispatch, commit }, { id }) {
-    const imgs = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `api/getthumimages/${id}` }, { root: true });
+    const imgs = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${PHOTOES.PHOTO_IMG_SWIPER_IMGS}${id}` }, { root: true });
     let tmp = [];
     imgs.forEach((element, index) => {
       tmp[index] = {
@@ -106,7 +108,7 @@ const actions = {
         msrc: element.src
       }
     });
-    commit('SET_PHOTO_THUMBNAILS', tmp)
+    commit(PHOTOES_MUTATION.SET_PHOTO_THUMBNAILS, tmp)
   },
 
 }
@@ -115,17 +117,17 @@ const actions = {
 const mutations = {
 
   // 所有分类数组
-  SET_IMG_CATEGORIES(state, list) {
+  [PHOTOES_MUTATION.SET_IMG_CATEGORIES](state, list) {
     list.unshift({ title: "全部", id: 0 });
     state.categories = list
   },
 
-  SET_CURRENT_IMGS(state, { imgs }) {
+  [PHOTOES_MUTATION.SET_CURRENT_IMGS](state, { imgs }) {
     state.currentImgs = imgs;
   },
 
   // 请求图片列表
-  SET_ALL_IMGS(state, { imgs, existedImgCtgsIds }) {
+  [PHOTOES_MUTATION.SET_ALL_IMGS](state, { imgs, existedImgCtgsIds }) {
     const temp = state.allImgs;
     if (state.currentTabId !== 0) {
       // 不是全部
@@ -149,15 +151,15 @@ const mutations = {
     state.allImgs = temp;
   },
 
-  SET_TAB_ID(state, id) {
+  [PHOTOES_MUTATION.SET_TAB_ID](state, id) {
     state.currentTabId = id;
   },
 
-  SET_PHOTO_INFO(state, info) {
+  [PHOTOES_MUTATION.SET_PHOTO_INFO](state, info) {
     state.photoInfo = info;
   },
 
-  SET_PHOTO_THUMBNAILS(state, imgs) {
+  [PHOTOES_MUTATION.SET_PHOTO_THUMBNAILS](state, imgs) {
     state.thumbnails = imgs;
   }
 

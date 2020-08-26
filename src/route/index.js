@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 09:33:23
+ * @LastEditTime: 2020-08-27 00:41:09
  */
 import Vue from "vue"
 import VueRouter from 'vue-router'
@@ -32,7 +32,6 @@ const getAsynComponent = (componentName, secondDirectory) => {
 };
 const routes = [
   { path: "*", redirect: ROUTE_PATH.HOME },
-  { path: "/", redirect: ROUTE_PATH.HOME },
   { path: ROUTE_PATH.HOME, component: getAsynComponent('Home', 'navBar') },
   { path: ROUTE_PATH.MEMBER, component: getAsynComponent('Member', 'navBar') },
   { path: ROUTE_PATH.LOCATION, component: getAsynComponent('Location', 'navBar') },
@@ -49,7 +48,7 @@ const routes = [
 
 // 3. 创建路由对象
 const router = new VueRouter({
-  mode: process.env.NODE_ENV !== 'production' ? 'hash' : 'history', //  hash | history  vue-router默认的路由模式是hash，要去掉url中的#需要将路由模式切换为 history
+  // mode: process.env.NODE_ENV !== 'production' ? 'hash' : 'history', //  hash | history  vue-router默认的路由模式是hash，要去掉url中的#需要将路由模式切换为 history
   routes
 })
 

@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 15:29:01
+ * @LastEditTime: 2020-08-26 22:39:24
 -->
 <template>
   <div>
@@ -28,6 +28,7 @@
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
 import { fontColor, menus } from "@/global";
+import { HOME } from "@/httpConfig/api";
 
 export default {
   data() {
@@ -48,7 +49,7 @@ export default {
     async getLunbotu() {
       //获取轮播图的方法
       const result = await this.$store.dispatch("ROOT_ASYNC_REQUEST_ACTION", {
-        url: "api/getlunbo",
+        url: HOME.HOME_SWIPER_IMGS,
       });
       this.lunbotuList = result;
     },
