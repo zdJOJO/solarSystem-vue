@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 22:09:35
+ * @LastEditTime: 2020-08-26 15:31:32
  */
 
 import Vue from "vue"
@@ -50,7 +50,8 @@ import router from './route';
 import App from "./App";
 import axios from "./httpConfig/http"
 
-
+// 安装图片预览插件
+Vue.use(VuePreview)
 
 // element-ui 全局配置
 Vue.prototype.$ELEMENT = { size: 'mini' };
@@ -76,10 +77,6 @@ Vue.use(Badge);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Tag);
-
-
-// 安装图片预览插件
-Vue.use(VuePreview)
 
 // 自定义http 添加 Vue 的实例中
 Vue.prototype.$http = axios;

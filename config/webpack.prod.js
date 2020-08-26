@@ -14,6 +14,8 @@ function resolve(dir) {
 
 module.exports = {
 
+  devtool: "source-map",  // source-map  文档： https://www.webpackjs.com/configuration/devtool/
+
   entry: {
     // 多页面入口
     app: resolve('../src/main.js')
@@ -89,6 +91,7 @@ module.exports = {
 
   plugins: [
 
+    // 设置环境变量
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
@@ -101,28 +104,29 @@ module.exports = {
       manifest: require("../dist/manifest.json")
     }),
 
-    // new HtmlWebpackPlugin({
-    //   inject: true,
-    //   filename: resolve(__dirname, "../dist/index.html"),
-    //   template: "./src/html-tpl/tpl.html",
-    //   chunks: ["vendor", "app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
-    // }),
-
     new HtmlWebpackPlugin({
       inject: true,
-      minify: { // 压缩HTML文件
+      minify: {               // 压缩HTML文件
         removeComments: true, // 移除HTML中的注释
         collapseWhitespace: true, // 删除空白符与换行符
         minifyCSS: true// 压缩内联css
       },
-      title: `生产环境APP`,
+      title: `我的APP`,
       filename: resolve("../dist/index.html"),
       favicon: resolve("../public/favicon.ico"),
-      template: resolve('../public/templete.html'), // 指定模板文件路径
-      chunks: ["app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+      template: resolve('../public/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法
+      chunks: ["app"],  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+      insertJs: ['./js/vendor_dll.js']
     }),
 
+    // 公共组件抽离
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'common', // bundle 名称
+    //   filename: "[name].[hash:8].js"
+    // }),
+
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       beautify: false,  // 最紧凑的输出
       comments: false,        //去掉注释
       compress: {
@@ -151,5 +155,4 @@ module.exports = {
 
     new webpack.NoEmitOnErrorsPlugin()
   ]
-
 };
