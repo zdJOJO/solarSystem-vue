@@ -82,7 +82,7 @@ module.exports = {
       // inject: true,
       filename: 'index.html', // 设置生成的内存页面的名称
       title: `一个简单的demo`,
-      favicon: `public/favicon.ico`,
+      // favicon: `public/favicon.ico`,
       template: resolve('../public/index.html'), // 指定模板文件路径
       // chunks: ["vendor", "app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
     }),

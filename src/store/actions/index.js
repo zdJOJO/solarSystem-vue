@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-24 16:13:01
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 23:20:37
+ * @LastEditTime: 2020-08-26 20:38:00
  */
 
 
@@ -45,7 +45,7 @@ export const actions = {
           }
         }).catch(err => {
           resMsg(`请求失败${err} 😢`);
-          return new Promise.reject(err)
+          return Promise.reject(err)
         })
     } else {
       return $http.get(url)
@@ -65,7 +65,7 @@ export const actions = {
           }
         }).catch(err => {
           resMsg(`请求失败${err} 😢`);
-          return new Promise.reject(err)
+          return Promise.reject(err)
         })
     }
   }

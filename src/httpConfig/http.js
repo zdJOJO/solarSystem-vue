@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:49:22
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 16:05:57
+ * @LastEditTime: 2020-08-26 20:38:39
  */
 
 import axios from 'axios';
@@ -38,8 +38,9 @@ instance.interceptors.response.use(
     }
   },
   error => {
-    resMsg('${error}  😢');
-    return Promise.reject(error);
+    resMsg(`${error}😢`);
+    return;
+    // return Promise.reject(error);
   });
 
 
