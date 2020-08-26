@@ -23,7 +23,7 @@ module.exports = {
 
   output: {
     path: resolve("../dist/js"),
-    publicPath: "./js/",  // publicPath：访问时文件的目录
+    publicPath: "/",  // publicPath：访问时文件的目录
     filename: "[name].[hash:8].bundle.js",
     chunkFilename: "[name].[chunkhash:5].chunk.js"  // 按需加载
   },
