@@ -32,6 +32,12 @@
 
 `npm install`
 
+```
+如果 node-sass 安装发生错误   npm安装包源改为淘宝镜像  npm config set registry https://registry.npm.taobao.org
+
+再次  npm install
+
+```
 `# step 2 开发环境运行 `
 
 `npm start`
@@ -129,3 +135,73 @@ Vue.config.devtools = true;
 |       `-- template.js
 `-- theme      element-ui自定义主题文件夹
 ```
+
+
+
+
+# 前端项目部署
+
+1. 购买云服务器（以 Linux CentOS 7.3.1611 64bit 为例）
+
+2. 服务器安装`git`:
+
+    `yum install git`
+
+3. 安装 `node`:
+
+    `yum install -y wget`
+
+    `wget https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz  // node安装包 ` 
+
+    `xz -d node-v10.13.0-linux-x64.tar.xz  //解压 step-1`  
+
+    `tar -xf node-v10.13.0-linux-x64.tar  //解压2 step-2` 
+
+    `ln -s /home/node/node-v10.13.0-linux-x64/bin/node /usr/local/bin/node  // 配置node`
+    
+    `ln -s /home/node/node-v10.13.0-linux-x64/bin/npm /usr/local/bin/npm   // 配置npm `
+
+
+4. 安装`nginx` 
+
+    ` yum -y install gcc gcc-c++  //依赖包`
+
+    ` yum install -y pcre pcre-devel //依赖包`
+
+    ` yum install -y zlib zlib-devel //依赖包`
+
+    ` yum install -y openssl openssl-devel //依赖包`
+
+    `wget -c https://nginx.org/download/nginx-1.10.1.tar.gz   // 下载nginx包` 
+
+    `tar -zxvf nginx-1.10.1.tar.gz   // 解压安装包`
+
+    ` cd nginx-1.10.1  // 进入安装包`
+
+```
+    执行三个命令:
+
+    ./configure
+      
+    make
+
+    make install
+
+    切换到/usr/local/nginx安装目录:
+
+    cd /usr/local/nginx/conf
+
+    配置nginx的配置文件nginx.conf文件:  
+    
+    vi nginx.conf
+
+    切换目录到/usr/local/nginx/sbin下面, 启动nginx服务:
+    ./nginx
+
+
+
+```
+  
+
+  
+
