@@ -1,6 +1,13 @@
 /*
-  @description 原本的配置文件  暂时没有用到
-*/
+ * @Description: 原本的配置文件  暂时没有用到,  可以无视
+ * @Autor: zdJOJO
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-26 13:34:28
+ * @FilePath: \vue-demo\config\webpack.config.js
+ */
+
+ 
 
 // 由于 webpack 是基于Node进行构建的，所有，webpack的配置文件中，任何合法的Node代码都是支持的
 const webpack = require("webpack");

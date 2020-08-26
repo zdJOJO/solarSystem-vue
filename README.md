@@ -33,9 +33,29 @@
 `npm install`
 
 ```
+
+一般情况下， 安装 node-sass 会报错， 一般可能原因以下几种：
+
+1. 依赖包源的问题
+
+清理npm缓存： npm cache clean --force 
+
 如果 node-sass 安装发生错误   npm安装包源改为淘宝镜像  npm config set registry https://registry.npm.taobao.org
 
-再次  npm install
+检查是否修改成功：  npm config get registry
+
+再次  npm install node-sass -D
+
+2. 权限问题
+
+npm 出于安全考虑不支持以 root 用户运行，即使你用 root 用户身份运行了，npm 会自动转成一个叫 nobody 的用
+
+户来运行，而这个用户几乎没有任何权限。这样的话如果你脚本里有一些需要权限的操作，比如写文件（尤其是写 /
+
+root/.node-gyp），就会崩掉了。
+
+在安装时可以同时指定unsafe-perm参数 npm install --unsafe-perm node-sass -D  或者 sudo npm install node-sass -D
+
 
 ```
 `# step 2 开发环境运行 `
@@ -179,29 +199,49 @@ Vue.config.devtools = true;
     ` cd nginx-1.10.1  // 进入安装包`
 
 ```
-    执行三个命令:
+    1.执行三个命令:
 
-    ./configure
-      
-    make
+        ./configure
+        
+        make
 
-    make install
+        make install
 
-    切换到/usr/local/nginx安装目录:
+    2.切换到 /usr/local/nginx 安装目录:
 
-    cd /usr/local/nginx/conf
+        cd /usr/local/nginx/conf
 
-    配置nginx的配置文件nginx.conf文件:  
+    3.配置nginx的配置文件 nginx.conf 文件:  
     
-    vi nginx.conf
+        vi nginx.conf
 
-    切换目录到/usr/local/nginx/sbin下面, 启动nginx服务:
-    ./nginx
+    4.配置变量（使用软连接）： 
 
+        ln -s /usr/local/nginx/sbin/nginx  /usr/local/bin
 
+    5.切换目录到 /usr/local/nginx/sbin 下面, 启动 nginx 服务:
+
+        启动： nginx
+
+        重启： nginx -s reload
+
+        完整有序停止： nginx -s quit
+        
+        快速停止： nginx -s stop
 
 ```
+
+#### 问题： nginx 访问 403 forbidden ？
+
+  原因：nginx是由root用户启动  `ps -aux | grep nginx`  
+  查看进程发现worker进程是nobody用户，nginx下的静态文件worker进程没有访问权限
+
+  解决：修改nginx配置文件conf/nginx.conf，将user配置修改与启动用户一致。
   
+  ```
+  user  root;
+  worker_processes  1;
+  ```
 
   
 
