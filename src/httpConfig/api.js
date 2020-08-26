@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-24 13:16:37
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 23:15:29
+ * @LastEditTime: 2020-08-27 00:51:47
  */
 const api = "api/";
 
@@ -36,7 +36,7 @@ export const GOODS = {
 }
 
 export const PHOTOES = {
-  GET_PHOTO_CATEGORIES: `${api}getgoods`,
+  GET_PHOTO_CATEGORIES: `${api}getimgcategory`,
   GET_PHOTOES: `${api}getimages/`,
   PHOTO_IMG_INFO: `${api}getimageInfo/`,
   PHOTO_IMG_SWIPER_IMGS: COMMON.SWIPER_IMGS
