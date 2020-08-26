@@ -13,7 +13,9 @@ function resolve(dir) {
 }
 
 const PATH = resolve("../dist/js");
-const PUBLIC_PATH = "./js";
+// const PUBLIC_PATH = "./js/";
+const PUBLIC_PATH = '/js/';
+
 
 module.exports = {
 
@@ -104,7 +106,7 @@ module.exports = {
     // 和DllReferencePlugin配套使用 在webpack.dll.config.js中打包生成的dll文件引用到需要的预编译的依赖上来
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require("../dist/manifest.json")
+      manifest: require("../public/manifest.json")
     }),
 
     new HtmlWebpackPlugin({
@@ -119,7 +121,8 @@ module.exports = {
       favicon: resolve("../public/favicon.ico"),
       template: resolve('../public/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法
       chunks: ["app"],  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
-      insertJs: [`${PUBLIC_PATH}/vendor_dll.js`]
+      // insertJs: [`${PUBLIC_PATH}vendor_dll.js`]
+      insertJs: [`../public/js/vendor_dll.js`]
     }),
 
     // 公共组件抽离
