@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 18:18:32
+ * @LastEditTime: 2020-08-26 19:07:55
  * @FilePath: \vue-demo\config\webpack.dll.js
  */
 const path = require("path");
@@ -28,7 +28,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "../dist/js"),  //文件的输出路径
     filename: "[name]_dll.js",  // 输出的js文件名
-    library: "[name]"
+    library: "[name]_dll"
   },
   plugins: [
 
@@ -45,7 +45,7 @@ module.exports = {
       // path: path.join(__dirname, "manifest.json"), // path是manifest文件的输出路径
       path: path.join(__dirname, "../public/manifest.json"), // path是manifest文件的输出路径
 
-      name: "[name]",  //name是dll暴露的对象名，要跟output.library保持一致
+      name: "[name]_dll",  //name是dll暴露的对象名，要跟output.library保持一致
       context: __dirname  //context是解析包路径的上下文，这个要跟接下来配置的dll user一致
     }),
 
