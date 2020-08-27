@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-container>
       <!-- 顶部区域 -->
-      <el-header style="height: 40px">
+      <el-header style="height: 0.8rem">
         <div style="position: relative; width: 100%">
           <el-button v-show="isBack" icon="el-icon-arrow-left" @click="prevWeb" />
           <div class="title">{{headMsg}}</div>
