@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 19:41:28
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 23:51:21
+ * @LastEditTime: 2020-08-27 16:33:57
  * @FilePath: \vue-demo\src\store\modules\news.js
  */
 
@@ -21,7 +21,8 @@ const state = () => ({
     img_url: '',
     title: '',
     zhaiyao: ''
-  }
+  },
+  isLoading: false
 })
 
 // getters
@@ -40,7 +41,9 @@ const actions = {
 
   //获取新闻详情
   async getNewsInfo({ commit, dispatch }, { id }) {
+    commit(NEWS_MUTATION.SET_NEWS_Info_LOADING, true);
     const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${NEWS.NEWS_INFO}${id}` }, { root: true });
+    commit(NEWS_MUTATION.SET_NEWS_Info_LOADING, false);
     commit(NEWS_MUTATION.SET_NEWS_Info, list[0])
   }
 }
@@ -59,6 +62,10 @@ const mutations = {
 
   [NEWS_MUTATION.SET_NEWS_Info](state, newsInfo) {
     state.newsItemInfo = newsInfo
+  },
+
+  [NEWS_MUTATION.SET_NEWS_Info_LOADING](state, bool) {
+    state.isLoading = bool
   }
 }
 

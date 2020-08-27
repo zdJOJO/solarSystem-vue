@@ -39,9 +39,16 @@
       <div class="my-card-header">商品参数</div>
       <div class="my-card-content">
         <div class="my-card-content-inner">
-          <p>商品货号：{{ goodsinfo.goods_no }}</p>
-          <p>库存情况：{{ goodsinfo.stock_quantity }}件</p>
-          <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
+          <div v-if="!isLoading">
+            <p>商品货号：{{ goodsinfo.goods_no }}</p>
+            <p>库存情况：{{ goodsinfo.stock_quantity }}件</p>
+            <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
+          </div>
+          <div v-if="isLoading">
+            <my-skeleton width="220px" />
+            <my-skeleton width="90px" />
+            <my-skeleton width="180px" />
+          </div>
         </div>
       </div>
       <div class="my-card-footer">
@@ -56,6 +63,7 @@
 import { Toast } from "mint-ui";
 import MySwiper from "../publicComponents/Swiper";
 import MyInputNumber from "../publicComponents/InputNumber";
+import Skeleton from "../publicComponents/Skeleton";
 import { cartBallTrasformTime, ROUTE_PATH } from "@/global";
 import { mapState } from "vuex";
 
@@ -84,6 +92,7 @@ export default {
     goodsinfo: (state) => state.goods.goodsItemInfo,
     swiperIsmgs: (state) => state.goods.swiperIsmgs,
     choosedCount: (state) => state.goods.choosedCount,
+    isLoading: (state) => state.goods.isFetching,
   }),
   methods: {
     buy() {
@@ -162,6 +171,7 @@ export default {
   components: {
     "my-swiper": MySwiper,
     "my-input-number": MyInputNumber,
+    "my-skeleton": Skeleton,
   },
 };
 </script>

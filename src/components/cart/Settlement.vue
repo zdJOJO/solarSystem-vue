@@ -1,3 +1,11 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-24 02:14:29
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-27 10:46:08
+ * @FilePath: \vue-demo\src\components\cart\Settlement.vue
+-->
 <template>
   <el-card shadow="always">
     <div>
@@ -6,7 +14,11 @@
         <el-col class="totalPrice" :span="12">¥ {{getGoodsCountAndAmount.amount}}</el-col>
       </el-row>
       <div class="btn">
-        <el-button type="danger" size="default" @click="pay">去结算 ( {{getGoodsCountAndAmount.count}} )</el-button>
+        <el-button
+          type="danger"
+          size="default"
+          @click="pay"
+        >去结算 ( {{getGoodsCountAndAmount.count}} )</el-button>
       </div>
     </div>
   </el-card>
@@ -25,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 .el-card {
-  margin: 15px 10px 10px 10px;
+  margin: 15px 0 10px 0;
 
   .total {
     margin: 5px 0;

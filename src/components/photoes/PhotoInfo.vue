@@ -1,5 +1,5 @@
 <template>
-  <div class="photoinfo-container">
+  <div class="photoinfo-container pageBox">
     <!-- 头标题 -->
     <h3 class="title">{{ photoInfo.title }}</h3>
     <!-- 子标题 -->

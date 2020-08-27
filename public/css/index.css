@@ -12,3 +12,9 @@ body {
   padding: 10px !important;
   transition: opacity 1s, transform 1s, top 1s, -webkit-transform 1s !important;
 }
+
+main  .pageBox{
+
+    padding: 0 10px 0 10px;
+
+}

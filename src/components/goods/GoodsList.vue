@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="goodslist-container">
+    <div class="goodslist-container pageBox">
       <div class="goods-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
         <el-card :body-style="{ padding: '0px' }">
-          <img class="image" :src="item.img_url" />
+          <img class="image" v-lazy="item.img_url" />
           <div style="padding: 5px">
             <span class="title">{{item.title}}</span>
           </div>
@@ -58,13 +58,21 @@ export default {
 .goodslist-container {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 10px;
+  padding: 10px 10px 0 10px;
   justify-content: space-between;
 
+  .goods-item:nth-child(odd) {
+    margin-right: 5px;
+  }
+
+  .goods-item:nth-child(even) {
+    margin-right: 5px;
+  }
+
   .goods-item {
-    width: 49%;
-    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
+    width: calc(50vw - 15px);
     margin-bottom: 10px;
+    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

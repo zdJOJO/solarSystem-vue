@@ -3,25 +3,41 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 15:20:02
+ * @LastEditTime: 2020-08-27 16:36:50
  * @FilePath: \vue-demo\src\components\news\NewsInfo.vue
 -->
 <template>
-  <div class="news">
-    <h4 class="title">{{ newsInfo.title }}</h4>
-    <!-- 子标题 -->
-    <p>
-      <span>发表时间：{{ newsInfo.add_time | dateFormat }}</span>
-      <span>点击：{{ newsInfo.click }}次</span>
-    </p>
-    <hr />
-    <article v-html="newsInfo.content"></article>
-    <my-comment :id="newsId" />
+  <div class="news pageBox">
+    <div v-if="!isLoading">
+      <h4 class="title">{{ newsInfo.title }}</h4>
+      <!-- 子标题 -->
+      <p>
+        <span>发表时间：{{ newsInfo.add_time | dateFormat }}</span>
+        <span>点击：{{ newsInfo.click }}次</span>
+      </p>
+      <hr />
+      <article v-html="newsInfo.content"></article>
+    </div>
+    <div v-if="isLoading">
+      <my-skeleton width="70vw" height="25px" />
+      <my-skeleton width="55vw" height="10px" />
+      <my-skeleton width="90vw" />
+      <my-skeleton width="90vw" />
+      <my-skeleton width="90vw" />
+      <my-skeleton width="90vw" />
+      <my-skeleton width="90vw" />
+      <my-skeleton width="90vw" />
+    </div>
+
+    <!-- 评论区 -->
+    <my-comment :id="newsId" :loading="isFetching" />
   </div>
 </template>
 
 <script type="text/javascript">
-import MyComment from "../publicComponents/Comment";
+// import { Comment, Skeleton, Loading, CommentItem } from "../publicComponents";
+import Skeleton from "../publicComponents/Skeleton";
+import Comment from "../publicComponents/Comment";
 import { Toast } from "mint-ui";
 import { mapState } from "vuex";
 
@@ -29,6 +45,8 @@ export default {
   computed: mapState({
     newsId: (state) => state.news.newsId,
     newsInfo: (state) => state.news.newsItemInfo,
+    isLoading: (state) => state.news.isLoading,
+    isFetching: (state) => state.comment.isFetching,
   }),
   methods: {
     setNewsId(id) {
@@ -56,7 +74,10 @@ export default {
     },
   },
   components: {
-    "my-comment": MyComment,
+    // "my-loading": Loading,
+    // "comment-item": CommentItem,
+    "my-skeleton": Skeleton,
+    "my-comment": Comment,
   },
 };
 </script>

@@ -18,7 +18,8 @@ const state = () => ({
     stock_quantity: '',
     zhaiyao: ''
   },
-  choosedCount: 1
+  choosedCount: 1,
+  isFetching: false
 })
 
 // getters
@@ -40,8 +41,10 @@ const actions = {
 
   //获取商品详情信息
   async getGoodsInfo({ commit, dispatch }, { id }) {
+    commit(GOODS_MUTATION.SET_GOODS_LOADING, true);
     const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${GOODS.GOOD_INFO}${id}` }, { root: true });
-    commit(GOODS_MUTATION.SET_GOODS_INFO, list[0])
+    commit(GOODS_MUTATION.SET_GOODS_LOADING, false);
+    commit(GOODS_MUTATION.SET_GOODS_INFO, list[0]);
   },
 
   // 获取轮播图片
@@ -117,6 +120,10 @@ const mutations = {
 
   [GOODS_MUTATION.NEXT_PAGE](state) {
     state.page++
+  },
+
+  [GOODS_MUTATION.SET_GOODS_LOADING](state, bool) {
+    state.isFetching = bool
   }
 }
 

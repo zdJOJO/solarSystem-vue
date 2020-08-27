@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-26 23:28:25
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 23:48:12
+ * @LastEditTime: 2020-08-27 17:23:12
  * @FilePath: \vue-demo\src\store\mutations\index.js
  */
 
@@ -12,8 +12,8 @@
 export const NEWS_MUTATION = {
   SET_NEWS_ID: "SET_NEWS_ID",
   SET_NEWS_LIST: "SET_NEWS_LIST",
-  SET_NEWS_Info: "SET_NEWS_Info"
-
+  SET_NEWS_Info: "SET_NEWS_Info",
+  SET_NEWS_Info_LOADING: "SET_NEWS_Info_LOADING"
 }
 
 // 购物车
@@ -33,7 +33,8 @@ export const COMMENT_MUTATION = {
   UNSHIFT_COMMENT: "UNSHIFT_COMMENT",
   SET_COMMENTS: "SET_COMMENTS",
   SET_MSG: "SET_MSG",
-  NEXT_PAGE: "NEXT_PAGE"
+  NEXT_PAGE: "NEXT_PAGE",
+  SET_COMMENTS_LOADING: "SET_COMMENTS_LOADING"
 }
 
 // 商品
@@ -43,7 +44,8 @@ export const GOODS_MUTATION = {
   SET_GOODS_INFO: "SET_GOODS_INFO",
   SET_GOODS_SWIPER_IMGS: "SET_GOODS_SWIPER_IMGS",
   SET_CHOOSED_GOOD_COUNT: "SET_CHOOSED_GOOD_COUNT",
-  NEXT_PAGE: "NEXT_PAGE"
+  NEXT_PAGE: "NEXT_PAGE",
+  SET_GOODS_LOADING: "SET_GOODS_LOADING"
 }
 
 

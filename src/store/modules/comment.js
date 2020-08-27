@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:40:20
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 23:52:41
+ * @LastEditTime: 2020-08-27 16:33:14
  */
 import { Toast } from "mint-ui";
 import { defauCommentCount } from '@/global';
@@ -16,7 +16,8 @@ import { COMMENT } from "@/httpConfig/api";
 const state = () => ({
   comments: [],
   msg: "",
-  currentPage: 1
+  currentPage: 1,
+  isFetching: false
 })
 
 // getters
@@ -34,6 +35,7 @@ const actions = {
 
   // 获取新闻评论 
   async getNewsComments({ commit, dispatch, state }, { id, isAll }) {
+    commit(COMMENT_MUTATION.SET_COMMENTS_LOADING, true);
     const list = await dispatch(ROOT_ASYNC_REQUEST_ACTION, { url: `${COMMENT.COMMENTS}${id}?pageindex=${state.currentPage}` }, { root: true });
     if (list > 0 && list instanceof Array) {
       commit(COMMENT_MUTATION.NEXT_PAGE);
@@ -41,6 +43,7 @@ const actions = {
     if (!isAll) {
       list.slice(0, defauCommentCount);
     }
+    commit(COMMENT_MUTATION.SET_COMMENTS_LOADING, false);
     commit(COMMENT_MUTATION.SET_COMMENTS, list)
   },
 
@@ -93,6 +96,10 @@ const mutations = {
 
   [COMMENT_MUTATION.NEXT_PAGE](state) {
     state.currentPage++
+  },
+
+  [COMMENT_MUTATION.SET_COMMENTS_LOADING](state, bool) {
+    state.isFetching = bool
   }
 }
 

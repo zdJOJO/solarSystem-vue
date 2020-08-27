@@ -4,17 +4,19 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 15:12:33
+ * @LastEditTime: 2020-08-27 17:37:26
 -->
 <template>
-  <div class="infinite-list-wrapper" style="overflow:auto">
-    <div class="list">
+  <div class="pageBox" style="overflow:auto">
+    <div class="list ">
       <div class="list-item" v-for="news in newsList" :key="news.id">
         <router-link :to="path + news.id">
           <el-card class="box-card">
             <el-row :gutter="10">
               <el-col :span="6">
-                <el-image :src="news.img_url" />
+                <div class="el-image">
+                  <img class="el-image__inner" v-lazy="news.img_url" />
+                </div>
               </el-col>
               <el-col :span="18">
                 <p class="content title">{{ news.title }}</p>
@@ -58,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.infinite-list-wrapper {
+.pageBox {
   .box-card {
     height: 120px;
     overflow: hidden;

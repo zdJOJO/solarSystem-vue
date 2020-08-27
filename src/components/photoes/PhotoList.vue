@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-25 15:41:16
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 22:47:39
+ * @LastEditTime: 2020-08-27 17:45:50
  * @FilePath: \vue-demo\src\components\photoes\PhotoList.vue
 -->
 <template>
@@ -11,45 +11,54 @@
     <div class="pgotoTabs">
       <el-tabs :value="`${activeId}`" @tab-click="handleClick">
         <el-tab-pane v-for="ctg in categories" :label="ctg.title" :name="`${ctg.id}`" :key="ctg.id">
-          <div class="waterBox">
-            <div class="waterfall" v-if="currentImgs.length>0">
-              <div class="column">
-                <div class="item left" v-for=" img in getOddImgs" :key="img.id" @click="go(img.id)">
-                  <el-card :body-style="{ padding: '0px' }">
-                    <img :src="img.img_url" class="image" />
-                    <div style="padding: 10px;">
-                      <span>{{img.title}}</span>
-                      <div class="bottom">
-                        <div class="user">
-                          <i class="el-icon-s-custom" />
-                          <span style="padding: 5px;">{{img.admin || '匿名用户'}}</span>
-                          <el-tag>{{img.tags || '默认'}}</el-tag>
+          <div class="pageBox">
+            <div class="waterBox">
+              <div class="waterfall" v-if="currentImgs.length>0">
+                <div class="column">
+                  <div
+                    class="item left"
+                    v-for=" img in getOddImgs"
+                    :key="img.id"
+                    @click="go(img.id)"
+                  >
+                    <el-card :body-style="{ padding: '0px' }">
+                      <!-- <img :src="img.img_url" class="image" /> -->
+                      <img v-lazy="img.img_url" class="image" />
+                      <div style="padding: 10px;">
+                        <span>{{img.title}}</span>
+                        <div class="bottom">
+                          <div class="user">
+                            <i class="el-icon-s-custom" />
+                            <span style="padding: 5px;">{{img.admin || '匿名用户'}}</span>
+                            <el-tag>{{img.tags || '默认'}}</el-tag>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </el-card>
+                    </el-card>
+                  </div>
                 </div>
-              </div>
-              <div class="column">
-                <div
-                  class="item right"
-                  v-for="img in getEvenImgs"
-                  :key="img.id"
-                  @click="go(img.id)"
-                >
-                  <el-card :body-style="{ padding: '0px' }">
-                    <img :src="img.img_url" class="image" />
-                    <div style="padding: 10px;">
-                      <span>{{img.title}}</span>
-                      <div class="bottom">
-                        <div class="user">
-                          <i class="el-icon-s-custom" />
-                          <span style="padding: 5px;">{{img.admin || '匿名用户'}}</span>
-                          <el-tag>{{img.tags || '默认'}}</el-tag>
+                <div class="column">
+                  <div
+                    class="item right"
+                    v-for="img in getEvenImgs"
+                    :key="img.id"
+                    @click="go(img.id)"
+                  >
+                    <el-card :body-style="{ padding: '0px' }">
+                      <!-- <img :src="img.img_url" class="image" /> -->
+                      <img v-lazy="img.img_url" class="image" />
+                      <div style="padding: 10px;">
+                        <span>{{img.title}}</span>
+                        <div class="bottom">
+                          <div class="user">
+                            <i class="el-icon-s-custom" />
+                            <span style="padding: 5px;">{{img.admin || '匿名用户'}}</span>
+                            <el-tag>{{img.tags || '默认'}}</el-tag>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </el-card>
+                    </el-card>
+                  </div>
                 </div>
               </div>
             </div>

@@ -10,8 +10,8 @@
       </el-header>
 
       <!-- 中间的 路由 router-view 区域 -->
-      <el-main style="padding: 0 10px">
-        <transition>
+      <el-main>
+        <transition :name="transitionName" mode="out-in">
           <router-view />
         </transition>
       </el-main>
@@ -61,6 +61,7 @@ export default {
       firstPath: this.$router.path,
       currentPath: this.$router.path,
       navs,
+      transitionName: "",
     };
   },
   computed: {
@@ -69,8 +70,8 @@ export default {
     }),
     // 顶部的浏览器是否返回
     isBack() {
-      // 如果路由地址不是 /home 就出现返回按钮
-      return this.$store.state.route.path !== "/home";
+      // 如果路由地址不是 / 就出现返回按钮
+      return this.$store.state.route.path !== "/";
     },
     headMsg() {
       let msg = "";
@@ -87,8 +88,16 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.path.indexOf(this.first) >= 0) {
+      //如果to索引大于from索引,判断为前进状态,反之则为后退状态
+      if (to.meta.index > from.meta.index) {
+        //设置动画名称
+        this.transitionName = "slide-left";
+      } else {
+        this.transitionName = "slide-right";
       }
+
+      // if (to.path.indexOf(this.first) >= 0) {
+      // }
       this.currentPath = to.path;
       this.firstPath = `/${to.path.split("/")[1]}`;
     },
@@ -110,117 +119,139 @@ export default {
 /* 全局设置 */
 $themeColor: #ffd000;
 $fontColor: #303133;
-/*
-  让各组件显示在 顶部区域 和 底部区域 之间
-  overflow-x: hidden 防止顶部和底部区域跟着动画移动
-  */
+
+// 路由模块 切换特效
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 150ms cubic-bezier(0, 1, 0.5, 1);
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
 .app-container {
   padding-top: 40px;
   padding-bottom: 50px;
   background-color: #fff;
-}
 
-/* 修改 element-ui 组件样式*/
-.el-container {
-  .el-button {
-    color: #333;
-  }
-
-  .el-header {
-    padding: 0;
-    display: flex;
-    line-height: 40px;
-    height: 40px;
-    text-align: center;
-    background: $themeColor;
-    top: 0;
-    right: 0;
-    left: 0;
-    position: fixed;
-    z-index: 99;
-
+  /* 修改 element-ui 组件样式*/
+  .el-container {
     .el-button {
+      color: #333;
+    }
+
+    .el-header {
+      padding: 0;
+      display: flex;
+      line-height: 40px;
+      height: 40px;
+      text-align: center;
       background: $themeColor;
-      border: none;
-      font-size: 1.2rem;
-      padding: 7px 10px;
-      position: absolute;
+      top: 0;
+      right: 0;
       left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      position: fixed;
+      z-index: 99;
+
+      .el-button {
+        background: $themeColor;
+        border: none;
+        font-size: 1.2rem;
+        padding: 7px 10px;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .title {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+      }
     }
-    .title {
-      width: 100%;
-      text-align: center;
-      font-size: 15px;
+
+    .el-main {
+      overflow-x: hidden;
+      padding: 0;
     }
-  }
 
-  .el-main {
-    overflow-x: hidden;
-    padding: 0;
-  }
+    .el-footer {
+      position: fixed;
+      z-index: 10;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      height: 50px;
+      padding: 0;
+      border-top: 0;
+      border-bottom: 0;
+      backface-visibility: hidden;
+      background: #fff;
 
-  .el-footer {
-    position: fixed;
-    z-index: 10;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    height: 50px;
-    padding: 0;
-    border-top: 0;
-    border-bottom: 0;
-    backface-visibility: hidden;
-    background: #fff;
-
-    ul.navBar {
-      border-bottom: none;
-      border-top: solid 1px #e6e6e6;
-      text-align: center;
-      list-style: none;
-      position: relative;
-      margin: 0;
-      padding-left: 0;
-
-      li.navItem {
-        float: left;
-        height: 56px;
-        line-height: 56px;
+      ul.navBar {
+        border-bottom: none;
+        border-top: solid 1px #e6e6e6;
+        text-align: center;
         list-style: none;
         position: relative;
-        white-space: nowrap;
-        font-size: 14px;
-        color: $fontColor;
-        padding: 0 20px;
-        cursor: pointer;
-        // transition: color 0.3s;
-        transition: all 0.3s;
-        transform: scale(0.85);
-        box-sizing: border-box;
-        border-bottom: none;
-        text-align: center;
-        background-color: rgb(255, 255, 255);
-        width: 25%;
-        padding: 3px 0;
         margin: 0;
+        padding-left: 0;
 
-        .navCell {
-          height: 22px;
-          line-height: 22px;
-          i {
-            font-size: 23px;
-            margin: 0;
+        li.navItem {
+          float: left;
+          height: 56px;
+          line-height: 56px;
+          list-style: none;
+          position: relative;
+          white-space: nowrap;
+          font-size: 14px;
+          color: $fontColor;
+          padding: 0 20px;
+          cursor: pointer;
+          // transition: color 0.3s;
+          transition: all 0.3s;
+          transform: scale(0.85);
+          box-sizing: border-box;
+          border-bottom: none;
+          text-align: center;
+          background-color: rgb(255, 255, 255);
+          width: 25%;
+          padding: 3px 0;
+          margin: 0;
+
+          .navCell {
+            height: 22px;
+            line-height: 22px;
+            i {
+              font-size: 23px;
+              margin: 0;
+            }
+          }
+          .navName {
+            transform: scale(0.95);
           }
         }
-        .navName {
+
+        .navItem.isActive {
+          color: $themeColor;
           transform: scale(0.95);
         }
-      }
-
-      .navItem.isActive {
-        color: $themeColor;
-        transform: scale(0.95);
       }
     }
   }

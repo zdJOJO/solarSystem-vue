@@ -1,5 +1,5 @@
 <template>
-  <div class="shopcar-container">
+  <div class="shopcar-container pageBox">
     <cart-item
       v-for="goodsinfo in goodslist"
       :key="goodsinfo.id"
@@ -65,7 +65,9 @@ export default {
 
 <style lang="scss" scoped>
 .shopcar-container {
+  margin: 10px 0;
   overflow: hidden;
+  
   .mui-card-content-inner {
     display: flex;
     align-items: center;

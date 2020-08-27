@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 22:39:24
+ * @LastEditTime: 2020-08-27 17:48:34
 -->
 <template>
   <div>
@@ -26,7 +26,7 @@
 
 <script>
 import { Toast } from "mint-ui";
-import MySwiper from "../publicComponents/Swiper";
+import Swiper from "../publicComponents/Swiper";
 import { fontColor, menus } from "@/global";
 import { HOME } from "@/httpConfig/api";
 
@@ -55,7 +55,7 @@ export default {
     },
   },
   components: {
-    "my-swiper": MySwiper,
+    "my-swiper": Swiper
   },
 };
 </script>
@@ -65,7 +65,7 @@ $width: 110px;
 $height: 110px;
 
 .box {
-  margin: 10px auto;
+  margin: 10px;
 
   .grid {
     display: grid;

@@ -4,13 +4,14 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 15:31:32
+ * @LastEditTime: 2020-08-27 13:58:14
  */
 
 import Vue from "vue"
 import { sync } from 'vuex-router-sync'
 import moment from "moment"
 import VuePreview from 'vue-preview' /*图片预览插件*/
+import VueLazyLoad from 'vue-lazyload' /*图片懒加载*/
 
 
 
@@ -50,8 +51,14 @@ import router from './route';
 import App from "./App";
 import axios from "./httpConfig/http"
 
-// 安装图片预览插件
-Vue.use(VuePreview)
+
+Vue.use(VuePreview);
+Vue.use(VueLazyLoad, {
+    preLoad: 1.3,
+    error: 'public/images/error.jpg',
+    loading: 'public/images/loading.gif',
+    attempt: 2
+});
 
 // element-ui 全局配置
 Vue.prototype.$ELEMENT = { size: 'mini' };
