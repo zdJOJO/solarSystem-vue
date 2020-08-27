@@ -17,7 +17,7 @@
       </el-main>
 
       <!-- 底部nav导航区域 -->
-      <el-footer style="height: 50px">
+      <el-footer style="height: 1rem">
         <ul class="navBar">
           <li
             class="navItem"
@@ -146,8 +146,8 @@ $fontColor: #303133;
 }
 
 .app-container {
-  padding-top: 40px;
-  padding-bottom: 50px;
+  padding-top:  0.8rem;
+  padding-bottom: 1rem;
   background-color: #fff;
 
   /* 修改 element-ui 组件样式*/
@@ -159,8 +159,8 @@ $fontColor: #303133;
     .el-header {
       padding: 0;
       display: flex;
-      line-height: 40px;
-      height: 40px;
+      line-height: 0.8rem;
+      height: 0.8rem;
       text-align: center;
       background: $themeColor;
       top: 0;
@@ -172,8 +172,8 @@ $fontColor: #303133;
       .el-button {
         background: $themeColor;
         border: none;
-        font-size: 1.2rem;
-        padding: 7px 10px;
+        font-size: 0.5rem;
+        padding: 0.14rem 0.2rem;
         position: absolute;
         left: 0;
         top: 50%;
@@ -182,7 +182,7 @@ $fontColor: #303133;
       .title {
         width: 100%;
         text-align: center;
-        font-size: 15px;
+        font-size: 0.3rem;
       }
     }
 
@@ -197,7 +197,7 @@ $fontColor: #303133;
       right: 0;
       left: 0;
       bottom: 0;
-      height: 50px;
+      height: 1rem;
       padding: 0;
       border-top: 0;
       border-bottom: 0;
@@ -215,14 +215,14 @@ $fontColor: #303133;
 
         li.navItem {
           float: left;
-          height: 56px;
-          line-height: 56px;
+          height: 1.12rem;
+          line-height: 1.12rem;
           list-style: none;
           position: relative;
           white-space: nowrap;
-          font-size: 14px;
+          font-size: 0.28rem;
           color: $fontColor;
-          padding: 0 20px;
+          padding: 0 0.4rem;
           cursor: pointer;
           // transition: color 0.3s;
           transition: all 0.3s;
@@ -232,14 +232,14 @@ $fontColor: #303133;
           text-align: center;
           background-color: rgb(255, 255, 255);
           width: 25%;
-          padding: 3px 0;
+          padding: 0.06rem 0;
           margin: 0;
 
           .navCell {
-            height: 22px;
-            line-height: 22px;
+            height: 0.44rem;
+            line-height: 0.44rem;
             i {
-              font-size: 23px;
+              font-size: 0.44rem;
               margin: 0;
             }
           }
@@ -250,7 +250,7 @@ $fontColor: #303133;
 
         .navItem.isActive {
           color: $themeColor;
-          transform: scale(0.95);
+           transform: scale(0.95);
         }
       }
     }

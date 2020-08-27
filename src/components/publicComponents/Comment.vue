@@ -3,16 +3,24 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 17:44:02
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:35:10
 -->
 <template>
   <div class="cmt-container">
     <div v-if="!loading">
       <h3 :style="{color,'font-size':size}">发表评论</h3>
-      <hr />
-      <textarea placeholder="请输入要评论的内容" v-model="msg" />
-      <el-button type="primary" size="small" icon="el-icon-chat-dot-round" @click="postComment">提交评论</el-button>
+      <div>
+        <textarea placeholder="请输入要评论的内容" v-model="msg" />
+      </div>
+      <div style="height: 0.64rem; line-height: 0.32rem">
+        <el-button
+          type="primary"
+          size="small"
+          icon="el-icon-chat-dot-round"
+          @click="postComment"
+        >提交评论</el-button>
+      </div>
     </div>
     <!-- 评论列表 -->
     <div class="cmt-list">
@@ -86,19 +94,19 @@ export default {
 
 <style lang="scss" scoped>
 .cmt-container {
-  padding: 0 10px;
+  padding: 0 0.2rem;
   h3 {
-    font-size: 16px;
-    margin-top: 20px;
+    font-size: 0.32rem;
+    margin-top: 0.4rem;
   }
   textarea {
-    font-size: 14px;
-    height: 85px;
+    font-size: 0.28rem;
+    height: 1.7rem;
     margin: 0;
     width: 99%;
   }
   .cmt-list {
-    margin: 30px 0 10px 0;
+    margin: 0.6rem 0 0.2rem 0;
   }
 }
 </style>

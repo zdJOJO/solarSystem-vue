@@ -2,8 +2,8 @@
  * @Description: file content
  * @Autor: zdJOJO
  * @Date: 2020-08-27 11:51:36
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 15:11:03
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:02:04
  * @FilePath: \vue-demo\src\components\publicComponents\Skeleton.vue
 -->
 <template>
@@ -60,15 +60,15 @@ export default {
     },
     width: {
       type: String,
-      default: "200px",
+      default: "4rem",
     },
     height: {
       type: String,
-      default: "20px",
+      default: "0.4rem",
     },
     padding: {
       type: String,
-      default: "10px 10px 0 0",
+      default: "0.2rem 0.2rem 0 0",
     },
   },
   data: function () {
@@ -84,15 +84,15 @@ export default {
 
 <style lang="scss" scoped>
 .skeleton-loading {
-  font-size: 12px;
+  font-size: 0.24rem;
   background: #fff;
   position: relative;
   @keyframes backpos {
     from {
-      background-position-x: -200px;
+      background-position-x: -4rem;
     }
     to {
-      background-position-x: calc(200px + 100%);
+      background-position-x: calc(4rem + 100%);
     }
   }
   .skeleton-bac-animation {

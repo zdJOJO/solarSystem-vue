@@ -1,3 +1,11 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:47:02
+ * @FilePath: \vue-demo\src\components\publicComponents\Swiper.vue
+-->
 <template>
   <div class="swiper" :style="{height}">
     <el-carousel
@@ -25,7 +33,7 @@ export default {
   data() {
     return {
       arrow: "never",
-      height: "200px",
+      height: "4rem",
       loop: true,
       autoplay: false,
       interval: 3000,
@@ -41,14 +49,14 @@ $fontColor: #303133;
   width: 100%;
 
   .el-carousel__button {
-    height: 5px;
+    height: 0.1rem;
   }
 
   .el-carousel__item h3 {
     color: #475669;
-    font-size: 14px;
+    font-size: 0.28rem;
     opacity: 0.75;
-    line-height: 150px;
+    line-height: 3rem;
     margin: 0;
   }
 

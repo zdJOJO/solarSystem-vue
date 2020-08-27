@@ -1,3 +1,11 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-23 23:46:36
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:02:14
+ * @FilePath: \vue-demo\src\components\publicComponents\LoadMore.vue
+-->
 <template>
   <div class="loadMore">
     <el-button
@@ -20,6 +28,6 @@ export default {
 <style lang="scss" scoped>
 .loadMore {
   text-align: center;
-  margin: 10px 0;
+  margin: 0.2rem 0;
 }
 </style>

@@ -4,7 +4,7 @@
       <div class="goods-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
         <el-card :body-style="{ padding: '0px' }">
           <img class="image" v-lazy="item.img_url" />
-          <div style="padding: 5px">
+          <div style="padding: 0.1rem">
             <span class="title">{{item.title}}</span>
           </div>
           <div class="info">
@@ -58,25 +58,25 @@ export default {
 .goodslist-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 10px 0 10px;
+  padding: 0.2rem 0.2rem 0 0.2rem;
   justify-content: space-between;
 
   .goods-item:nth-child(odd) {
-    margin-right: 5px;
+    margin-right: 0.1rem;
   }
 
   .goods-item:nth-child(even) {
-    margin-right: 5px;
+    margin-right: 0.1rem;
   }
 
   .goods-item {
-    width: calc(50vw - 15px);
-    margin-bottom: 10px;
-    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
+    width: calc(50vw - 0.3rem);
+    margin-bottom: 0.2rem;
+    box-shadow: 0px 1px 0.1rem 1px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 300px;
+    min-height: 6rem;
 
     img {
       width: 100%;
@@ -85,32 +85,35 @@ export default {
     .el-card {
       box-shadow: none;
       height: 100%;
+      line-height: 0.28rem;
     }
     .title {
-      font-size: 14px;
+      font-size: 0.28rem;
     }
 
     .info {
       p {
         margin: 0;
-        padding: 5px;
+        padding: 0.1rem;
       }
       .price {
+        // height: 0.6rem;
+        // line-height: 0.3rem;
         .now {
           color: red;
           font-weight: bold;
-          font-size: 16px;
+          font-size: 0.32rem;
         }
         .old {
           text-decoration: line-through;
-          font-size: 12px;
-          margin-left: 10px;
+          font-size: 0.24rem;
+          margin-left: 0.2rem;
         }
       }
       .sell {
         display: flex;
         justify-content: space-between;
-        font-size: 13px;
+        font-size: 0.26rem;
       }
     }
   }

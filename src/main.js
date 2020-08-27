@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 13:58:14
+ * @LastEditTime: 2020-08-27 20:48:53
  */
 
 import Vue from "vue"
@@ -39,7 +39,7 @@ import {
     TabPane,
     Tag
 } from 'element-ui';
-import '../theme/index.css'  // 自定义主题
+import '../theme/index.css' // 自定义主题
 
 /* 按需引入 mint-ui */
 import 'mint-ui/lib/style.css'
@@ -49,7 +49,7 @@ import '../public/css/index'; // css全局设置
 import store from './store';
 import router from './route';
 import App from "./App";
-import axios from "./httpConfig/http"
+import axios from "./httpConfig/http";
 
 
 Vue.use(VuePreview);
@@ -103,7 +103,7 @@ sync(store, router)
 const vm = new Vue({
     router,
     store,
-    render: h => h(App)  /* 渲染根组件 */
+    render: h => h(App) /* 渲染根组件 */
 }).$mount('#app')
 
 // 开发环境 浏览器启用 devtools

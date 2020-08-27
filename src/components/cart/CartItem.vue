@@ -2,12 +2,12 @@
  * @Description: file content
  * @Autor: zdJOJO
  * @Date: 2020-08-24 00:48:12
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-25 14:45:32
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:15:35
  * @FilePath: \vue-demo\src\components\cart\CartItem.vue
 -->
 <template>
-  <el-card shadow="always" :body-style="{ padding: '10px' }">
+  <el-card shadow="always" :body-style="{ padding: '0.2rem' }">
     <el-row :gutter="24">
       <el-col :span="4">
         <el-checkbox
@@ -62,17 +62,17 @@ export default {
 <style lang="scss" scoped>
 .el-card {
   p {
-    margin: 5px 0;
-    font-size: 14px;
+    margin: 0.1rem 0;
+    font-size: 0.28rem;
   }
   .price {
     color: #f56c6c;
     font-weight: bold;
     display: inline-block;
-    margin-bottom: 5px;
+    margin-bottom: 0.1rem;
   }
   button {
-    margin-top: 10px;
+    margin-top: 0.2rem;
   }
   img {
     width: 100%;

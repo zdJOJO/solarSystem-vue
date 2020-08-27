@@ -3,8 +3,8 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 17:37:26
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:17:55
 -->
 <template>
   <div class="pageBox" style="overflow:auto">
@@ -62,15 +62,15 @@ export default {
 <style lang="scss" scoped>
 .pageBox {
   .box-card {
-    height: 120px;
+    height: 2.4rem;
     overflow: hidden;
 
     .el-card__body {
-      padding: 10px;
+      padding: 0.2rem;
     }
   }
   .list-item {
-    margin: 13px 0;
+    margin: 0.26rem 0;
   }
   .content {
     margin: 0;
@@ -80,15 +80,15 @@ export default {
     -webkit-box-orient: vertical;
   }
   .title {
-    height: 40px;
+    height: 0.8rem;
     color: #303133;
-    font-size: 15px;
+    font-size: 0.3rem;
   }
   .summary {
-    height: 40px;
-    font-size: 12px;
+    height: 0.8rem;
+    font-size: 0.24rem;
     color: #68696a;
-    margin-top: 5px;
+    margin-top: 0.1rem;
   }
 }
 </style>

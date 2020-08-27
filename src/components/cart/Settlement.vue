@@ -2,8 +2,8 @@
  * @Description: file content
  * @Autor: zdJOJO
  * @Date: 2020-08-24 02:14:29
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 10:46:08
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 22:14:16
  * @FilePath: \vue-demo\src\components\cart\Settlement.vue
 -->
 <template>
@@ -37,19 +37,19 @@ export default {
 
 <style lang="scss" scoped>
 .el-card {
-  margin: 15px 0 10px 0;
+  margin: 0.1rem 0 0.2rem 0;
 
   .total {
-    margin: 5px 0;
+    margin: 0.1rem 0;
   }
   .totalPrice {
-    margin: 5px 0;
+    margin: 0.1rem 0;
     color: #f56c6c;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 0.4rem;
   }
   .btn {
-    margin: 7px 0;
+    margin: 0.14rem 0;
   }
 }
 </style>

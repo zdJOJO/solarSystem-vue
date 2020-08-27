@@ -1,3 +1,11 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-20 22:48:51
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:02:33
+ * @FilePath: \vue-demo\src\components\publicComponents\InputNumber.vue
+-->
 <template>
   <div class="iputNumBox">
     <el-input-number

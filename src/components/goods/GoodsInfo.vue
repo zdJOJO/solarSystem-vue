@@ -45,9 +45,9 @@
             <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
           </div>
           <div v-if="isLoading">
-            <my-skeleton width="220px" />
-            <my-skeleton width="90px" />
-            <my-skeleton width="180px" />
+            <my-skeleton width="4.4rem" />
+            <my-skeleton width="1.8rem" />
+            <my-skeleton width="3.6rem" />
           </div>
         </div>
       </div>
@@ -178,41 +178,41 @@ export default {
 
 <style lang="scss" scoped>
 .my-card {
-  font-size: 14px;
+  font-size: 0.28rem;
   position: relative;
   overflow: hidden;
-  margin: 10px 0;
-  border-radius: 2px;
+  margin: 0.2rem 0;
+  border-radius: 0.04rem;
   background-color: #fff;
   background-clip: padding-box;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0.04rem rgba(0, 0, 0, 0.3);
   .my-card-footer,
   .my-card-header {
     position: relative;
     display: flex;
-    min-height: 44px;
-    padding: 10px 15px;
+    min-height: 0.88rem;
+    padding: 0.2rem 0.3rem;
     -webkit-box-pack: justify;
     justify-content: space-between;
     -webkit-box-align: center;
     align-items: center;
-    font-size: 17px;
-    border-radius: 2px 2px 0 0;
+    font-size: 0.34rem;
+    border-radius: 0.04rem 0.04rem 0 0;
   }
   .my-card-content {
-    font-size: 14px;
+    font-size: 0.28rem;
     position: relative;
   }
   .my-card-content-inner {
     position: relative;
-    padding: 15px;
+    padding: 0.3rem;
   }
   .my-card-header {
-    height: 44px;
+    height: 0.88rem;
   }
   .my-card-footer {
     color: #6d6d72;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 0.04rem 0.04rem;
   }
 }
 
@@ -220,13 +220,13 @@ export default {
   overflow: hidden;
   .now_price {
     color: red;
-    font-size: 16px;
+    font-size: 0.32rem;
     font-weight: bold;
   }
 }
 #ball {
-  width: 15px;
-  height: 15px;
+  width: 0.3rem;
+  height: 0.3rem;
   border-radius: 50%;
   background-color: #f56c6c;
   position: absolute; //绝对定位

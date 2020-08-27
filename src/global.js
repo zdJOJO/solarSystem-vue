@@ -3,20 +3,20 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-23 21:28:25
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 13:28:11
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:23:16
  */
 
 import { Message } from 'element-ui';
 
 export const themeColor = "#ffd000"; // 主题颜色
-export const fontSize = "14px";
+export const fontSize = "0.28rem";
 export const fontColor = "#303133"; // 字体颜色
 export const defaultColor = "#606266";
 export const defauCommentCount = 3;
 export const fontStyle = {
   color: "#303133",
-  fontSize: "14px",
+  fontSize: "0.28rem",
 };
 export const cartBallTrasformTime = 600;  // 商品模块 加入购物车小球特效变换时间 单位:毫秒
 
@@ -84,22 +84,22 @@ export const menus = [
     imgName: "menu1.svg",
   },
   {
-    name: "美食/购物",
+    name: "购物/美食",
     routePath: ROUTE_PATH.HOME_GODDS,
     imgName: "menu2.svg",
   },
   {
-    name: "旅游分享",
+    name: "旅游/分享",
     routePath: ROUTE_PATH.HOME_PHOTOES,
     imgName: "menu3.svg",
   },
   {
-    name: "电影/演出",
+    name: "番剧/电影",
     routePath: "#",
     imgName: "menu4.svg",
   },
   {
-    name: "谈天说地",
+    name: "Let's talk",
     routePath: "#",
     imgName: "menu5.svg",
   },

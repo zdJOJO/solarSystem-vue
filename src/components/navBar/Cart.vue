@@ -65,17 +65,21 @@ export default {
 
 <style lang="scss" scoped>
 .shopcar-container {
-  margin: 10px 0;
+  margin: 0.2rem 0;
   overflow: hidden;
+  
+  .el-card{
+    margin-bottom: 0.2rem;
+  }
   
   .mui-card-content-inner {
     display: flex;
     align-items: center;
     img {
-      width: 55px;
+      width: 1.1rem;
     }
     h1 {
-      font-size: 14px;
+      font-size: 0.28rem;
     }
     .info {
       display: flex;
@@ -92,17 +96,17 @@ export default {
     display: flex; //开启布局
     justify-content: space-between; //布局为两端对齐
     align-items: center; //居中
-    font-size: 14px;
+    font-size: 0.28rem;
     p {
-      margin: 2px;
+      margin: 0.04rem;
     }
     .red {
       color: red;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 0.32rem;
     }
     .zongji {
-      font-size: 16px;
+      font-size: 0.32rem;
       font-weight: bold;
     }
   }

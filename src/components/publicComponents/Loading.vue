@@ -3,8 +3,8 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-23 21:18:25
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-24 20:33:58
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:02:21
 -->
 <template>
   <div class="myLoading" v-if="isLoading" :style="{color, 'font-size':size}">
@@ -28,6 +28,6 @@ export default {
 <style lang="scss" scoped>
 .myLoading {
   text-align: center;
-  margin: 5px 0;
+  margin: 0.1rem 0;
 }
 </style>

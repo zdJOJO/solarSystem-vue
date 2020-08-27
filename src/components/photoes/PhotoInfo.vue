@@ -67,28 +67,28 @@ export default {
 
 <style lang="scss" scoped>
 .photoinfo-container {
-  padding: 0 4px;
+  padding: 0 0.08rem;
 
   .title {
-    font-size: 16px;
-    margin: 5px 0;
+    font-size: 0.32rem;
+    margin: 0.1rem 0;
   }
   .subtitle {
-    font-size: 13px;
+    font-size: 0.26rem;
     color: #ffd000;
     display: flex;
     justify-content: space-between;
   }
   .photoinfo-content {
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 0.26rem;
+    line-height: 0.4rem;
   }
   .thumbnail {
     img {
-      width: 60px;
-      height: 80px;
-      margin: 5px;
-      box-shadow: 0 0 8px #999;
+      width: 1.2rem;
+      height: 1.6rem;
+      margin: 0.1rem;
+      box-shadow: 0 0 0.16rem #999;
     }
   }
 }
@@ -102,10 +102,10 @@ export default {
       flex-wrap: wrap;
     }
     figure {
-      width: 60px;
-      height: 80px;
-      margin: 10px;
-      box-shadow: 0 0 8px #999;
+      width: 1.2rem;
+      height: 1.6rem;
+      margin: 0.2rem;
+      box-shadow: 0 0 0.16rem #999;
       img {
         width: 100%;
         height: 100%;

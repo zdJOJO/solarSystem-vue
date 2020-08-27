@@ -3,18 +3,17 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 17:30:35
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:55:26
 -->
 <template>
-  <div class="goodsdesc-container">
+  <div class="goodsdesc-container pageBox">
     <div v-if="!loading">
       <h3>{{ info.title }}</h3>
-      <hr />
       <div class="content" v-html="info.content"></div>
     </div>
     <div v-if="loading">
-      <my-skeleton width="70vw" height="25px" />
+      <my-skeleton width="70vw" height="0.5rem" />
       <my-skeleton width="90vw" />
       <my-skeleton width="90vw" />
       <my-skeleton width="90vw" />
@@ -59,14 +58,15 @@ export default {
 <!--把scoped去掉，不然的话图片显示过大-->
 <style lang="scss">
 .goodsdesc-container {
-  padding: 4px;
+  padding: 0.08rem;
   h3 {
-    font-size: 16px;
+    font-size: 0.32rem;
     color: #226aff;
     text-align: center;
-    margin: 15px 0;
+    margin: 0.2rem 0;
   }
   .content {
+    font-size: 0.3rem;
     img {
       width: 100%;
     }

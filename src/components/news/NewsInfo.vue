@@ -2,13 +2,13 @@
  * @Description: file content
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 16:36:50
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-27 21:29:49
  * @FilePath: \vue-demo\src\components\news\NewsInfo.vue
 -->
 <template>
   <div class="news pageBox">
-    <div v-if="!isLoading">
+    <div class="content" v-if="!isLoading">
       <h4 class="title">{{ newsInfo.title }}</h4>
       <!-- 子标题 -->
       <p>
@@ -19,8 +19,8 @@
       <article v-html="newsInfo.content"></article>
     </div>
     <div v-if="isLoading">
-      <my-skeleton width="70vw" height="25px" />
-      <my-skeleton width="55vw" height="10px" />
+      <my-skeleton width="70vw" height="0.5rem" />
+      <my-skeleton width="55vw" height="0.2rem" />
       <my-skeleton width="90vw" />
       <my-skeleton width="90vw" />
       <my-skeleton width="90vw" />
@@ -84,10 +84,19 @@ export default {
 
 <style lang="scss">
 .news {
-  padding: 10px 0;
+  padding: 0.2rem 0;
 
   h4 {
-    line-height: 25px;
+    line-height: 0.5rem;
+  }
+  .title {
+    font-size: 0.4rem;
+  }
+  .content {
+    font-size: 0.3rem;
+  }
+  .cmt-container{
+    padding: 0 !important;
   }
 }
 </style>

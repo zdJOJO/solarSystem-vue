@@ -1,23 +1,33 @@
-
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-25 00:17:21
+ * @LastEditors: zhangding
+ * @LastEditTime: 2020-08-27 20:30:31
+ * @FilePath: \vue-demo\public\templete.ejs
+-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= htmlWebpackPlugin.options.title %></title>
-  <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1.0,maximum=scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
 </head>
 
 <body>
-  <div id="app"></div>
-  <!-- <script type="text/javascript" src="./js/vendor_e6eaff5752d67d63826c_dll.js"></script> -->
-  <!-- built files will be auto injected -->
-  <% if (htmlWebpackPlugin.options.insertJs && htmlWebpackPlugin.options.insertJs.length > 0) { %>
-  <% htmlWebpackPlugin.options.insertJs.forEach(function(item){ %>
-  <script type='text/javascript' src='<%= item %>'></script><% }); %>
-  <% } %>
+    <div id="app"></div>
+    <!-- <script type="text/javascript" src="./js/vendor_e6eaff5752d67d63826c_dll.js"></script> -->
+    <!-- built files will be auto injected -->
+    <% if (htmlWebpackPlugin.options.insertJs && htmlWebpackPlugin.options.insertJs.length > 0) { %>
+        <% htmlWebpackPlugin.options.insertJs.forEach(function(item){ %>
+            <script type='text/javascript' src='<%= item %>'></script>
+            <% }); %>
+                <% } %>
 </body>
 
 </html>

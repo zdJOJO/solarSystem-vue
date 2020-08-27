@@ -1,11 +1,3 @@
-<!--
- * @Description: file content
- * @Autor: zdJOJO
- * @Date: 2020-08-25 15:41:16
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 17:45:50
- * @FilePath: \vue-demo\src\components\photoes\PhotoList.vue
--->
 <template>
   <div>
     <div class="pgotoTabs">
@@ -78,13 +70,11 @@ export default {
     this.getAllCategory();
     this.$store.dispatch("photoes/getImgs", { id: 0 });
   },
-
   data() {
     return {
       path: `${ROUTE_PATH.HOME_PHOTOE_INFO_ID.split(":")[0]}`,
     };
   },
-
   computed: {
     ...mapState({
       categories: (state) => state.photoes.categories,
@@ -96,7 +86,6 @@ export default {
       getEvenImgs: "photoes/getEvenImgs",
     }),
   },
-
   methods: {
     ...mapActions({
       getAllCategory: "photoes/getImgCategory",
@@ -119,11 +108,10 @@ export default {
   * {
     touch-action: pan-y;
   }
-
   .el-tabs__header {
     margin: 0 0 10px 0;
+    line-height: 0.28rem;
   }
-
   .el-tabs__item {
     height: 35px;
     line-height: 35px;
@@ -134,7 +122,6 @@ export default {
     font-weight: bold;
   }
 }
-
 .el-tab-pane {
   .null {
     width: 100%;
@@ -144,39 +131,33 @@ export default {
     width: 100%;
     height: calc(99vh - 130px);
     overflow-y: scroll;
-
+    font-size: 0.28rem;
     .waterfall {
       width: 100%;
       margin: auto;
       display: flex;
       flex-direction: row;
       height: auto;
-
       .column {
         margin-left: 0;
         display: flex;
         flex-flow: column wrap;
         width: calc(100vw / 2);
-
         .item {
           box-sizing: border-box;
-
           .time {
             font-size: 13px;
             color: #999;
           }
-
           .bottom {
             margin-top: 5px;
             line-height: 12px;
           }
-
           .user {
             margin: 8px 0;
             font-size: 13px;
             color: #909399;
             position: relative;
-
             .el-tag {
               position: absolute;
               right: 0;
@@ -184,13 +165,11 @@ export default {
               transform: translateY(-50%);
             }
           }
-
           .image {
             width: 100%;
             display: block;
           }
         }
-
         .item.left {
           padding: 0 5px 10px 0;
         }

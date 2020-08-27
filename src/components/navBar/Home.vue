@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 17:48:34
+ * @LastEditTime: 2020-08-27 20:52:17
 -->
 <template>
   <div>
@@ -61,18 +61,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$width: 110px;
-$height: 110px;
+$width: 2.2rem;
+$height: 2.2rem;
 
 .box {
-  margin: 10px;
+  margin: 0.2rem;
 
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     // grid-template-rows: minmax(100px, 1fr);
     // grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    grid-gap: 3px;
+    grid-gap: 0.06rem;
 
     .cell::before {
       content: "";
@@ -82,9 +82,9 @@ $height: 110px;
     .cell {
       border: 1px solid #e5e4e95c;
       text-align: center;
-      padding: 6px;
-      line-height: 20px;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+      padding: 0.12rem;
+      line-height: 0.4rem;
+      box-shadow: 0 0.02rem 0.04rem 0 rgba(0, 0, 0, 0.1);
       display: grid;
     }
 
@@ -100,8 +100,8 @@ $height: 110px;
       position: relative;
     }
     img {
-      width: 30px;
-      height: 30px;
+      width: 0.6rem;
+      height: 0.6rem;
       object-fit: contain;
     }
     .sub-cell {
@@ -112,9 +112,8 @@ $height: 110px;
       transform: translateX(-50%) translateY(-50%);
 
       .menuName {
-        font-size: 14px;
-        transform: scale(0.83);
-        margin-top: 5px;
+        font-size: 0.27rem;
+        margin-top: 0.1rem;
       }
     }
   }
