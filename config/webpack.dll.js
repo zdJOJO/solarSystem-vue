@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zhangding
- * @LastEditTime: 2020-08-26 19:59:13
+ * @LastEditTime: 2020-08-27 17:54:49
  * @FilePath: \vue-demo\config\webpack.dll.js
  */
 const path = require("path");
@@ -12,7 +12,8 @@ const webpack = require("webpack");
 const vendors = [
   "vue/dist/vue.esm.js",
   "vue-router/dist/vue-router.esm.js",
-  "vuex/dist/vuex.js",
+  "vuex/dist/vuex.esm.js",
+  "vue-lazyload",
   "vue-preview",
   "vuex-router-sync",
   "moment",
