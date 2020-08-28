@@ -4,7 +4,7 @@ html {
   font-size: 13.33333vw
 }
 
-p{
+p {
   margin: 0;
 }
 
@@ -107,6 +107,17 @@ body {
   scrollbar-width: 0 !important;
   margin: 0;
   padding: 0;
+  touch-action: pan-x;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none
 }
 
 .myMsg {
@@ -119,7 +130,6 @@ body {
 main .pageBox {
   padding: 0 0.2rem;
   font-size: 0.28rem;
-  touch-action: pan-y;
 }
 
 .nut-swiper .nut-swiper-pagination .swiper-pagination-bullet.active {
@@ -132,9 +142,14 @@ main .pageBox {
 }
 
 .el-tabs__nav-scroll::-webkit-scrollbar {
-  display: noe
+  display: none
 }
 
-.app-container{
-  height: calc(100% - 0.36rem);
+.app-container::-webkit-scrollbar {
+  display: none
+}
+
+.app-container {
+  height: calc(100% - 1.8rem);
+  overflow-y: scroll;
 }
