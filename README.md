@@ -18,8 +18,7 @@
 3. UI库
 
     [element-ui](https://element.eleme.cn/#/zh-CN/component/upload): "^2.13.2"
-
-    ["mint-ui"](http://mint-ui.github.io/) : "^2.2.9"
+    [nut-ui](http://nutui.jd.com/#/swiper): "2.2.10"
 
 4. 打包工具
 

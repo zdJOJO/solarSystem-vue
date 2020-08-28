@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:21:46
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 23:31:49
+ * @LastEditTime: 2020-08-28 16:04:53
  * @FilePath: \vue-demo\config\webpack.prod.js
  */
 const path = require("path");
@@ -44,7 +44,5 @@ module.exports = {
       context: __dirname,
       manifest: require("../dist/manifest.json")
     })
-
   )
-
 };

@@ -2,8 +2,8 @@
  * @Description: file content
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 20:35:52
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-28 15:59:27
  * @FilePath: \vue-demo\config\webpack.dll.js
  */
 const path = require("path");
@@ -17,8 +17,8 @@ const vendors = [
     "vue-preview",
     "vuex-router-sync",
     "moment",
-    "axios",
-    "mint-ui"
+    "lodash",
+    "axios"
 ];
 
 module.exports = {

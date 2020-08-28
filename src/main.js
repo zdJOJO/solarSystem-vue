@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 15:47:31
+ * @LastEditTime: 2020-08-28 16:30:46
  */
 
 import Vue from "vue"
@@ -14,6 +14,9 @@ import VuePreview from 'vue-preview' /*图片预览插件*/
 import VueLazyLoad from 'vue-lazyload' /*图片懒加载*/
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+
+import NutSwiper from '@nutui/nutui/dist/packages/swiper/swiper.js';  // 加载构建后的JS
+import '@nutui/nutui/dist/packages/swiper/swiper.css';  //加载构建后的CSS
 
 /* 按需引入element-ui */
 import {
@@ -41,8 +44,7 @@ import {
 } from 'element-ui';
 import '../theme/index.css' // 自定义主题
 
-/* 按需引入 mint-ui */
-import 'mint-ui/lib/style.css'
+import '@nutui/nutui/dist/nutui.css';
 
 import '../public/css/index'; // css全局设置
 
@@ -91,6 +93,7 @@ Vue.prototype.$http = axios;
 // 按需加载 Vuex 模块 插件
 // Vue.use(lazyLoadVuexModule)
 
+NutSwiper.install(Vue);
 
 
 // 全局注册 base组件

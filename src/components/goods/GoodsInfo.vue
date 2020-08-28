@@ -9,51 +9,57 @@
     <base-swiper :swiperImgs="swiperIsmgs" :isfull="false"></base-swiper>
 
     <!-- 商品购买区域 -->
-    <div class="my-card">
-      <div class="my-card-header">{{ goodsinfo.title }}</div>
-      <div class="my-card-content">
-        <div class="my-card-content-inner">
-          <p>
-            市场价：
-            <del>￥{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;销售价：
-            <span class="now_price">￥{{ goodsinfo.sell_price }}</span>
-          </p>
-          <!--
+    <div class="pageBox">
+      <div class="my-card">
+        <div class="my-card-header">{{ goodsinfo.title }}</div>
+        <div class="my-card-content">
+          <div class="my-card-content-inner">
+            <p>
+              市场价：
+              <del>￥{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;销售价：
+              <span class="now_price">￥{{ goodsinfo.sell_price }}</span>
+            </p>
+            <!--
             :max ： 父组件通过 属性 向子组件传值
             @getcount : 子组件通过 调用方法传入数据 向父组件传值
-          -->
-          <p>
-            <span>购买数量：</span>
-            <base-input-number :max="goodsinfo.stock_quantity" @get-count="getChoosedCount" />
-          </p>
-          <p>
-            <el-button type="primary" @click="buy">立即购买</el-button>
-            <el-button type="danger" @click="addToShopCar">加入购物车</el-button>
-          </p>
+            -->
+            <p>
+              <span>购买数量：</span>
+              <base-input-number
+                :min="1"
+                :max="parseInt(goodsinfo.stock_quantity)"
+                @get-count="getChoosedCount"
+              />
+            </p>
+            <p>
+              <el-button type="primary" @click="buy">立即购买</el-button>
+              <el-button type="danger" @click="addToShopCar">加入购物车</el-button>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 商品参数区域 -->
-    <div class="my-card">
-      <div class="my-card-header">商品参数</div>
-      <div class="my-card-content">
-        <div class="my-card-content-inner">
-          <div v-if="!isLoading">
-            <p>商品货号：{{ goodsinfo.goods_no }}</p>
-            <p>库存情况：{{ goodsinfo.stock_quantity }}件</p>
-            <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
-          </div>
-          <div v-if="isLoading">
-            <base-skeleton width="4.4rem" />
-            <base-skeleton width="1.8rem" />
-            <base-skeleton width="3.6rem" />
+      <!-- 商品参数区域 -->
+      <div class="my-card">
+        <div class="my-card-header">商品参数</div>
+        <div class="my-card-content">
+          <div class="my-card-content-inner">
+            <div v-if="!isLoading">
+              <p>商品货号：{{ goodsinfo.goods_no }}</p>
+              <p>库存情况：{{ goodsinfo.stock_quantity }}件</p>
+              <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
+            </div>
+            <div v-if="isLoading">
+              <base-skeleton width="4.4rem" />
+              <base-skeleton width="1.8rem" />
+              <base-skeleton width="3.6rem" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="my-card-footer">
-        <el-button type="primary" size="small" plain @click="goDesc(id)">图文介绍</el-button>
-        <el-button type="danger" size="small" plain @click="goComment(id)">商品评论</el-button>
+        <div class="my-card-footer">
+          <el-button type="primary" size="small" plain @click="goDesc(id)">图文介绍</el-button>
+          <el-button type="danger" size="small" plain @click="goComment(id)">商品评论</el-button>
+        </div>
       </div>
     </div>
   </div>

@@ -116,3 +116,7 @@ main .pageBox {
   padding: 0 0.2rem;
   font-size: 0.28rem;
 }
+
+.nut-swiper .nut-swiper-pagination .swiper-pagination-bullet.active {
+  background-color: #ffd000;
+}
