@@ -3,11 +3,11 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 17:17:43
+ * @LastEditTime: 2020-08-28 19:34:28
  * @FilePath: \vue-demo\src\components\base\BaseSwiper.vue
 -->
 <template>
-  <div class="swiper" :style="{width,height}">
+  <div class="swiper" :style="{width}">
     <nut-swiper
       direction="horizontal"
       :swiperData="swiperImgs"
@@ -23,7 +23,7 @@
     </nut-swiper>
   </div>
 </template>
-
+// 
 <script>
 export default {
   name: "base-swiper",
@@ -34,7 +34,7 @@ export default {
     return {
       arrow: "never",
       width: "7.5rem",
-      height: "4rem",
+      // height: "4rem",
       lazyLoadUrl: "/public/images/loading.gif",
       loop: true,
       autoplay: false,

@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:28:25
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 15:55:54
+ * @LastEditTime: 2020-08-28 23:51:10
  */
 
 import { Message } from 'element-ui';
@@ -61,7 +61,7 @@ export const navs = [
     activeIcon: "location",
   },
   {
-    name: "购物包",
+    name: "购物袋",
     routePath: ROUTE_PATH.CART,
     icon: "goods",
     activeIcon: "s-goods",
@@ -104,7 +104,7 @@ export const menus = [
     imgName: "menu5.svg",
   },
   {
-    name: "联系我们",
+    name: "雷锋日记",
     routePath: "#",
     imgName: "menu6.svg",
   },
@@ -114,6 +114,31 @@ export const menus = [
     imgName: "menu5.svg",
   },
 ];
+
+//“我的” 模块菜单
+export const memberInfoMenus = [
+  {
+    name: "我的订单",
+    imgName: "order.svg",
+  },
+  {
+    name: "待付款",
+    imgName: "wait-pay.svg",
+  },
+  {
+    name: "待使用",
+    imgName: "wait-use.svg",
+  },
+  {
+    name: "待评价",
+    imgName: "wait-comment.svg",
+  },
+  {
+    name: "退款",
+    imgName: "back-pay.svg",
+  },
+];
+
 
 // 按需动态注册 Vuex module 的插件
 export const lazyLoadVuexModule = {

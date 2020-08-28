@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 16:30:46
+ * @LastEditTime: 2020-08-28 21:12:21
  */
 
 import Vue from "vue"
@@ -40,7 +40,8 @@ import {
 	Badge,
 	Tabs,
 	TabPane,
-	Tag
+	Tag,
+	Avatar
 } from 'element-ui';
 import '../theme/index.css' // 自定义主题
 
@@ -86,6 +87,8 @@ Vue.use(Badge);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Tag);
+Vue.use(Avatar);
+
 
 // 自定义http 添加 Vue 的实例中
 Vue.prototype.$http = axios;

@@ -73,6 +73,10 @@ export default {
       // 如果路由地址不是 / 就出现返回按钮
       return this.$store.state.route.path !== "/";
     },
+    isSetting() {
+      // 如果路由地址不是 / 就出现返回按钮
+      return this.$store.state.route.path === "/member";
+    },
     headMsg() {
       let msg = "";
       (this.currentPath && this.currentPath.split("/").length === 2
@@ -179,6 +183,7 @@ $fontColor: #303133;
         top: 50%;
         transform: translateY(-50%);
       }
+
       .title {
         width: 100%;
         text-align: center;

@@ -2,7 +2,7 @@
   <div>
     <div class="goodslist-container pageBox">
       <div class="goods-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
-        <el-card :body-style="{ padding: '0px' }">
+        <el-card :body-style="{ padding: '3px' }">
           <img class="image" v-lazy="item.img_url" />
           <div style="padding: 0.1rem">
             <span class="title">{{item.title}}</span>
@@ -13,7 +13,7 @@
               <span class="old">￥{{ item.market_price }}</span>
             </p>
             <p class="sell">
-              <span>热卖中</span>
+              <span style="color: #F56C6C">热卖中</span>
               <span>剩{{ item.stock_quantity }}件</span>
             </p>
           </div>
@@ -85,6 +85,7 @@ export default {
     }
     .title {
       font-size: 0.28rem;
+      line-height: 0.4rem;
     }
 
     .info {
@@ -96,7 +97,7 @@ export default {
         // height: 0.6rem;
         // line-height: 0.3rem;
         .now {
-          color: red;
+          color: #f56c6c;
           font-weight: bold;
           font-size: 0.32rem;
         }
