@@ -4,10 +4,10 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 15:46:40
+ * @LastEditTime: 2020-08-28 18:04:48
 -->
 <template>
-  <div class="pageBox" style="overflow:auto">
+  <div class="pageBox">
     <div class="list">
       <div class="list-item" v-for="news in newsList" :key="news.id">
         <router-link :to="path + news.id">

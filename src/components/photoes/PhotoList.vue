@@ -7,50 +7,21 @@
             <div class="waterBox">
               <div class="waterfall" v-if="currentImgs.length>0">
                 <div class="column">
-                  <div
-                    class="item left"
+                  <photo-item
                     v-for=" img in getOddImgs"
                     :key="img.id"
                     @click="go(img.id)"
-                  >
-                    <el-card :body-style="{ padding: '0px' }">
-                      <!-- <img :src="img.img_url" class="image" /> -->
-                      <img v-lazy="img.img_url" class="image" />
-                      <div style="padding: 10px;">
-                        <span>{{img.title}}</span>
-                        <div class="bottom">
-                          <div class="user">
-                            <i class="el-icon-s-custom" />
-                            <span style="padding: 5px;">{{img.admin || '匿名用户'}}</span>
-                            <el-tag>{{img.tags || '默认'}}</el-tag>
-                          </div>
-                        </div>
-                      </div>
-                    </el-card>
-                  </div>
+                    :photoItem="img"
+                  />
                 </div>
                 <div class="column">
-                  <div
-                    class="item right"
-                    v-for="img in getEvenImgs"
+                  <photo-item
+                    v-for=" img in getEvenImgs"
                     :key="img.id"
+                    :photoItem="img"
+                    classType="right"
                     @click="go(img.id)"
-                  >
-                    <el-card :body-style="{ padding: '0px' }">
-                      <!-- <img :src="img.img_url" class="image" /> -->
-                      <img v-lazy="img.img_url" class="image" />
-                      <div style="padding: 10px;">
-                        <span>{{img.title}}</span>
-                        <div class="bottom">
-                          <div class="user">
-                            <i class="el-icon-s-custom" />
-                            <span style="padding: 5px;">{{img.admin || '匿名用户'}}</span>
-                            <el-tag>{{img.tags || '默认'}}</el-tag>
-                          </div>
-                        </div>
-                      </div>
-                    </el-card>
-                  </div>
+                  />
                 </div>
               </div>
             </div>
@@ -65,6 +36,7 @@
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
 import { ROUTE_PATH } from "@/global";
+import PhotoItem from "./PhotoItem";
 export default {
   created() {
     this.getAllCategory();
@@ -100,14 +72,14 @@ export default {
       });
     },
   },
+  components: {
+    "photo-item": PhotoItem,
+  },
 };
 </script>
 
 <style lang="scss">
 .pgotoTabs {
-  * {
-    touch-action: pan-y;
-  }
   .el-tabs__header {
     margin: 0 0 10px 0;
     line-height: 0.28rem;
@@ -149,7 +121,7 @@ export default {
             font-size: 13px;
             color: #999;
           }
-          .bottom {
+          .photoItemBottom {
             margin-top: 5px;
             line-height: 12px;
           }
