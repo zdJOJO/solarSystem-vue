@@ -6,7 +6,7 @@
     </transition>
 
     <!--轮播图区域-->
-    <my-swiper :swiperImgs="swiperIsmgs" :isfull="false"></my-swiper>
+    <base-swiper :swiperImgs="swiperIsmgs" :isfull="false"></base-swiper>
 
     <!-- 商品购买区域 -->
     <div class="my-card">
@@ -24,7 +24,7 @@
           -->
           <p>
             <span>购买数量：</span>
-            <my-input-number :max="goodsinfo.stock_quantity" @get-count="getChoosedCount" />
+            <base-input-number :max="goodsinfo.stock_quantity" @get-count="getChoosedCount" />
           </p>
           <p>
             <el-button type="primary" @click="buy">立即购买</el-button>
@@ -45,9 +45,9 @@
             <p>上架时间：{{ goodsinfo.add_time | dateFormat }}</p>
           </div>
           <div v-if="isLoading">
-            <my-skeleton width="4.4rem" />
-            <my-skeleton width="1.8rem" />
-            <my-skeleton width="3.6rem" />
+            <base-skeleton width="4.4rem" />
+            <base-skeleton width="1.8rem" />
+            <base-skeleton width="3.6rem" />
           </div>
         </div>
       </div>
@@ -60,11 +60,7 @@
 </template>
 
 <script>
-import { Toast } from "mint-ui";
-import MySwiper from "../publicComponents/Swiper";
-import MyInputNumber from "../publicComponents/InputNumber";
-import Skeleton from "../publicComponents/Skeleton";
-import { cartBallTrasformTime, ROUTE_PATH } from "@/global";
+import { cartBallTrasformTime, ROUTE_PATH, resMsg } from "@/global";
 import { mapState } from "vuex";
 
 export default {
@@ -96,7 +92,7 @@ export default {
   }),
   methods: {
     buy() {
-      Toast("该功能尚未开发");
+      resMsg("该功能尚未开发", "info");
     },
 
     goDesc(id) {
@@ -168,11 +164,11 @@ export default {
       }, this.cartBallTrasformTime);
     },
   },
-  components: {
-    "my-swiper": MySwiper,
-    "my-input-number": MyInputNumber,
-    "my-skeleton": Skeleton,
-  },
+  // components: {
+  //   "base-swiper": MySwiper,
+  //   "base-input-number": MyInputNumber,
+  //   "base-skeleton": Skeleton,
+  // },
 };
 </script>
 

@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:55:26
+ * @LastEditTime: 2020-08-28 15:44:58
 -->
 <template>
   <div class="goodsdesc-container pageBox">
@@ -13,13 +13,13 @@
       <div class="content" v-html="info.content"></div>
     </div>
     <div v-if="loading">
-      <my-skeleton width="70vw" height="0.5rem" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
+      <base-skeleton width="70vw" height="0.5rem" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
     </div>
   </div>
 </template>
@@ -27,7 +27,6 @@
 <script>
 import { ROOT_ASYNC_REQUEST_ACTION } from "@/store/actions";
 import { GOODS } from "@/httpConfig/api";
-import Skeleton from "../publicComponents/Skeleton";
 export default {
   data() {
     return {
@@ -48,9 +47,6 @@ export default {
       this.loading = false;
       this.info = list[0];
     },
-  },
-  components: {
-    "my-skeleton": Skeleton,
   },
 };
 </script>

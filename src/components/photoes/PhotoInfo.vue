@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MyComment from "../publicComponents/Comment";
+import MyComment from "../comment/Comment";
 import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {

@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:28:25
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:23:16
+ * @LastEditTime: 2020-08-28 15:55:54
  */
 
 import { Message } from 'element-ui';
@@ -153,7 +153,7 @@ export const resMsg = (message, type = 'error') => {
     type,
     showClose: true,
     center: true,
-    duration: 1500,
+    duration: 2000,
     offset: 60,
     customClass: "myMsg"
   })

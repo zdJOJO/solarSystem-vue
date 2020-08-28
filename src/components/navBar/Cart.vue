@@ -18,7 +18,7 @@
 import CartItem from "../cart/CartItem";
 import Settlement from "../cart/Settlement";
 import { mapState, mapGetters } from "vuex";
-import { Toast } from "mint-ui";
+import { resMsg } from "@/global";
 
 export default {
   created() {
@@ -53,7 +53,7 @@ export default {
     },
 
     pay() {
-      Toast({ message: "该功能暂未开发", duration: 1500 });
+      resMsg("该功能尚未开发", "info");
     },
   },
   components: {
@@ -67,11 +67,11 @@ export default {
 .shopcar-container {
   margin: 0.2rem 0;
   overflow: hidden;
-  
-  .el-card{
+
+  .el-card {
     margin-bottom: 0.2rem;
   }
-  
+
   .mui-card-content-inner {
     display: flex;
     align-items: center;

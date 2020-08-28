@@ -20,13 +20,12 @@
         </el-card>
       </div>
     </div>
-    <loadmore @start-load="getMore" />
+    <base-load-more @start-load="getMore" />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import loadmore from "../publicComponents/LoadMore";
 import { ROUTE_PATH } from "@/global";
 export default {
   created() {
@@ -47,9 +46,6 @@ export default {
         params: { id: id },
       });
     },
-  },
-  components: {
-    loadmore,
   },
 };
 </script>

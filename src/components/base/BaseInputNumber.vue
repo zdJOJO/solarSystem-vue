@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:02:33
- * @FilePath: \vue-demo\src\components\publicComponents\InputNumber.vue
+ * @LastEditTime: 2020-08-28 15:27:23
+ * @FilePath: \vue-demo\src\components\base\BaseInputNumber.vue
 -->
 <template>
   <div class="iputNumBox">
@@ -20,6 +20,13 @@
 
 <script>
 export default {
+  name: "base-input-number",
+  props: {
+    label: String,
+    min: Number,
+    max: Number,
+    initCount: Number,
+  },
   created() {
     this.init();
   },
@@ -40,7 +47,6 @@ export default {
       this.$emit("get-count", parseInt(value));
     },
   },
-  props: ["label", "min", "max", "initCount"],
 };
 </script>
 

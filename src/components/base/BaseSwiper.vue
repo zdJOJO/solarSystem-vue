@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:47:02
- * @FilePath: \vue-demo\src\components\publicComponents\Swiper.vue
+ * @LastEditTime: 2020-08-28 15:26:36
+ * @FilePath: \vue-demo\src\components\base\BaseSwiper.vue
 -->
 <template>
   <div class="swiper" :style="{height}">
@@ -29,7 +29,10 @@
 
 <script>
 export default {
-  //子组件接受父组件传来的参数
+  name: "base-swiper",
+  props: {
+    swiperImgs: Array,
+  },
   data() {
     return {
       arrow: "never",
@@ -39,7 +42,6 @@ export default {
       interval: 3000,
     };
   },
-  props: ["swiperImgs"],
 };
 </script>
 

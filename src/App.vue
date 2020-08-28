@@ -146,7 +146,7 @@ $fontColor: #303133;
 }
 
 .app-container {
-  padding-top:  0.8rem;
+  padding-top: 0.8rem;
   padding-bottom: 1rem;
   background-color: #fff;
 
@@ -250,7 +250,7 @@ $fontColor: #303133;
 
         .navItem.isActive {
           color: $themeColor;
-           transform: scale(0.95);
+          transform: scale(0.95);
         }
       }
     }

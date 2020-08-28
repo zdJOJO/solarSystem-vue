@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-27 11:51:36
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:02:04
- * @FilePath: \vue-demo\src\components\publicComponents\Skeleton.vue
+ * @LastEditTime: 2020-08-28 15:14:46
+ * @FilePath: \vue-demo\src\components\publicComponents\BaseSkeleton.vue
 -->
 <template>
   <div class="skeleton-loading">
@@ -53,6 +53,7 @@
 
 <script>
 export default {
+  name: "base-skeleton",
   props: {
     type: {
       type: String,

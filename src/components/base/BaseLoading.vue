@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:18:25
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:02:21
+ * @LastEditTime: 2020-08-28 15:27:35
 -->
 <template>
   <div class="myLoading" v-if="isLoading" :style="{color, 'font-size':size}">
@@ -15,13 +15,19 @@
 <script>
 import { themeColor, fontSize } from "@/global";
 export default {
+  name: "base-loading",
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data: function () {
     return {
       color: themeColor,
       size: fontSize,
     };
   },
-  props: ["isLoading"],
 };
 </script>
 

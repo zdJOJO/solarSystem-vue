@@ -4,11 +4,11 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:17:55
+ * @LastEditTime: 2020-08-28 15:46:40
 -->
 <template>
   <div class="pageBox" style="overflow:auto">
-    <div class="list ">
+    <div class="list">
       <div class="list-item" v-for="news in newsList" :key="news.id">
         <router-link :to="path + news.id">
           <el-card class="box-card">
@@ -27,13 +27,12 @@
         </router-link>
       </div>
     </div>
-    <loading isLoading="true" />
+    <base-loading :isLoading="true" />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import loading from "@/components/publicComponents/Loading";
 import { ROUTE_PATH } from "@/global";
 
 export default {
@@ -52,9 +51,6 @@ export default {
     getNewsList() {
       this.$store.dispatch("news/getNewsList");
     },
-  },
-  components: {
-    loading,
   },
 };
 </script>

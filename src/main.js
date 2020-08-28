@@ -3,8 +3,8 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 20:48:53
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-28 15:47:31
  */
 
 import Vue from "vue"
@@ -12,32 +12,32 @@ import { sync } from 'vuex-router-sync'
 import moment from "moment"
 import VuePreview from 'vue-preview' /*图片预览插件*/
 import VueLazyLoad from 'vue-lazyload' /*图片懒加载*/
-
-
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 /* 按需引入element-ui */
 import {
-    Container,
-    Header,
-    Main,
-    Footer,
-    Menu,
-    MenuItem,
-    Carousel,
-    CarouselItem,
-    Button,
-    Checkbox,
-    Input,
-    InputNumber,
-    Backtop,
-    Image,
-    Card,
-    Row,
-    Col,
-    Badge,
-    Tabs,
-    TabPane,
-    Tag
+	Container,
+	Header,
+	Main,
+	Footer,
+	Menu,
+	MenuItem,
+	Carousel,
+	CarouselItem,
+	Button,
+	Checkbox,
+	Input,
+	InputNumber,
+	Backtop,
+	Image,
+	Card,
+	Row,
+	Col,
+	Badge,
+	Tabs,
+	TabPane,
+	Tag
 } from 'element-ui';
 import '../theme/index.css' // 自定义主题
 
@@ -54,10 +54,10 @@ import axios from "./httpConfig/http";
 
 Vue.use(VuePreview);
 Vue.use(VueLazyLoad, {
-    preLoad: 1.3,
-    error: 'public/images/error.jpg',
-    loading: 'public/images/loading.gif',
-    attempt: 2
+	preLoad: 1.3,
+	error: 'public/images/error.jpg',
+	loading: 'public/images/loading.gif',
+	attempt: 2
 });
 
 // element-ui 全局配置
@@ -91,6 +91,44 @@ Vue.prototype.$http = axios;
 // 按需加载 Vuex 模块 插件
 // Vue.use(lazyLoadVuexModule)
 
+
+
+// 全局注册 base组件
+const requireComponent = require.context(
+	// 其组件目录的相对路径
+	'./components/base',
+	// 是否查询其子目录
+	false,
+	// 匹配基础组件文件名的正则表达式
+	/Base[A-Z]\w+\.(vue|js)$/
+)
+
+requireComponent.keys().forEach(fileName => {
+	// 获取组件配置
+	const componentConfig = requireComponent(fileName)
+
+	// 获取组件的 PascalCase 命名
+	const componentName = upperFirst(
+		camelCase(
+			// 获取和目录深度无关的文件名
+			fileName
+				.split('/')
+				.pop()
+				.replace(/\.\w+$/, '')
+		)
+	)
+
+	// 全局注册组件
+	Vue.component(
+		componentName,
+		// 如果这个组件选项是通过 `export default` 导出的，
+		// 那么就会优先使用 `.default`，
+		// 否则回退到使用模块的根。
+		componentConfig.default || componentConfig
+	)
+});
+
+
 /*
  @desctiption: 定义Vue全局过滤器 (时间转换过滤器)
  @user:  {{ a.time |  dateFormat }}
@@ -101,9 +139,9 @@ Vue.filter('dateFormat', (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") => moment(da
 sync(store, router)
 
 const vm = new Vue({
-    router,
-    store,
-    render: h => h(App) /* 渲染根组件 */
+	router,
+	store,
+	render: h => h(App) /* 渲染根组件 */
 }).$mount('#app')
 
 // 开发环境 浏览器启用 devtools

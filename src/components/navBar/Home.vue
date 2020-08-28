@@ -3,12 +3,12 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 20:52:17
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-28 15:45:55
 -->
 <template>
   <div>
-    <my-swiper :swiperImgs="lunbotuList" :isfull="true" />
+    <base-swiper :swiperImgs="lunbotuList" :isfull="true" />
     <div class="box">
       <div class="grid">
         <div class="cell" v-for="menu in showMenus" :key="menu.name">
@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import { Toast } from "mint-ui";
-import Swiper from "../publicComponents/Swiper";
 import { fontColor, menus } from "@/global";
 import { HOME } from "@/httpConfig/api";
 
@@ -53,9 +51,6 @@ export default {
       });
       this.lunbotuList = result;
     },
-  },
-  components: {
-    "my-swiper": Swiper
   },
 };
 </script>

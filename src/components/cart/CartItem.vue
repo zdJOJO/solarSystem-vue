@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-24 00:48:12
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:15:35
+ * @LastEditTime: 2020-08-28 15:45:27
  * @FilePath: \vue-demo\src\components\cart\CartItem.vue
 -->
 <template>
@@ -23,7 +23,10 @@
         <p>{{cart.title}}</p>
         <div>
           <span class="price">￥ {{cart.price}}</span>
-          <input-number :initCount="cart.count" @get-count="(value)=>{changeValue(cart.id,value)}" />
+          <base-input-number
+            :initCount="cart.count"
+            @get-count="(value)=>{changeValue(cart.id,value)}"
+          />
         </div>
         <div>
           <el-button class="delete" type="danger" size="small" @click="remove(cart.id)">删除</el-button>
@@ -34,8 +37,10 @@
 </template>
 
 <script>
-import InputNumber from "../publicComponents/InputNumber";
 export default {
+  props: {
+    cart: Object,
+  },
   data() {
     return {
       isChecked: true,
@@ -51,10 +56,6 @@ export default {
     remove(id) {
       this.$emit("remove-count", id);
     },
-  },
-  props: ["cart"],
-  components: {
-    "input-number": InputNumber,
   },
 };
 </script>

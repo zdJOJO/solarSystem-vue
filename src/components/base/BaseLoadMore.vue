@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-23 23:46:36
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:02:14
- * @FilePath: \vue-demo\src\components\publicComponents\LoadMore.vue
+ * @LastEditTime: 2020-08-28 15:27:01
+ * @FilePath: \vue-demo\src\components\base\BaseLoadMore.vue
 -->
 <template>
   <div class="loadMore">
@@ -19,6 +19,7 @@
 </template>
 <script>
 export default {
+  name: "base-load-more",
   data: function () {
     return {};
   },

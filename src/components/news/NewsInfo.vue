@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:29:49
+ * @LastEditTime: 2020-08-28 15:43:10
  * @FilePath: \vue-demo\src\components\news\NewsInfo.vue
 -->
 <template>
@@ -19,29 +19,28 @@
       <article v-html="newsInfo.content"></article>
     </div>
     <div v-if="isLoading">
-      <my-skeleton width="70vw" height="0.5rem" />
-      <my-skeleton width="55vw" height="0.2rem" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
-      <my-skeleton width="90vw" />
+      <base-skeleton width="70vw" height="0.5rem" />
+      <base-skeleton width="55vw" height="0.2rem" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
+      <base-skeleton width="90vw" />
     </div>
 
     <!-- 评论区 -->
     <my-comment :id="newsId" :loading="isFetching" />
   </div>
 </template>
-
 <script type="text/javascript">
-// import { Comment, Skeleton, Loading, CommentItem } from "../publicComponents";
-import Skeleton from "../publicComponents/Skeleton";
-import Comment from "../publicComponents/Comment";
-import { Toast } from "mint-ui";
+import Comment from "../comment/Comment";
 import { mapState } from "vuex";
 
 export default {
+  components: {
+    "my-comment": Comment,
+  },
   computed: mapState({
     newsId: (state) => state.news.newsId,
     newsInfo: (state) => state.news.newsItemInfo,
@@ -73,12 +72,6 @@ export default {
       });
     },
   },
-  components: {
-    // "my-loading": Loading,
-    // "comment-item": CommentItem,
-    "my-skeleton": Skeleton,
-    "my-comment": Comment,
-  },
 };
 </script>
 
@@ -95,7 +88,7 @@ export default {
   .content {
     font-size: 0.3rem;
   }
-  .cmt-container{
+  .cmt-container {
     padding: 0 !important;
   }
 }

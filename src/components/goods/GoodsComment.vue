@@ -2,8 +2,8 @@
  * @Description: file content
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 17:43:03
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-28 15:33:18
  * @FilePath: \vue-demo\src\components\goods\GoodsComment.vue
 -->
 <template>
@@ -15,7 +15,7 @@
 
 <script>
 //导入评论子组件
-import Comment from "../publicComponents/Comment";
+import Comment from "../comment/Comment";
 
 export default {
   //注册评论子组件进来

@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:51:54
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:41:16
+ * @LastEditTime: 2020-08-28 15:45:40
 -->
 <template>
   <div>
@@ -32,21 +32,26 @@
     >
       <div>
         <div style="display: flex">
-          <my-skeleton width="0.4rem" type="circle" :padding="padding" />
-          <my-skeleton width="20vw" height="0.4rem" :padding="padding" />
-          <my-skeleton width="35vw" height="0.4rem" :padding="padding" />
+          <base-skeleton width="0.4rem" type="circle" :padding="padding" />
+          <base-skeleton width="20vw" height="0.4rem" :padding="padding" />
+          <base-skeleton width="35vw" height="0.4rem" :padding="padding" />
         </div>
-        <my-skeleton width="80vw" height="0.3rem" :padding="padding" />
-        <my-skeleton width="80vw" height="0.3rem" :padding="padding" />
+        <base-skeleton width="80vw" height="0.3rem" :padding="padding" />
+        <base-skeleton width="80vw" height="0.3rem" :padding="padding" />
       </div>
     </el-card>
   </div>
 </template>
 <script>
 import { fontStyle } from "@/global";
-// import { Skeleton } from "./";
-import Skeleton from "./Skeleton";
 export default {
+  name: "base-comment-item",
+  props: {
+    content: String,
+    time: String,
+    userName: String,
+    loading: Boolean,
+  },
   data: function () {
     return {
       userNameStyle: {
@@ -60,10 +65,6 @@ export default {
       contentStyle: fontStyle,
       padding: "0.1rem 0.2rem 0 0",
     };
-  },
-  props: ["content", "time", "userName", "loading"],
-  components: {
-    "my-skeleton": Skeleton,
   },
 };
 </script>

@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-24 02:14:29
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 22:14:16
+ * @LastEditTime: 2020-08-28 15:48:13
  * @FilePath: \vue-demo\src\components\cart\Settlement.vue
 -->
 <template>
@@ -26,12 +26,14 @@
 
 <script>
 export default {
+  props: {
+    getGoodsCountAndAmount: Object,
+  },
   methods: {
     pay() {
       this.$emit("go-pay");
     },
   },
-  props: ["getGoodsCountAndAmount"],
 };
 </script>
 

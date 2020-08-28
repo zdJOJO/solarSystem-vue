@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 21:35:10
+ * @LastEditTime: 2020-08-28 15:42:37
 -->
 <template>
   <div class="cmt-container">
@@ -24,7 +24,7 @@
     </div>
     <!-- 评论列表 -->
     <div class="cmt-list">
-      <comment-item
+      <base-comment-item
         v-for="(comment,i) in comments"
         :key="i"
         :userName="comment.user_name"
@@ -32,7 +32,7 @@
         :content="comment.content"
         :loading="loading"
       />
-      <my-loading :isLoading="loading" />
+      <base-loading :isLoading="loading" />
     </div>
   </div>
 </template>
@@ -40,11 +40,13 @@
 <script>
 import { mapState } from "vuex";
 import { fontColor, fontSize } from "@/global";
-// import { Loading, CommentItem } from "./";
-import CommentItem from "./CommentItem";
-import Loading from "./Loading";
 
 export default {
+  props: {
+    id: String,
+    isAll: Boolean,
+    loading: Boolean,
+  },
   created() {
     this.$store.commit("comment/INIT_COMMENT_DATA");
     this.getMoreComments();
@@ -55,7 +57,6 @@ export default {
       size: fontSize,
     };
   },
-  props: ["id", "isAll", "loading"], //把父组件传过来的值取值
   computed: {
     msg: {
       get() {
@@ -84,10 +85,6 @@ export default {
         id: this.id,
       });
     },
-  },
-  components: {
-    "my-loading": Loading,
-    "comment-item": CommentItem,
   },
 };
 </script>

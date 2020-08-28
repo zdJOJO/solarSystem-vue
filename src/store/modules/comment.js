@@ -3,11 +3,11 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-21 22:40:20
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 16:33:14
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-28 15:54:39
  */
-import { Toast } from "mint-ui";
-import { defauCommentCount } from '@/global';
+
+import { defauCommentCount, resMsg } from '@/global';
 import { ROOT_ASYNC_REQUEST_ACTION } from '../actions';
 import { COMMENT_MUTATION } from '../mutations';
 import { COMMENT } from "@/httpConfig/api";
@@ -50,8 +50,8 @@ const actions = {
   // 提交评论
   async postNewsComments({ commit, dispatch, state }, { id }) {
     if (state.msg.trim().length === 0) {
-      Toast("评论内容不能为空空");
-      return
+      resMsg("评论内容不能为空空", "info");
+      return;
     }
     const obj = await dispatch(ROOT_ASYNC_REQUEST_ACTION, {
       method: "post",
