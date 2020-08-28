@@ -4,15 +4,6 @@ html {
   font-size: 13.33333vw
 }
 
-body {
-  overflow: hidden;
-}
-
-::-webkit-scrollbar {
-  display: none;
-  /* Chrome Safari */
-}
-
 p{
   margin: 0;
 }
