@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 15:59:27
+ * @LastEditTime: 2020-08-29 12:51:32
  * @FilePath: \vue-demo\config\webpack.dll.js
  */
 const path = require("path");
@@ -16,6 +16,7 @@ const vendors = [
     "vue-lazyload",
     "vue-preview",
     "vuex-router-sync",
+    "vue-baidu-map",
     "moment",
     "lodash",
     "axios"

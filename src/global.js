@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:28:25
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 23:51:10
+ * @LastEditTime: 2020-08-29 13:27:04
  */
 
 import { Message } from 'element-ui';
@@ -183,3 +183,7 @@ export const resMsg = (message, type = 'error') => {
     customClass: "myMsg"
   })
 };
+
+
+// 百度地图密钥
+export const baiduMap_AK = 'IcgnafKNldYZGjRjLiRqvcG09TQ5OAOd';

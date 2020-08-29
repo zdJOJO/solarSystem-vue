@@ -3,8 +3,8 @@
  * @Version: 2.0
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
- * @LastEditors: zhangding
- * @LastEditTime: 2020-08-27 14:06:47
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-08-29 11:17:07
  */
 import Vue from "vue"
 import VueRouter from 'vue-router'
@@ -12,6 +12,12 @@ import { ROUTE_PATH } from '../global';
 
 //挂载路由
 Vue.use(VueRouter)
+
+const originalPush = VueRouter.prototype.push;
+// 重写了原型上的push方法，统一的处理了错误信息
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+};
 
 
 /**
@@ -41,7 +47,7 @@ const routes = [
   { path: ROUTE_PATH.HOME_NEWS, component: getAsynComponent('NewsList', 'news'), meta: { index: 4, type: "menu" } },
   { path: ROUTE_PATH.HOME_GODDS, component: getAsynComponent('GoodsList', 'goods'), meta: { index: 5, type: "menu" } },
   { path: ROUTE_PATH.HOME_PHOTOES, component: getAsynComponent('PhotoList', 'photoes'), meta: { index: 6, type: "menu" } },
-  
+
   { path: ROUTE_PATH.HOME_NEWS_ID, component: getAsynComponent('NewsInfo', 'news'), meta: { index: 7 } },
   { path: ROUTE_PATH.HOME_PHOTOE_INFO_ID, component: getAsynComponent('PhotoInfo', 'photoes'), meta: { index: 8 } },
   { path: ROUTE_PATH.HOME_GODDS_INOF_ID.path, name: ROUTE_PATH.HOME_GODDS_INOF_ID.name, component: getAsynComponent('GoodsInfo', 'goods'), meta: { index: 9 } },

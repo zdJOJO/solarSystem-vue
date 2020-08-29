@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:21:46
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 16:04:53
+ * @LastEditTime: 2020-08-29 12:01:30
  * @FilePath: \vue-demo\config\webpack.prod.js
  */
 const path = require("path");
@@ -32,6 +32,8 @@ module.exports = {
     filename: "[name].[hash:8].bundle.js",
     chunkFilename: "[name].[chunkhash:5].chunk.js"  // 按需加载
   },
+
+  externals: webpack_defined.webpack_externals,
 
   resolve: webpack_defined.webpack_resolve,
 

@@ -1,8 +1,9 @@
 <template>
-  <div class="app-container">
+  <!-- <div class="app-container" @scroll="handleScroll" :style="{paddingTop}"> -->
+  <div class="app-container" @scroll="handleScroll">
     <el-container>
       <!-- 顶部区域 -->
-      <el-header style="height: 0.8rem">
+      <el-header :style="headStyle" ref="headNav">
         <div style="position: relative; width: 100%">
           <el-button v-show="isBack" icon="el-icon-arrow-left" @click="prevWeb" />
           <div class="title">{{headMsg}}</div>
@@ -62,6 +63,11 @@ export default {
       currentPath: this.$router.path,
       navs,
       transitionName: "",
+      headStyle: {
+        lineHeight: "0.8rem",
+        height: "0.8rem",
+      },
+      // paddingTop: "0px",
     };
   },
   computed: {
@@ -115,6 +121,34 @@ export default {
       this.currentPath = path;
       this.$router.push(path);
     },
+    handleScroll(event) {
+      let top = event.target.scrollTop;
+      let opacity = top / 40;
+      if (opacity > 1 || top === 0) {
+        opacity = 1;
+      }
+      if (event.target.scrollTop > 40) {
+        this.headStyle = {
+          top: 0,
+          right: 0,
+          left: 0,
+          position: "fixed",
+          zIndex: 99,
+          lineHeight: "0.8rem",
+          height: "0.8rem",
+          opacity,
+        };
+        // this.paddingTop = "0.8rem";
+      } else {
+        this.headStyle = {
+          position: "relative",
+          lineHeight: "0.8rem",
+          height: "0.8rem",
+          opacity,
+        };
+        // this.paddingTop = "0px";
+      }
+    },
   },
 };
 </script>
@@ -149,9 +183,14 @@ $fontColor: #303133;
   transform: translate3d(-100%, 0, 0);
 }
 
+.app-container::-webkit-scrollbar {
+  display: none;
+}
+
 .app-container {
-  padding-top: 0.8rem;
-  padding-bottom: 1rem;
+  height: calc(100% - 1rem);
+  overflow-y: scroll;
+  padding-bottom: 0.2rem;
   background-color: #fff;
 
   /* 修改 element-ui 组件样式*/
@@ -160,6 +199,7 @@ $fontColor: #303133;
       color: #333;
     }
 
+    //  头部
     .el-header {
       padding: 0;
       display: flex;
@@ -167,11 +207,7 @@ $fontColor: #303133;
       height: 0.8rem;
       text-align: center;
       background: $themeColor;
-      top: 0;
-      right: 0;
-      left: 0;
-      position: fixed;
-      z-index: 99;
+      transition: all 0.3s ease;
 
       .el-button {
         background: $themeColor;

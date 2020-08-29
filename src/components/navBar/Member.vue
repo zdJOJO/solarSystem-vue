@@ -3,11 +3,11 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 23:59:58
+ * @LastEditTime: 2020-08-29 13:30:21
  * @FilePath: \vue-demo\src\components\navBar\Member.vue
 -->
 <template>
-  <div>
+  <div class="memberFirstBox">
     <div class="memberInfo">
       <div class="memberInfoBox">
         <div class="headInfo headImg">
@@ -67,6 +67,18 @@
           <base-skeleton width="4rem" height="0.25rem" />
         </div>
         <div class="orderMenuBox">
+          <base-skeleton width="5rem" />
+          <base-skeleton width="4rem" height="0.25rem" />
+          <base-skeleton width="5rem" />
+          <base-skeleton width="4rem" height="0.25rem" />
+        </div>
+         <div class="orderMenuBox">
+          <base-skeleton width="5rem" />
+          <base-skeleton width="4rem" height="0.25rem" />
+          <base-skeleton width="5rem" />
+          <base-skeleton width="4rem" height="0.25rem" />
+        </div>
+         <div class="orderMenuBox">
           <base-skeleton width="5rem" />
           <base-skeleton width="4rem" height="0.25rem" />
           <base-skeleton width="5rem" />
@@ -158,7 +170,7 @@ export default {
   background: #f1f1f154;
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 5rem);
   padding: 0;
 
   .informationContainer {

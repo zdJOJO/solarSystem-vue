@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 00:19:26
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 23:23:51
+ * @LastEditTime: 2020-08-29 12:01:14
  */
 const path = require("path");
 const port = 3000;
@@ -36,6 +36,8 @@ module.exports = {
       // "/api/*": "http://127.0.0.1:7000"
     }
   },
+
+  externals: webpack_defined.webpack_externals,
 
   resolve: webpack_defined.webpack_resolve,
 

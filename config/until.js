@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-27 22:16:31
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-27 23:22:21
+ * @LastEditTime: 2020-08-29 12:01:04
  * @FilePath: \vue-demo\config\until.js
  */
 const path = require("path");
@@ -21,6 +21,10 @@ const webpack_defined = {
     alias: {
       '@': path.join(__dirname, '../src')
     }
+  },
+
+  webpack_externals: {
+    "BMap": "BMap"
   },
 
   webpack_module_dev: {
