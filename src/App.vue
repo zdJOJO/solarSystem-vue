@@ -192,7 +192,6 @@ $fontColor: #303133;
   overflow-y: scroll;
   padding-bottom: 0.2rem;
   background-color: #fff;
-  transform: rotate(30deg);
 
   /* 修改 element-ui 组件样式*/
   .el-container {
