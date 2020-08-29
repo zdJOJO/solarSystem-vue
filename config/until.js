@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-27 22:16:31
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-29 12:01:04
+ * @LastEditTime: 2020-08-29 17:49:49
  * @FilePath: \vue-demo\config\until.js
  */
 const path = require("path");
@@ -35,22 +35,22 @@ const webpack_defined = {
         test: /\.css$/,
         use: [
           "style-loader",
-          "css-loader"
+          'css-loader'
         ]
       },
       {
         test: /\.scss$/,
         use: [
           "style-loader",
-          "css-loader",
-          "sass-loader"
+          'css-loader',
+          'sass-loader',
         ]
       },
       {
         test: /\.less$/,
         use: [
           "style-loader",
-          "css-loader",
+          'css-loader',
           "less-loader"
         ]
       },
@@ -77,21 +77,11 @@ const webpack_defined = {
             {
               loader: "css-loader",
               options: {
-                minimize: true
+                minimize: true,
+                importLoaders: 1
               }
-            }
-          ]
-        })
-      },
-      {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader"
             },
-            "less-loader"
+            'postcss-loader'
           ]
         })
       },
@@ -101,9 +91,31 @@ const webpack_defined = {
           fallback: "style-loader",
           use: [
             {
-              loader: "css-loader"
+              loader: "css-loader",
+              options: {
+                minimize: true,
+                importLoaders: 2
+              }
             },
+            'postcss-loader',
             "sass-loader"
+          ]
+        })
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                minimize: true,
+                importLoaders: 2
+              }
+            },
+            'postcss-loader',
+            "less-loader"
           ]
         })
       },
