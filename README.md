@@ -1,7 +1,16 @@
 # 介绍
-一个移动端vue项目脚手架：vue + vue-route + vuex
 
-# 主要用用到包
+#### 项目：solarSystem 移动网页APP  Vue版本
+
+##### 核心技术栈：vue + vue-route + vuex
+
+
+[Vue 版本](https://github.com/zdJOJO/solarSystem-vue)
+
+[React 版本](https://github.com/zdJOJO/solarSystem-react)
+
+
+# 主要框架
 
 1. 视图框架
 
