@@ -3,11 +3,11 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-28 17:29:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-28 17:38:55
- * @FilePath: \vue-demo\src\components\photoes\photoItem.vue
+ * @LastEditTime: 2020-08-30 15:54:24
+ * @FilePath: \vue-demo\src\components\photoes\PhotoItem.vue
 -->
 <template>
-  <div :class="getClass">
+  <div :class="getClass" @click="handleClick(photoItem.id)">
     <el-card :body-style="{ padding: '0px' }">
       <img v-lazy="photoItem.img_url" class="photoItemImage" />
       <div style="padding: 10px;">
@@ -33,6 +33,11 @@ export default {
     classType: {
       type: String,
       default: "left",
+    },
+  },
+  methods: {
+    handleClick(id) {
+      this.$emit("handle-click", id);
     },
   },
   computed: {

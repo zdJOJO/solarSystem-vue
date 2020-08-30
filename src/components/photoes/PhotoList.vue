@@ -10,8 +10,8 @@
                   <photo-item
                     v-for=" img in getOddImgs"
                     :key="img.id"
-                    @click="go(img.id)"
                     :photoItem="img"
+                    @handle-click="navigateToPhotoInfo"
                   />
                 </div>
                 <div class="column">
@@ -20,7 +20,7 @@
                     :key="img.id"
                     :photoItem="img"
                     classType="right"
-                    @click="go(img.id)"
+                    @handle-click="navigateToPhotoInfo"
                   />
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default {
       if (tab.name === this.activeId) return;
       this.$store.dispatch("photoes/getImgs", { id: parseInt(tab.name) });
     },
-    go(id) {
+    navigateToPhotoInfo(id) {
       this.$router.push({
         path: `${this.path}${id}`,
       });
