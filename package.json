@@ -1,8 +1,8 @@
 {
-  "name": "solarSystem-vue",
+  "name": "solarystem-vue",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "[Vue 版本](https://github.com/zdJOJO/solarSystem-vue)",
+  "main": "main.js",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --config config/webpack.dev.js",
     "build-windows": "set NODE_ENV=production&&webpack --color --progress --config config/webpack.prod.js",
@@ -67,5 +67,13 @@
     "vue-router": "^3.4.3",
     "vuex": "^3.5.1",
     "vuex-router-sync": "^5.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdJOJO/solarSystem-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zdJOJO/solarSystem-vue/issues"
+  },
+  "homepage": "https://github.com/zdJOJO/solarSystem-vue#readme"
 }
