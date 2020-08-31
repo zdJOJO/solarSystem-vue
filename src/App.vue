@@ -64,8 +64,8 @@ export default {
       navs,
       transitionName: "",
       headStyle: {
-        lineHeight: "0.8rem",
-        height: "0.8rem",
+        lineHeight: "0.9rem",
+        height: "0.9rem",
       },
       // paddingTop: "0px",
     };
