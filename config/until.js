@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-27 22:16:31
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-29 17:49:49
- * @FilePath: \vue-demo\config\until.js
+ * @LastEditTime: 2020-08-31 12:03:17
+ * @FilePath: \solarSystem-vue\config\until.js
  */
 const path = require("path");
 const webpack = require("webpack");
@@ -29,8 +29,15 @@ const webpack_defined = {
 
   webpack_module_dev: {
     rules: [
-      { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }, // 配置 Babel 来转换高级的ES语法
-      { test: /\.vue$/, use: 'vue-loader' }, // 处理 .vue 文件的 loader
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      }, // 配置 Babel 来转换高级的ES语法
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      }, // 处理 .vue 文件的 loader
       {
         test: /\.css$/,
         use: [
@@ -171,7 +178,7 @@ const webpack_defined = {
         collapseWhitespace: true, // 删除空白符与换行符
         minifyCSS: true// 压缩内联css
       },
-      title: `我的APP`,
+      title: `Solar System`,
       filename: path.join(__dirname, "../dist/index.html"),
       favicon: path.join(__dirname, "../public/favicon.ico"),
       template: path.join(__dirname, '../public/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法

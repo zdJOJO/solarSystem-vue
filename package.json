@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "zdjojo",
-  "license": "ISC",
+  "license": "MIT",
   "browserslist": [
     "defaults",
     "not ie < 11",
