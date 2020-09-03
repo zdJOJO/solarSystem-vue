@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-23 21:28:25
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-29 13:27:04
+ * @LastEditTime: 2020-09-04 01:04:58
  */
 
 import { Message } from 'element-ui';
@@ -49,7 +49,7 @@ export const ROUTE_PATH = {
 // nav 导航
 export const navs = [
   {
-    name: "首页",
+    name: "Solar System Vue",
     routePath: ROUTE_PATH.HOME,
     icon: "s-home",
     activeIcon: "platform-eleme",
