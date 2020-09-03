@@ -3,12 +3,13 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:21:46
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-29 12:01:30
- * @FilePath: \vue-demo\config\webpack.prod.js
+ * @LastEditTime: 2020-09-03 19:05:36
+ * @FilePath: \solarSystem-vue\config\webpack.prod.js
  */
 const path = require("path");
 const webpack = require("webpack");
 const webpack_defined = require('./until.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 if (process.env.NODE_ENV !== "production") {
   throw new Error(' Production builds must have NODE_ENV=production ');
@@ -45,6 +46,9 @@ module.exports = {
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require("../dist/manifest.json")
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerPort: 8887, // 运行后的端口号
     })
   )
 };
