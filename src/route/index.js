@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-20 22:48:51
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-29 11:17:07
+ * @LastEditTime: 2020-09-03 12:54:39
  */
 import Vue from "vue"
 import VueRouter from 'vue-router'
@@ -38,7 +38,6 @@ const getAsynComponent = (componentName, secondDirectory) => {
 };
 const routes = [
 
-  { path: "*", redirect: ROUTE_PATH.HOME, meta: { index: 0 } },
   { path: ROUTE_PATH.HOME, component: getAsynComponent('Home', 'navBar'), meta: { index: 0, type: "nav" } },
   { path: ROUTE_PATH.LOCATION, component: getAsynComponent('Location', 'navBar'), meta: { index: 1, type: "nav" } },
   { path: ROUTE_PATH.CART, component: getAsynComponent('Cart', 'navBar'), meta: { index: 2, type: "nav" } },
@@ -52,12 +51,16 @@ const routes = [
   { path: ROUTE_PATH.HOME_PHOTOE_INFO_ID, component: getAsynComponent('PhotoInfo', 'photoes'), meta: { index: 8 } },
   { path: ROUTE_PATH.HOME_GODDS_INOF_ID.path, name: ROUTE_PATH.HOME_GODDS_INOF_ID.name, component: getAsynComponent('GoodsInfo', 'goods'), meta: { index: 9 } },
   { path: ROUTE_PATH.HOME_GODDS_DETAIL_ID.path, name: ROUTE_PATH.HOME_GODDS_DETAIL_ID.name, component: getAsynComponent('GoodsDesc', 'goods'), meta: { index: 10 } },
-  { path: ROUTE_PATH.HOME_GODDS_COMMENT_ID.path, name: ROUTE_PATH.HOME_GODDS_COMMENT_ID.name, component: getAsynComponent('GoodsComment', 'goods'), meta: { index: 11 } }
-]
+  { path: ROUTE_PATH.HOME_GODDS_COMMENT_ID.path, name: ROUTE_PATH.HOME_GODDS_COMMENT_ID.name, component: getAsynComponent('GoodsComment', 'goods'), meta: { index: 11 } },
+
+  { path: "/*", redirect: ROUTE_PATH.HOME, meta: { index: 0 } },
+
+];
 
 // 3. 创建路由对象
 const router = new VueRouter({
   // mode: process.env.NODE_ENV !== 'production' ? 'hash' : 'history', //  hash | history  vue-router默认的路由模式是hash，要去掉url中的#需要将路由模式切换为 history
+  // base: '/vue',
   routes
 })
 

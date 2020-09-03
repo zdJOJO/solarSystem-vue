@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-27 22:16:31
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-08-31 12:03:17
+ * @LastEditTime: 2020-09-03 12:50:22
  * @FilePath: \solarSystem-vue\config\until.js
  */
 const path = require("path");
@@ -142,7 +142,7 @@ const webpack_defined = {
     new HtmlWebpackPlugin({
       // inject: true,
       filename: 'index.html', // 设置生成的内存页面的名称
-      title: `一个简单的demo`,
+      title: '我的 Vue APP',
       // favicon: `public/favicon.ico`,
       template: path.join(__dirname, '../public/index.html'), // 指定模板文件路径
       // chunks: ["vendor", "app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
@@ -178,7 +178,7 @@ const webpack_defined = {
         collapseWhitespace: true, // 删除空白符与换行符
         minifyCSS: true// 压缩内联css
       },
-      title: `Solar System`,
+      title: `Solar System Vue`,
       filename: path.join(__dirname, "../dist/index.html"),
       favicon: path.join(__dirname, "../public/favicon.ico"),
       template: path.join(__dirname, '../public/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法
